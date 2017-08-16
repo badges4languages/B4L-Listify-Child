@@ -7,7 +7,7 @@
  Version:     1.0
  License:     GNU General Public License
  License URI: license.txt
- Text Domain: listify-foursquare
+ Text Domain: listify
  Domain Path: /languages/
  Tags: white, two-columns, one-column, right-sidebar, left-sidebar, responsive-layout, custom-background, custom-header, theme-options, full-width-template, featured-images, flexible-header, custom-menu, translation-ready
  Template:    listify
@@ -57,9 +57,9 @@ background-color:#f6f6f6;}
 a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
 /*dark grey for 'v' symbols*/
 .nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,
-.nav-menu.secondary > li:after{color:#777;} 
+.nav-menu.secondary > li:after{color:#777;}
 /*secondary sub menu*/
-.nav-menu.secondary ul ul a{color:#666;} 
+.nav-menu.secondary ul ul a{color:#666;}
 .nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}
 .nav-menu.secondary ul ul>li:hover{
 	width:%100px;
@@ -77,4 +77,3 @@ a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
 .cta-button-wrapper a:hover{color:#fff;}
 /*=============== footer ===============*/
 .site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}
-

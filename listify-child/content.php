@@ -65,6 +65,7 @@ if ( '' == get_the_content() ) {
 
 		<?php if ( ! is_singular() ) : ?>
 
+
 <!-- #content deleted
 		<footer class="entry-footer">
 			<a href="<?php the_permalink(); ?>" class="button button-small"><?php _e( 'Read More', 'listify' ); ?></a>
