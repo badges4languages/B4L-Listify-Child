@@ -28,8 +28,18 @@ get_header(); ?>
 					<?php
 						if(get_post_type( $post ) == 'passport'){
 
-								echo '<h1>Portfolio:</h1></br></br>';
+								echo '<h1>Passport :</h1></br></br>';
 								passport_grades($post);
+						}
+						elseif(get_post_type( $post ) == 'student_portfolio'){
+
+								echo '<h1>Student Profiling Grid :</h1></br></br>';
+								student_grades($post);
+						}
+						elseif(get_post_type( $post ) == 'teacher_portfolio'){
+
+								echo '<h1>Teacher Profiling Grid :</h1></br></br>';
+								teacher_grades($post);
 						}
 					?>
 
