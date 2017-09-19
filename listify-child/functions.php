@@ -2,7 +2,6 @@
 /**
  * Listify child theme.
  */
-
 function listify_child_styles() {
     wp_enqueue_style( 'listify-child', get_stylesheet_uri() );
 }
@@ -10,11 +9,10 @@ add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 
 /** Place any new code below this line */
 
+require_once("astoundify-snippets.php");
 
 
-
-
-/** Redirect user after login/registration globally 
+/** Redirect user after login/registration globally
  *
  * https://codex.wordpress.org/Plugin_API/Filter_Reference/login_redirect
  *
@@ -35,6 +33,3 @@ function ckc_login_redirect() {
     // Change this to the url to your custom page. return home_url( ‘/example’ )
     return 'https://badges4languages.wordpress.com/';
 }
-
-
-

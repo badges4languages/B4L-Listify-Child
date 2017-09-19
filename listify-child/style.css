@@ -9,15 +9,35 @@
  License URI: license.txt
  Text Domain: listify
  Domain Path: /languages/
- Tags: white, two-columns, one-column, right-sidebar, left-sidebar, responsive-layout, custom-background, custom-header, theme-options, full-width-template, featured-images, flexible-header, custom-menu, translation-ready
+ Tags: Badges4Languages
  Template:    listify
 */
+
+/* To maintain the height of the listing header in badges archive file */
+.head {
+		min-height:244px;
+		background-position: center;
+}
+
+/* To set the height of the badge title */
+#badge-title {
+	margin-top:-3px;
+}
+
+#tags-title {
+	margin-top:-15px;
+}
 
 /* Reduce the Space Between Widgets on the Homepage */
 @media (min-width: 992px) {
   .home-widget {
       margin: 3em 0;
   }
+}
+
+/* Setting the author-name to the left */
+.author-name {
+  float:left;
 }
 
 /* Reduce the Space between the badge and the box of the badge */
@@ -34,46 +54,60 @@ padding: 2em 0;
 .filter_by_tag a {
     width: 15%;
 }
-/*===============Site Header===============*/
-/* site title colors."illustrastock" */
-.site-branding .site-title a{color:#777;}
 
+
+/*Modification for a new color */
+/*===============Site Header===============*/
+/* site title colors."illustrastock"
+.site-branding .site-title a{color:#777;}
+*/
 /*===============primary header===============*/
-/*menu background color*/
+/*menu background color
 .search-overlay,.primary-header{
 background-color:#f6f6f6;}
-/*primary header menu color*/
+*/
+/*primary header menu color
 .nav-menu.primary a,
 .nav-menu.primary li:before,
 .nav-menu.primary li:after,
 .nav-menu.primary a:before,
 .nav-menu.primary a:after {color:#777}
+*/
 /*=============== secondary menu ===============*/
-/*secondary menu line color's*/
+/*secondary menu line color's
 .main-navigation {background-color:#4ed0aa;}
-/*secondary menu color's*/
+*/
+/*secondary menu color's
 .nav-menu.secondary > li > a,.nav-menu.secondary > li > a:before{color:#777;font-weight:bold;}
-/*secondary menu symbol and seach symbol colors*/
+*/
+/*secondary menu symbol and seach symbol colors
 a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
-/*dark grey for 'v' symbols*/
+*/
+/*dark grey for 'v' symbols
 .nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,
 .nav-menu.secondary > li:after{color:#777;}
-/*secondary sub menu*/
+*/
+/*secondary sub menu
 .nav-menu.secondary ul ul a{color:#666;}
 .nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}
 .nav-menu.secondary ul ul>li:hover{
 	width:%100px;
 	background-color:#fff;
 	opacity:0.6;filter:alpha(opacity=60);}
+*/
 /*=============== Drop sub menu ===============*/
-/*drop submenu background color*/
+/*drop submenu background color
 .navigation-bar-wrapper .nav-menu.secondary ul ul{background-color:#4ed0aa;border:0;}
-/*=============== page ===============*/
+*/
+/*=============== page ===============
 .site-main a:link{color:#252525;}
 .site-main a:hover{color:#4ed0aa;}
-/*=============== widget sidebar ===============*/
+*/
+/*=============== widget sidebar ===============
 .widget a:hover{color:#4ed0aa;}
 .button{background-color:#4ed0aa;}
 .cta-button-wrapper a:hover{color:#fff;}
-/*=============== footer ===============*/
+*/
+/*=============== footer ===============
 .site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}
+*/

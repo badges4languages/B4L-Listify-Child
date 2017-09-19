@@ -25,23 +25,23 @@ get_header(); ?>
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'content' ); ?>
+
+<!-- Portfolio  -->
+
 					<?php
-						if(get_post_type( $post ) == 'passport'){
+						if(get_post_type( $post ) == 'teacher_portfolio'){
 
-								echo '<h1>Passport :</h1></br></br>';
-								passport_grades($post);
-						}
-						elseif(get_post_type( $post ) == 'student_portfolio'){
-
-								echo '<h1>Student Profiling Grid :</h1></br></br>';
-								student_grades($post);
-						}
-						elseif(get_post_type( $post ) == 'teacher_portfolio'){
-
-								echo '<h1>Teacher Profiling Grid :</h1></br></br>';
+								echo '<h1>Teacher Portfolio:</h1></br></br>';
 								teacher_grades($post);
 						}
-					?>
+
+						else if (get_post_type( $post ) == 'student_portfolio'){
+
+									echo '<h1>Student Portfolio:</h1></br></br>';
+								 	student_grades($post);
+						} ?>
+
+<!-- /Portfolio  -->
 
 
 
