@@ -42,11 +42,11 @@ $obj = get_post_type_object( $post_type );
 								// Checing if the post has an image uploaded for the post
 								 	if ( ! wp_get_attachment_image_src(get_post_thumbnail_id($post->ID))) : ?>
 									<!-- getting the template url for the default image -->
-										<?php echo '<style>
-												.head {
-														background-image: url(<?php echo get_the_template_uri();?>/images/default-badge.png);
-													}
-										</style>';
+										<style>
+											.head {
+													background-image: url('<?=get_template_directory_uri()?>/images/default-badge.png')
+												}
+										</style>
 										?>
 								<?php endif; ?>
 
