@@ -10,9 +10,6 @@ add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 /** Place any new code below this line */
 
 require_once("astoundify-snippets.php");
-require_once("rcp-custom_fields.php");
-
-
 
 
 /** Redirect user after login/registration globally
