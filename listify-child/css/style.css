@@ -13,77 +13,75 @@
  Template:    listify
 */
 
-/* Reduce the Space Between Widgets on the Homepage */
-@media (min-width: 992px) {
-  .home-widget {
-      margin: 3em 0;
-  }
-}
+/*!* Reduce the Space Between Widgets on the Homepage *!*/
+/*@media (min-width: 992px) {*/
+  /*.home-widget {*/
+    /*margin: 3em 0;*/
+  /*}*/
+/*}*/
 
-/* Setting the author-name to the left */
-.author-name {
-  float:left;
-}
+/*!* Setting the author-name to the left *!*/
+/*.author-name {*/
+  /*float:left;*/
+/*}*/
 
-/* Reduce the Space between the badge and the box of the badge */
-.home-feature {
-padding: 10px;
-}
+/*!* Reduce the Space between the badge and the box of the badge *!*/
+/*.home-feature {*/
+  /*padding: 10px;*/
+/*}*/
 
-/* Reduce the Space of the Footer */
-.site-footer-widgets {
-padding: 2em 0;
-}
+/*!* Reduce the Space of the Footer *!*/
+/*.site-footer-widgets {*/
+  /*padding: 2em 0;*/
+/*}*/
 
-/* Show all the tags (up to 6) in the same line */
-.filter_by_tag a {
-    width: 15%;
-}
-/*===============Site Header===============*/
-/* site title colors."illustrastock" */
-.site-branding .site-title a{color:#777;}
+/*!* Show all the tags (up to 6) in the same line *!*/
+/*.filter_by_tag a {*/
+  /*width: 15%;*/
+/*}*/
+/*!*===============Site Header===============*!*/
+/*!* site title colors."illustrastock" *!*/
+/*.site-branding .site-title a{color:#777;}*/
 
-/*===============primary header===============*/
-/*menu background color*/
-.search-overlay,.primary-header{
-background-color:#f6f6f6;}
-/*primary header menu color*/
-.nav-menu.primary a,
-.nav-menu.primary li:before,
-.nav-menu.primary li:after,
-.nav-menu.primary a:before,
-.nav-menu.primary a:after {color:#777}
-/*=============== secondary menu ===============*/
-/*secondary menu line color's*/
-.main-navigation {background-color:#4ed0aa;}
-/*secondary menu color's*/
-.nav-menu.secondary > li > a,.nav-menu.secondary > li > a:before{color:#777;font-weight:bold;}
-/*secondary menu symbol and seach symbol colors*/
-a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
-/*dark grey for 'v' symbols*/
-.nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,
-.nav-menu.secondary > li:after{color:#777;}
-/*secondary sub menu*/
-.nav-menu.secondary ul ul a{color:#666;}
-.nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}
-.nav-menu.secondary ul ul>li:hover{
-	width:%100px;
-	background-color:#fff;
-	opacity:0.6;filter:alpha(opacity=60);}
-/*=============== Drop sub menu ===============*/
-/*drop submenu background color*/
-.navigation-bar-wrapper .nav-menu.secondary ul ul{background-color:#4ed0aa;border:0;}
-/*=============== page ===============*/
-.site-main a:link{color:#252525;}
-.site-main a:hover{color:#4ed0aa;}
-/*=============== widget sidebar ===============*/
-.widget a:hover{color:#4ed0aa;}
-.button{background-color:#4ed0aa;}
-.cta-button-wrapper a:hover{color:#fff;}
-/*=============== footer ===============*/
-.site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}
-
-
+/*!*===============primary header===============*!*/
+/*!*menu background color*!*/
+/*.search-overlay,.primary-header{*/
+  /*background-color:#f6f6f6;}*/
+/*!*primary header menu color*!*/
+/*.nav-menu.primary a,*/
+/*.nav-menu.primary li:before,*/
+/*.nav-menu.primary li:after,*/
+/*.nav-menu.primary a:before,*/
+/*.nav-menu.primary a:after {color:#777}*/
+/*!*=============== secondary menu ===============*!*/
+/*!*secondary menu line color's*!*/
+/*.main-navigation {background-color:#4ed0aa;}*/
+/*!*secondary menu color's*!*/
+/*.nav-menu.secondary > li > a,.nav-menu.secondary > li > a:before{color:#777;font-weight:bold;}*/
+/*!*secondary menu symbol and seach symbol colors*!*/
+/*a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}*/
+/*!*dark grey for 'v' symbols*!*/
+/*.nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,*/
+/*.nav-menu.secondary > li:after{color:#777;}*/
+/*!*secondary sub menu*!*/
+/*.nav-menu.secondary ul ul a{color:#666;}*/
+/*.nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}*/
+/*.nav-menu.secondary ul ul>li:hover{*/
+  /*width:%100px;*/
+  /*background-color:#fff;*/
+  /*opacity:0.6;filter:alpha(opacity=60);}*/
+/*!*=============== Drop sub menu ===============*!*/
+/*!*drop submenu background color*!*/
+/*.navigation-bar-wrapper .nav-menu.secondary ul ul{background-color:#4ed0aa;border:0;}*/
+/*!*=============== page ===============*!*/
+/*.site-main a:link{color:#252525;}*/
+/*.site-main a:hover{color:#4ed0aa;}*/
+/*!*=============== widget sidebar ===============*!*/
+/*.widget a:hover{color:#4ed0aa;}*/
+/*.button{background-color:#4ed0aa;}*/
+/*.cta-button-wrapper a:hover{color:#fff;}*/
+/*!*=============== footer ===============*!*/
+/*.site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}*/
 
 
 
@@ -92,5 +90,116 @@ a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
 
 
 .user-info {
-  clear: both;
+    position: relative;
+    width: 55%;
+    overflow: hidden;
+    float: left;
+}
+
+.author-name {
+    text-align: left;
+    float: none;
+    margin-bottom: 20px;
+}
+
+
+.author-name h1{
+    font-size: 40px;
+}
+
+.user-info .img-info {
+    float: left;
+    width: 20%;
+}
+
+.user-info .img-info img{
+
+}
+
+.user-info .txt-info {
+    float: left;
+    width: 80%;
+}
+
+.txt-info li {
+    margin: 4px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    color: black;
+    list-style-type: none;
+    float: left;
+    clear: both;
+    display: inline-block;
+}
+
+.txt-info li:first-child {
+    margin-top: 0px;
+}
+
+
+.user-badges{
+    width: 45%;
+    float: left;
+}
+
+.badges_profil{
+    float: left; padding: 3px 10px;
+}
+
+.badge-title {
+    float: none;
+    margin-bottom: 20px;
+}
+
+.listings-user{
+    margin: 100px 0px;
+
+}
+
+.list-column{
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+
+
+.nav-pills .nav-list{
+    color: #4b4b4b;
+    border-radius: 5px;
+    padding: 5px 20px;
+    display: inline-block;
+    font-weight: 100;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem .75rem;
+    line-height: 1.25;
+}
+
+.nav-pills .nav-list.active{
+    background-color: #959595;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-pills .nav-list:hover {
+    text-decoration: none;
+}
+
+
+
+.tab-content {
+    padding: 15px 25px 0px 25px !important;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+
+.widgettitle{
+    font-weight: 100;
+    font-size: 14px;
+    color: #b8b8b8;
 }

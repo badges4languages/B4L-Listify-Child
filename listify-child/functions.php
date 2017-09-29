@@ -6,11 +6,10 @@ function listify_child_styles() {
     $parent_style = 'listify-child';
 
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'child-style',
-        get_stylesheet_directory_uri() . '/style.css',
-        array( $parent_style ),
-        wp_get_theme()->get('Version')
-    );
+    wp_enqueue_style( 'listify-child-css', get_stylesheet_directory_uri() . '/css/style.css', array( $parent_style ), wp_get_theme()->get('Version'));
+	wp_enqueue_style('bootstrap-css', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array( $parent_style ), wp_get_theme()->get('Version'));
+	wp_enqueue_script('bootstrap-js', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '1.0', true );
+
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 
@@ -48,6 +47,14 @@ echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_
 }
 add_action('login_head', 'my_custom_login');
 
+
+function my_custom_js() {
+	echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>';
+}
+// Add hook for admin <head></head>
+add_action('admin_head', 'my_custom_js');
+// Add hook for front-end <head></head>
+add_action('wp_head', 'my_custom_js');
 
 /** Customizing the WordPress Login Logo URL
  *
