@@ -21,6 +21,7 @@ $sidebar_args = array(
 	'after_title'   => '</h3>',
 );
 
+$user_info = get_userdata(get_queried_object_id());
 
 get_header(); ?>
 
@@ -30,10 +31,7 @@ get_header(); ?>
 				<div class="user-info">
 					<div class="author-name">
                         <h1 class="">
-	                        <?php $taxonomy = get_queried_object();
-	                        echo  $taxonomy->name;
-
-	                        //the_author_meta( 'first_name' ); ?>&nbsp;<?php //the_author_meta( 'last_name' ); ?>
+	                        <?php echo $user_info->first_name; ?>&nbsp;<?php echo $user_info->last_name; ?>
                         </h1>
 					</div>
 					<div class="img-info">
@@ -41,18 +39,22 @@ get_header(); ?>
 					</div>
 					<div class="txt-info">
 						<ul>
-								<li>
-									<span class="dashicons dashicons-admin-users"></span>
-									<?php the_author_meta( 'display_name' ); ?>
-								</li>
-								<li >
-	                <span class="dashicons dashicons-calendar"></span>
-									<?php echo 'Member since <strong>'.date('F jS, Y', strtotime($current_user->user_registered)).'</strong>';?></br>
-								</li>
-								<li>
-									<span class="dashicons dashicons-email-alt"></span>
-									<?php the_author_meta( 'user_email' ); ?>
-								</li>
+                            <li>
+                                <span class="dashicons dashicons-admin-users"></span>
+                                <?php echo $user_info->nickname; ?>
+                            </li>
+                            <li >
+                            <span class="dashicons dashicons-calendar"></span>
+                                <?php echo 'Member since <strong>'.date('F jS, Y', strtotime($user_info->user_registered)).'</strong>';?></br>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-email-alt"></span>
+								<?php echo $user_info->user_email; ?>
+                            </li>
+                            <li>
+                                <span class="dashicons dashicons-admin-tools"></span>
+								<?php echo get_usermeta(get_queried_object_id(), 'rcp_profession'); ?>
+                            </li>
 							</ul>
 						</div>
 				</div>
@@ -68,10 +70,12 @@ get_header(); ?>
                     <div class="badge-title">
                         <h3>Badges</h3>
                     </div>
+                    <div class="container">
+                        <div class="row justify-content-center">
 
                     <?php  //function current_user_badges( $user ) {
                         $allbadges = get_all_badges();
-                      $currentbadges = get_the_author_meta( 'user_badges', $current_user->ID );
+                        $currentbadges = get_the_author_meta( 'user_badges', get_queried_object_id() );
 
                         if(empty($currentbadges)) {
                         ?>
@@ -86,16 +90,18 @@ get_header(); ?>
                                 foreach ($allbadges as $badge):
                                          if ($currentbadge['name']==$badge->post_title):
                                              ?>
-                                  <div class="badges_profil" >
-                                                        <img src="<?php echo get_the_post_thumbnail_url($badge->ID, 'thumbnail'); ?>" width="150px" height="150px">
-                                                </div>
-                                                <?php
+                                             <div class="badges_profil col-2 " >
+                                                 <img src="<?php echo get_the_post_thumbnail_url($badge->ID, 'thumbnail'); ?>">
+                                             </div>
+                                             <?php
                                           endif;
                                      endforeach;
                                      $badge_counter++;
                              endforeach;
                         }
                     ?>
+                        </div>
+                    </div>
 			    </div>
             </div>
         </div>
@@ -109,49 +115,53 @@ get_header(); ?>
 
     <?php
         $permission = 0;
-        foreach ($current_user->roles as $role){
+        foreach ($user_info->roles as $role){
 	        if($role == 'teacher'){
 		        $permission = 1;
+
             }
         }
         if($permission){
 	?>
-    <div class="container listings-user" >
-        <div class="row">
-            <div class="col-3">
-                <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
-                    <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes" role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
-                        Active classes <!--<span style="float: right;" class="badge badge-dark">5</span>-->
-                    </a>
-                    <a class="nav-list" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-hist-classes" role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
-                        Historic classes <!--<span style="float: right;" class="badge badge-dark">1</span>-->
-                    </a>
+        <div class="container listings-user" >
+            <div class="row">
+                <div class="col-3">
+                    <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
+                        <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes" role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
+                            Active classes <!--<span style="float: right;" class="badge badge-dark">5</span>-->
+                        </a>
+                        <a class="nav-list" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-hist-classes" role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
+                            Historic classes <!--<span style="float: right;" class="badge badge-dark">1</span>-->
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel" aria-labelledby="v-pills-home-tab">
-	                    <?php
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <?php
 
-                            the_widget('Listify_Widget_Author_Listings',
-                                array(
-                                        'title' => 'List of the active classes',
-                                    'per_page' => 1000
-                                )
-                            );
-	                    ?>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-hist-classes" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="container">
-                                <h4 class="">Coming soon</h4>
-                                <p class="lead">This information will be available soon.</p>
-                            </div>
-                    </div>
+                                $none = the_widget('Listify_Widget_Author_Listings',
+                                    array(
+                                            'title' => 'List of the active classes',
+                                        'per_page' => 1000
+                                    )
+                                );
 
+                            ?>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-hist-classes" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <div class="container">
+                                    <h4 class="">Coming soon</h4>
+                                    <p class="lead">This information will be available soon.</p>
+                                </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <?php } ?>
+    <?php
+        }
+    ?>
 
 <?php get_footer(); ?>

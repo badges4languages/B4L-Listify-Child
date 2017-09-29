@@ -140,10 +140,19 @@
 .user-badges{
     width: 45%;
     float: left;
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 7px;
+    border: 1px solid #e1e1e1;
 }
 
 .badges_profil{
-    float: left; padding: 3px 10px;
+    padding: 7px 5px 7px 5px !important;
+}
+
+.badges_profil img{
+    width: 100%;
+    height: auto;
 }
 
 .badge-title {
