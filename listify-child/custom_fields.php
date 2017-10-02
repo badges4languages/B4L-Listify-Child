@@ -18,6 +18,7 @@ function pw_rcp_add_user_fields() {
 	$other_education  = get_user_meta( get_current_user_id(), 'rcp_other_education', true );
 
 	?>
+    <p>
 		<label for="rcp_mother_tongue"><?php _e( 'Mother Tongue', 'rcp' ); ?></label>
 		<input name="rcp_mother_tongue" id="rcp_mother_tongue" type="text" value="<?php echo esc_attr( $mother_tongue ); ?>"/>
 	</p>
@@ -25,7 +26,6 @@ function pw_rcp_add_user_fields() {
 		<label for="rcp_university"><?php _e( 'University Degree', 'rcp' ); ?></label>
 		<input name="rcp_university" id="rcp_university" type="text" value="<?php echo esc_attr( $university ); ?>"/>
 	</p>
-	<p>
 	<p>
 		<label for="rcp_other_education"><?php _e( 'Other Education', 'rcp' ); ?></label>
 		<input name="rcp_other_education" id="rcp_other_education" type="text" value="<?php echo esc_attr( $other_education ); ?>"/>

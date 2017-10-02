@@ -13,6 +13,15 @@ function listify_child_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 
+function listify_theme_setup() {
+
+	add_theme_support('menus');
+	register_nav_menu('primary', 'Primary Header Navigation');
+	register_nav_menu('secondary', 'Secondary Navigation');
+}
+
+add_action('init', 'listify_theme_setup');
+
 /** Place any new code below this line */
 
 //require_once("astoundify-snippets.php");

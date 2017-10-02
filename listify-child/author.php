@@ -55,51 +55,63 @@ get_header(); ?>
                                 <span class="dashicons dashicons-admin-tools"></span>
 								<?php echo get_usermeta(get_queried_object_id(), 'rcp_profession'); ?>
                             </li>
-							</ul>
-						</div>
+                            <li>
+                                <div class="btn-update-container">
+                                    <a href="<?php echo esc_url( get_permalink( $rcp_options['edit_profile'] ) ); ?>" class="btn btn-link" >Edit your profile</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
 				</div>
 
 
 
 
-				<!-- ********************
-				        BADGES
-				     ******************** -->
+				<!--
+				********************
+				    BADGES
+				********************
+				-->
 
-                <div class="user-badges">
+                <div class="user-badges" style="background-image:url('<?php bloginfo('template_directory'); ?>/../listify-child/assets/img/background/pattern.jpg')">
                     <div class="badge-title">
-                        <h3>Badges</h3>
+                        <div class="badge-title-container">
+                            <h3>Badges</h3>
+                        </div>
                     </div>
-                    <div class="container">
-                        <div class="row justify-content-center">
+                    <div class="ub-container">
+                        <div class="container">
+                            <div class="row justify-content-center">
 
-                    <?php  //function current_user_badges( $user ) {
-                        $allbadges = get_all_badges();
-                        $currentbadges = get_the_author_meta( 'user_badges', get_queried_object_id() );
+                        <?php  //function current_user_badges( $user ) {
+                            $allbadges = get_all_badges();
+                            $currentbadges = get_the_author_meta( 'user_badges', get_queried_object_id() );
 
-                        if(empty($currentbadges)) {
+                            if(empty($currentbadges)) {
+                            ?>
+                                <div class="badges_profil">
+                                        <img src="  <?php echo get_template_directory_uri();?>/images/default-badge-thumbnail.png">
+                                </div>
+                            <?php
+                            $badge_counter = 0;
+                            }
+                            else {
+                                foreach ($currentbadges as $currentbadge):
+                                    foreach ($allbadges as $badge):
+                                             if ($currentbadge['name']==$badge->post_title):
+                                                 ?>
+                                                 <div class="badges_profil col-2 " >
+                                                     <img src="<?php echo get_the_post_thumbnail_url($badge->ID, 'thumbnail'); ?>">
+                                                 </div>
+                                                 <?php
+                                              endif;
+                                         endforeach;
+                                         $badge_counter++;
+                                 endforeach;
+                            }
                         ?>
-                            <div class="badges_profil">
-                                    <img src="  <?php echo get_template_directory_uri();?>/images/default-badge-thumbnail.png">
                             </div>
-                        <?php
-                        $badge_counter = 0;
-                        }
-                        else {
-                            foreach ($currentbadges as $currentbadge):
-                                foreach ($allbadges as $badge):
-                                         if ($currentbadge['name']==$badge->post_title):
-                                             ?>
-                                             <div class="badges_profil col-2 " >
-                                                 <img src="<?php echo get_the_post_thumbnail_url($badge->ID, 'thumbnail'); ?>">
-                                             </div>
-                                             <?php
-                                          endif;
-                                     endforeach;
-                                     $badge_counter++;
-                             endforeach;
-                        }
-                    ?>
                         </div>
                     </div>
 			    </div>
@@ -114,15 +126,17 @@ get_header(); ?>
 	-->
 
     <?php
-        $permission = 0;
-        foreach ($user_info->roles as $role){
-	        if($role == 'teacher'){
-		        $permission = 1;
+        //Retrieve the information of the kind of subscription of the user (author).
+        $subscription = rcp_get_subscription( get_queried_object_id() );
 
-            }
-        }
-        if($permission){
+        if($subscription == "Teacher"){
 	?>
+        <div class="title-lst">
+            <div class="container">
+                    <h2>Some infomation</h2>
+                <hr class="sep-testo-down">
+            </div>
+        </div>
         <div class="container listings-user" >
             <div class="row">
                 <div class="col-3">

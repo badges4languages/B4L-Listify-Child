@@ -13,81 +13,80 @@
  Template:    listify
 */
 
-/*!* Reduce the Space Between Widgets on the Homepage *!*/
-/*@media (min-width: 992px) {*/
-  /*.home-widget {*/
-    /*margin: 3em 0;*/
-  /*}*/
-/*}*/
+/* ========================
+    MENU
+   ======================== */
 
-/*!* Setting the author-name to the left *!*/
-/*.author-name {*/
-  /*float:left;*/
-/*}*/
+.primary-header-inner{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    z-index: 1;
+}
 
-/*!* Reduce the Space between the badge and the box of the badge *!*/
-/*.home-feature {*/
-  /*padding: 10px;*/
-/*}*/
+.primary.nav-menu{
+    flex: 1;
+    float: right;
+}
 
-/*!* Reduce the Space of the Footer *!*/
-/*.site-footer-widgets {*/
-  /*padding: 2em 0;*/
-/*}*/
+.user-menu{
+    padding: 10px;
+    width: fit-content;
+    float: right;
+}
 
-/*!* Show all the tags (up to 6) in the same line *!*/
-/*.filter_by_tag a {*/
-  /*width: 15%;*/
-/*}*/
-/*!*===============Site Header===============*!*/
-/*!* site title colors."illustrastock" *!*/
-/*.site-branding .site-title a{color:#777;}*/
+.user-menu a{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    text-decoration: none;
+    color: white !important;
+}
 
-/*!*===============primary header===============*!*/
-/*!*menu background color*!*/
-/*.search-overlay,.primary-header{*/
-  /*background-color:#f6f6f6;}*/
-/*!*primary header menu color*!*/
-/*.nav-menu.primary a,*/
-/*.nav-menu.primary li:before,*/
-/*.nav-menu.primary li:after,*/
-/*.nav-menu.primary a:before,*/
-/*.nav-menu.primary a:after {color:#777}*/
-/*!*=============== secondary menu ===============*!*/
-/*!*secondary menu line color's*!*/
-/*.main-navigation {background-color:#4ed0aa;}*/
-/*!*secondary menu color's*!*/
-/*.nav-menu.secondary > li > a,.nav-menu.secondary > li > a:before{color:#777;font-weight:bold;}*/
-/*!*secondary menu symbol and seach symbol colors*!*/
-/*a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}*/
-/*!*dark grey for 'v' symbols*!*/
-/*.nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,*/
-/*.nav-menu.secondary > li:after{color:#777;}*/
-/*!*secondary sub menu*!*/
-/*.nav-menu.secondary ul ul a{color:#666;}*/
-/*.nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}*/
-/*.nav-menu.secondary ul ul>li:hover{*/
-  /*width:%100px;*/
-  /*background-color:#fff;*/
-  /*opacity:0.6;filter:alpha(opacity=60);}*/
-/*!*=============== Drop sub menu ===============*!*/
-/*!*drop submenu background color*!*/
-/*.navigation-bar-wrapper .nav-menu.secondary ul ul{background-color:#4ed0aa;border:0;}*/
-/*!*=============== page ===============*!*/
-/*.site-main a:link{color:#252525;}*/
-/*.site-main a:hover{color:#4ed0aa;}*/
-/*!*=============== widget sidebar ===============*!*/
-/*.widget a:hover{color:#4ed0aa;}*/
-/*.button{background-color:#4ed0aa;}*/
-/*.cta-button-wrapper a:hover{color:#fff;}*/
-/*!*=============== footer ===============*!*/
-/*.site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}*/
+.user-menu a:hover, .user-menu a:focus{
+    color: white !important;
+}
 
+.user-menu a:hover > span{
+    text-decoration: underline;
+}
+
+.user-menu img{
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-menu span{
+    float: left;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+/* ========================
+    TITLE
+   ======================== */
+
+.container-title{
+    margin-top: 50px;
+}
+
+.sep-title{
+    width: 10%;
+    color: whitesmoke;
+    float: left;
+}
 
 
 
-
-
+/* ========================
+    USER page
+   ======================== */
 
 .user-info {
     position: relative;
@@ -137,13 +136,45 @@
 }
 
 
+.btn-update-container{
+    float: left;
+}
+
+
 .user-badges{
     width: 45%;
     float: left;
-    padding: 10px;
+    padding: 0px 0px 0px 0px;
     background-color: whitesmoke;
-    border-radius: 7px;
-    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    border: 8px solid #e6e6e6;
+}
+
+.badge-title {
+    float: none;
+    padding: 0px 0px 1.75px 0px;
+    background-color: #e6e6e6;
+}
+
+.badge-title-container{
+    background-color: #e6e6e6;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.badge-title h3{
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: white;
+    background-color: #d6d6d6;
+    width: 19%;
+    border-radius: 4px;
+    padding: 1px 1px 3px 1px;
+    margin: auto;
+}
+
+.ub-container{
+    padding: 10px 10px 10px 10px;
 }
 
 .badges_profil{
@@ -155,13 +186,27 @@
     height: auto;
 }
 
-.badge-title {
-    float: none;
-    margin-bottom: 20px;
+.title-lst{
+    margin-top: 70px;
+}
+
+.title-lst h2{
+    display: inline-block;
+    font-size: 22px;
+    color: #757575;
+
+}
+
+.sep-testo-down{
+    width: 41%;
+    border: 1px solid #e6e6e6;
+    position: relative;margin-left: 0px;
+    font-weight: 100;
+
 }
 
 .listings-user{
-    margin: 100px 0px;
+    margin: 40px 0px;
 
 }
 
