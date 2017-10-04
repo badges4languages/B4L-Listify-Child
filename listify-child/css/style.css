@@ -1,96 +1,302 @@
 /*
- Theme Name:  Listify Theme by MLS
- Theme URI:   http://astoundify.com/themes/listify
- Author:      My language skills Team
- Author URI:  http://mylanguageskills.wordpress.com
- Description: Listify Child Theme by My language skills
- Version:     1.0
- License:     GNU General Public License
- License URI: license.txt
- Text Domain: listify
- Domain Path: /languages/
- Tags: white, two-columns, one-column, right-sidebar, left-sidebar, responsive-layout, custom-background, custom-header, theme-options, full-width-template, featured-images, flexible-header, custom-menu, translation-ready
- Template:    listify
-*/
+ * This is the css style file for the Listify child theme.
+ *
+ * @version 0.1
+ * @since   0.1
+ */
 
-/* Reduce the Space Between Widgets on the Homepage */
-@media (min-width: 992px) {
-  .home-widget {
-      margin: 3em 0;
-  }
+/* ===================================
+    MENU
+   =================================== */
+
+.primary-header-inner{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    z-index: 1;
 }
 
-/* Setting the author-name to the left */
-.author-name {
-  float:left;
+.primary.nav-menu{
+    flex: 1;
+    float: right;
 }
 
-/* Reduce the Space between the badge and the box of the badge */
-.home-feature {
-padding: 10px;
+.user-menu{
+    padding: 10px;
+    width: fit-content;
+    float: right;
 }
 
-/* Reduce the Space of the Footer */
-.site-footer-widgets {
-padding: 2em 0;
+.user-menu a{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    text-decoration: none;
+    color: white !important;
 }
 
-/* Show all the tags (up to 6) in the same line */
-.filter_by_tag a {
-    width: 15%;
+.user-menu a:hover, .user-menu a:focus{
+    color: white !important;
 }
-/*===============Site Header===============*/
-/* site title colors."illustrastock" */
-.site-branding .site-title a{color:#777;}
 
-/*===============primary header===============*/
-/*menu background color*/
-.search-overlay,.primary-header{
-background-color:#f6f6f6;}
-/*primary header menu color*/
-.nav-menu.primary a,
-.nav-menu.primary li:before,
-.nav-menu.primary li:after,
-.nav-menu.primary a:before,
-.nav-menu.primary a:after {color:#777}
-/*=============== secondary menu ===============*/
-/*secondary menu line color's*/
-.main-navigation {background-color:#4ed0aa;}
-/*secondary menu color's*/
-.nav-menu.secondary > li > a,.nav-menu.secondary > li > a:before{color:#777;font-weight:bold;}
-/*secondary menu symbol and seach symbol colors*/
-a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
-/*dark grey for 'v' symbols*/
-.nav-menu.secondary > li > a:after,.nav-menu.secondary > li:before,
-.nav-menu.secondary > li:after{color:#777;}
-/*secondary sub menu*/
-.nav-menu.secondary ul ul a{color:#666;}
-.nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}
-.nav-menu.secondary ul ul>li:hover{
-	width:%100px;
-	background-color:#fff;
-	opacity:0.6;filter:alpha(opacity=60);}
-/*=============== Drop sub menu ===============*/
-/*drop submenu background color*/
-.navigation-bar-wrapper .nav-menu.secondary ul ul{background-color:#4ed0aa;border:0;}
-/*=============== page ===============*/
-.site-main a:link{color:#252525;}
-.site-main a:hover{color:#4ed0aa;}
-/*=============== widget sidebar ===============*/
-.widget a:hover{color:#4ed0aa;}
-.button{background-color:#4ed0aa;}
-.cta-button-wrapper a:hover{color:#fff;}
-/*=============== footer ===============*/
-.site-footer,.site-footer-widgets{background-color:#4ed0aa; color:#fff;}
+.user-menu a:hover > span{
+    text-decoration: underline;
+}
+
+.user-menu img{
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-menu span{
+    float: left;
+    vertical-align: middle;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+/* ===================================
+    TITLE
+   =================================== */
+
+.container-title{
+    margin-top: 50px;
+}
+
+.sep-title{
+    width: 10%;
+    color: whitesmoke;
+    float: left;
+}
+
+/* ===================================
+    BADGES preview
+   =================================== */
+
+.badge-preview{
+    padding: 10px;
+}
+
+.badge-preview-in{
+    text-align: center;
+    border-radius: 10px;
+}
+
+.badge-preview-in {
+    width: auto;
+    margin: auto;
+}
+
+.badge-preview-in .bp-logo {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    height: 100%;
+}
+
+.badge-preview-in .bp-logo img{
+    height: 100%;
+    width: auto;
+}
+
+.sep-badge-previw{
+    margin: 15px auto 10px auto;
+    width: 20%;
+    color: whitesmoke;
+}
+
+.badge-preview-in .bp-title {
+    text-decoration: none;
+    color: black;
+}
+
+.badge-preview-in:hover > a {
+    text-decoration: none !important;
+}
+
+.badge-preview-in:hover > a .bp-logo {
+    -ms-transform: 		scale(1.02,1.02);
+    -webkit-transform: 	scale(1.02,1.02);
+    transform: 			scale(1.02,1.02);
+}
 
 
 
-
-
-
-
-
+/* ===================================
+    USER page
+   =================================== */
 
 .user-info {
-  clear: both;
+    position: relative;
+    width: 55%;
+    overflow: hidden;
+    float: left;
+}
+
+.author-name {
+    text-align: left;
+    float: none;
+    margin-bottom: 20px;
+}
+
+
+.author-name h1{
+    font-size: 40px;
+}
+
+.user-info .img-info {
+    float: left;
+    width: 20%;
+}
+
+.user-info .img-info img{
+
+}
+
+.user-info .txt-info {
+    float: left;
+    width: 80%;
+}
+
+.txt-info li {
+    margin: 4px 0px;
+    font-size: 16px;
+    font-weight: 100;
+    color: black;
+    list-style-type: none;
+    float: left;
+    clear: both;
+    display: inline-block;
+}
+
+.txt-info li:first-child {
+    margin-top: 0px;
+}
+
+
+.btn-update-container{
+    float: left;
+}
+
+
+.user-badges{
+    width: 45%;
+    float: left;
+    padding: 0px 0px 0px 0px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border: 8px solid #e6e6e6;
+}
+
+.badge-title {
+    float: none;
+    padding: 0px 0px 1.75px 0px;
+    background-color: #e6e6e6;
+}
+
+.badge-title-container{
+    background-color: #e6e6e6;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.badge-title h3{
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: white;
+    background-color: #d6d6d6;
+    width: 19%;
+    border-radius: 4px;
+    padding: 1px 1px 3px 1px;
+    margin: auto;
+}
+
+.ub-container{
+    padding: 10px 10px 10px 10px;
+}
+
+.badges_profil{
+    padding: 7px 5px 7px 5px !important;
+}
+
+.badges_profil img{
+    width: 100%;
+    height: auto;
+}
+
+.title-lst{
+    margin-top: 70px;
+}
+
+.title-lst h2{
+    display: inline-block;
+    font-size: 22px;
+    color: #757575;
+
+}
+
+.sep-testo-down{
+    width: 41%;
+    border: 1px solid #e6e6e6;
+    position: relative;margin-left: 0px;
+    font-weight: 100;
+
+}
+
+.listings-user{
+    margin: 40px 0px;
+
+}
+
+.list-column{
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+
+
+
+.nav-pills .nav-list{
+    color: #4b4b4b;
+    border-radius: 5px;
+    padding: 5px 20px;
+    display: inline-block;
+    font-weight: 100;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .5rem .75rem;
+    line-height: 1.25;
+}
+
+.nav-pills .nav-list.active{
+    background-color: #959595;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-pills .nav-list:hover {
+    text-decoration: none;
+}
+
+
+
+.tab-content {
+    padding: 15px 25px 0px 25px !important;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+}
+
+.widgettitle{
+    font-weight: 100;
+    font-size: 14px;
+    color: #b8b8b8;
 }

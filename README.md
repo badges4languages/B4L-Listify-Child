@@ -1,18 +1,20 @@
-https://www.smashingmagazine.com/2011/11/improve-wordpress-plugins-readme-txt/
+# Listify Child Theme
+http://listify.astoundify.com/ Child theme for http://badges4languages.com
 
-# is-listify-child-theme
-http://listify.astoundify.com/ Child theme for http://illustrastock.com/
+=== Plugin Name === \
+Contributors: the MyLanguageSkills team \
+Version:     0.1 \
+Requires at least: 0.1 \
+Tested up to: 0.1 \
+Stable tag: 0.1 \
+License: GPLv2 or later \
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-=== Plugin Name === Contributors: (this should be a list of wordpress.org userid's) Donate link: http://example.com/ Tags: comments, spam Requires at least: 4.6 Tested up to: 4.7 Stable tag: 4.3 License: GPLv2 or later License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin. This should be no more than 150 characters. No markup here.
-
-== Description ==
-
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and Markdown parsed.
-
+== Description == \
+This is the long description. No limit, and you can use Markdown (as well as in the following sections). \
+For backwards compatibility, if this section is missing, the full length of the short description will be used, and 
+Markdown parsed. \
 A few notes about the sections above:
 
     "Contributors" is a comma separated list of wordpress.org usernames
@@ -26,10 +28,8 @@ A few notes about the sections above:
 
     If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where you put the stable version, in order to eliminate any doubt.
 
-== Installation ==
-
-This section describes how to install the plugin and get it working.
-
+== Installation == \
+This section describes how to install the plugin and get it working. \
 e.g.
 
     Upload the plugin files to the /wp-content/plugins/plugin-name directory, or install the plugin through the WordPress plugins screen directly.
@@ -37,59 +37,15 @@ e.g.
     Use the Settings->Plugin Name screen to configure the plugin
     (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
 
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-    This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets directory take precedence. For example, /assets/screenshot-1.png would win over /tags/4.3/screenshot-1.png (or jpg, jpeg, gif).
-    This is the second screen shot
-
 == Changelog ==
 
-= 1.0 =
+= 0.1 =
 
-    A change since the previous version.
-    Another change.
+* ADDITIONS
+    * New author page
+    * New information about user in the menu
+    * New catalog page for CPT (custom post type) badge
+    * Added the framework Bootstrap 4.0
 
-= 0.5 =
-
-    List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 = Upgrade notices describe the reason a user should upgrade. No more than 300 characters.
-
-= 0.5 = This version fixes a security related bug. Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or "installation." Arbitrary sections will be shown below the built-in sections outlined above.
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-    Some feature
-    Another feature
-    Something else about the plugin
-
-Unordered list:
-
-    something
-    something else
-    third thing
-
-Here's a link to WordPress and one to Markdown's Syntax Documentation. Titles are optional, naturally.
-
-Markdown uses email style notation for blockquotes and I've been told:
-
-    Asterisks for emphasis. Double it up for strong.
+== Notes ==
 

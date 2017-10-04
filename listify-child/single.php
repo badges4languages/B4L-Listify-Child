@@ -1,13 +1,15 @@
 <?php
 /**
- * The Template for displaying all single posts.
+ * The template for displaying all single post.
  *
- * @package Listify
+ *
+ *
+ * @package Listify Child Theme
+ * @since 0.1
+ * @version 0.1
  */
 
-get_header();
-echo "IS single";‚
-?>
+get_header(); ?>
 
 	<div <?php echo apply_filters( 'listify_cover', 'page-cover page-cover--large', array( // WPCS: XSS ok.
 		'size' => 'full',
