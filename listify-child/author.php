@@ -112,12 +112,7 @@ get_header(); ?>
         </div>
     </div>
 
-    <!--
-    **************************************
-        CLASSES
-	**************************************
-	-->
-
+	<!-- ***  CLASSES  ***-->
     <?php
         //Retrieve the information of the kind of subscription of the user (author).
         $subscription = rcp_get_subscription( get_queried_object_id() );
