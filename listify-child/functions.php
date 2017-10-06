@@ -9,8 +9,6 @@
  * @version 0.1
  */
 
-
-
 function listify_child_styles() {
     $parent_style = 'listify-child';
 
@@ -18,6 +16,7 @@ function listify_child_styles() {
     wp_enqueue_style( 'listify-child-css', get_stylesheet_directory_uri() . '/css/style.css', array( $parent_style ), wp_get_theme()->get('Version'));
 	wp_enqueue_style('bootstrap-css', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array( $parent_style ), wp_get_theme()->get('Version'));
 	wp_enqueue_script('bootstrap-js', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '1.0', true );
+	wp_enqueue_script('code-js', get_stylesheet_directory_uri() . '/js/code.js', array( 'jquery' ), '1.0', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
@@ -162,3 +161,68 @@ function pinkstone_remove_jetpack() {
 	}
 }
 add_action( 'admin_init', 'pinkstone_remove_jetpack' );
+
+
+/**
+ *  This function permit to do a WP_Query and take the right badge to the plugin.
+ *
+ * @param string "$_POST['target']" permit to retrieve the information about the target (student, teacher)
+ * @param string "$_POST['level']" permit to retrieve the information about the level (A1, A2, B1, B2, ...)
+ */
+function searchBadges_ajax_handler() {
+	$target = $_POST['target'];
+	$level = $_POST['level'];
+	$args = array(
+		'post_type'   => 'badge',
+		'orderby' => 'name',
+		'order' => 'ASC',
+		'posts_per_page' => -1,
+		'meta_query' => array(
+			array(
+				'key' => '_type',
+				'value' => $target,
+			),
+		),
+		'tax_query' => array(
+			array (
+				'taxonomy' => 'level',
+				'field' => 'slug',
+				'terms' => $level,
+			)
+		),
+	);
+
+	$response = new WP_Query($args);
+
+	if( $response->have_posts() ):
+
+		while( $response->have_posts() ): $response->the_post(); ?>
+
+			<?php get_template_part( 'content', 'badge-preview' ); ?>
+
+		<?php endwhile;
+
+
+	endif;
+
+	wp_reset_postdata();
+	wp_die(); // close the connection
+}
+
+add_action('wp_ajax_searchBadges', 'searchBadges_ajax_handler'); // add action for logged users
+add_action( 'wp_ajax_nopriv_searchBadges', 'searchBadges_ajax_handler' ); // add action for unlogged users
+
+
+function getTaxonomyLevel_ajax_handler() {
+	$searchTerm = $_POST['searchTerm'];
+	$values = get_terms( 'level');
+	$count = 0;
+	echo "<option value='$count'>Select</option>";
+	foreach ($values as $value){
+		$count++;
+		echo "<option value='$count'>$value->name</option>";
+	}
+}
+
+add_action('wp_ajax_getTaxonomyLevel', 'getTaxonomyLevel_ajax_handler'); // add action for logged users
+add_action( 'wp_ajax_nopriv_getTaxonomyLevel', 'getTaxonomyLevel_ajax_handler' ); // add action for unlogged users

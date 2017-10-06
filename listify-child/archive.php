@@ -13,25 +13,67 @@
 $post_type = get_post_type();
 $obj = get_post_type_object( $post_type );
 
-$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
-
-// This is a query that permit to retrieve all badges.
-$wp_query = new WP_Query(array(
-	'post_type'=>'badge',
-	'posts_per_page' => 16,
-	'paged' => $paged
-));
-
 get_header(); ?>
 
-<div class="container container-title">
-    <h1><?php echo $obj->labels->singular_name . 's'; ?></h1>
-    <hr class="sep-title">
+<div class="jumbotron jumbotron-fluid search-badges-container">
+    <div class="container">
+        <h1 class="display-3">Badges</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <hr class="sep-testo-down">
+            <div class="form-row">
+                <!--<div class="col-auto">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Certification</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control-fix" id="inlineFormCustomSelect">
+                        <option value="0">Select</option>
+                        <option value="1">Certified</option>
+                        <option value="2">Not Certified</option>
+                    </select>
+                </div>-->
+                <div class="col-auto">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Target</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control-fix" id="target-selection">
+                        <option value="1">Student</option>
+                        <option value="2">Teacher</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Level</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control-fix" id="target-level">
+                        <?php
+                        $values = get_terms( 'level');
+                        $count = 0;
+                        echo "<option value='$count'>Select</option>";
+                        foreach ($values as $value){
+	                        $count++;
+	                        echo "<option value='$count'>$value->name</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <!--<div class="form-group col-md-6">
+                    <label for="inputCity" class="col-form-label">Search by writing</label>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                </div>-->
+                <div class="col-auto">
+                    <button  class="btn btn-primary" onclick="searchBadges()">Search</button>
+                </div>
+            </div>
+    </div>
 </div>
 
-	<div id="primary" class="container">
+	<div id="show-search-badge" class="container">
 
         <?php
+
+        $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+
+        // This is a query that permit to retrieve all badges.
+        $wp_query = new WP_Query(array(
+	        'post_type'=>'badge',
+	        'posts_per_page' => 16,
+	        'paged' => $paged
+        ));
+
         if ( $wp_query->have_posts() ) : ?>
             <div class="row">
                 <?php while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>

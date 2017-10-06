@@ -67,7 +67,7 @@ a:hover, .primary-header .current-account-toggle .sub-menu a:hover{color:#fff;}
 .nav-menu.secondary ul ul a{color:#666;}
 .nav-menu.secondary ul ul a:hover{color:#000; font-weight: bold;}
 .nav-menu.secondary ul ul>li:hover{
-	width:%100px;
+	width: 100px;
 	background-color:#fff;
 	opacity:0.6;filter:alpha(opacity=60);}
 /*=============== Drop sub menu ===============*/

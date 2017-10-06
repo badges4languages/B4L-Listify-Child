@@ -16,7 +16,6 @@
     <div class="badge-preview-in">
         <a href="<?php the_permalink(); ?>">
             <div class="bp-logo">
-                <img src="">
 				<?php the_post_thumbnail('thumbnail'); ?>
             </div>
             <hr class="sep-badge-previw">

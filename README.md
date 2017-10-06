@@ -1,7 +1,7 @@
 # Listify Child Theme
 http://listify.astoundify.com/ Child theme for http://badges4languages.com
 
-=== Plugin Name === \
+=== Listify child theme === \
 Contributors: the MyLanguageSkills team \
 Version:     0.1 \
 Requires at least: 0.1 \

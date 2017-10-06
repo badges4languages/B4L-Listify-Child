@@ -20,8 +20,12 @@ $current_user = wp_get_current_user();
 
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
 	<?php wp_head(); ?>
+    <script type="text/javascript">
+        var ajaxurl = "<?php echo admin_url('admin-ajax.php'); ?>"; //Important: It useful for the file code.js that do an Ajax call and need the path of that specific file
+    </script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -111,3 +115,4 @@ $current_user = wp_get_current_user();
 	<?php do_action( 'listify_content_before' ); ?>
 
 	<div id="content" class="site-content">
+
