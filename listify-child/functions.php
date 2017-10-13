@@ -172,35 +172,59 @@ add_action( 'admin_init', 'pinkstone_remove_jetpack' );
 function searchBadges_ajax_handler() {
 	$target = $_POST['target'];
 	$level = $_POST['level'];
-	$args = array(
-		'post_type'   => 'badge',
-		'orderby' => 'name',
-		'order' => 'ASC',
-		'posts_per_page' => -1,
-		'meta_query' => array(
-			array(
-				'key' => '_type',
-				'value' => $target,
-			),
-		),
-		'tax_query' => array(
-			array (
-				'taxonomy' => 'level',
-				'field' => 'slug',
-				'terms' => $level,
-			)
-		),
-	);
+
+	if ($level === ""){
+
+		$args = array(
+            'post_type'   => 'badge',
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'posts_per_page' => -1,
+            'meta_query' => array(
+                array(
+                    'key' => '_type',
+                    'value' => $target,
+                ),
+            )
+        );
+
+	} else {
+
+        $args = array(
+            'post_type' => 'badge',
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'posts_per_page' => -1,
+            'meta_query' => array(
+                array(
+                    'key' => '_type',
+                    'value' => $target,
+                ),
+            ),
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'level',
+                    'field' => 'slug',
+                    'terms' => $level,
+                )
+            ),
+        );
+
+    }
 
 	$response = new WP_Query($args);
 
 	if( $response->have_posts() ):
+
+		echo '<div class="row">';
 
 		while( $response->have_posts() ): $response->the_post(); ?>
 
 			<?php get_template_part( 'content', 'badge-preview' ); ?>
 
 		<?php endwhile;
+
+		echo '</div>';
 
 
 	endif;

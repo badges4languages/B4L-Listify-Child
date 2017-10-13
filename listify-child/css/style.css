@@ -1,10 +1,44 @@
 /*
  * This is the css style file for the Listify child theme.
  *
- * @version 0.1
- * @since   0.1
+ * @version 0.0.1
+ * @since   0.6.3
  */
 
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
 
 .select:after{
     display: none;
@@ -141,14 +175,9 @@
 }
 
 .badge-preview-in:hover > a {
-    text-decoration: none !important;
+    text-decoration: underline !important;
 }
 
-.badge-preview-in:hover > a .bp-logo {
-    -ms-transform: 		scale(1.02,1.02);
-    -webkit-transform: 	scale(1.02,1.02);
-    transform: 			scale(1.02,1.02);
-}
 
 
 
@@ -324,4 +353,9 @@
     font-weight: 100;
     font-size: 14px;
     color: #b8b8b8;
+}
+
+
+code {
+    font-size: 80%;
 }
