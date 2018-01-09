@@ -26,94 +26,13 @@ $idUser = get_queried_object_id();
 get_header(); ?>
 
 <div <?php echo apply_filters('listify_cover', 'page-cover'); ?>>
-    <div class="author-title page-title cover-wrapper">
+    <div class="page-title cover-wrapper">
         <div id="profile-page" class="container">
 
             <?php use Templates\UserTemp;
-            UserTemp::getUserPage($idUser);
+            UserTemp::getUserPage($idUser, false);
             ?>
 
-            <!-- ***  USER INFO  ***--
-            <div class="user-info">
-                <div class="author-name">
-                    <h1 class="">
-                        <?php echo $user_info->first_name; ?>&nbsp;<?php echo $user_info->last_name; ?>
-                    </h1>
-                </div>
-                <div class="img-info">
-                    <?php echo get_avatar(get_queried_object_id(), 200); ?>
-                </div>
-                <div class="txt-info">
-                    <ul>
-                        <li>
-                            <span class="dashicons dashicons-admin-users"></span>
-                            <?php echo $user_info->nickname; ?>
-                        </li>
-                        <li>
-                            <span class="dashicons dashicons-calendar"></span>
-                            <?php echo 'Member since <strong>' . date('F jS, Y', strtotime($user_info->user_registered)) . '</strong>'; ?></br>
-                        </li>
-                        <li>
-                            <span class="dashicons dashicons-email-alt"></span>
-                            <?php echo $user_info->user_email; ?>
-                        </li>
-                        <li>
-                            <span class="dashicons dashicons-admin-tools"></span>
-                            <?php echo get_user_meta(get_queried_object_id(), 'rcp_profession', true); ?>
-                        </li>
-                        <li>
-                            <div class="btn-update-container">
-                                <a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>"
-                                   class="btn btn-link">Edit your profile</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ***  BADGES  ***
-            <div class="user-badges-lfc"
-                 style="background-image:url('<?php echo get_stylesheet_directory_uri() ?>/assets/img/background/pattern.jpg')">
-                <div class="badge-title">
-                    <div class="badge-title-container">
-                        <h3>Badges</h3>
-                    </div>
-                </div>
-                <div class="ub-container">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <?php
-                            $allbadges = \Inc\Utils\Badges::getAll();
-                            $currentbadges = get_the_author_meta('user_badges', get_queried_object_id());
-
-                            if (empty($currentbadges)) {
-                                ?>
-                                <div class="badges_profil col-2">
-                                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/badges/default-badge.png">
-                                </div>
-                                <?php
-                                $badge_counter = 0;
-
-                            } else {
-
-                                foreach ($currentbadges as $currentbadge) {
-                                    foreach ($allbadges as $badge) {
-                                        if ($currentbadge['name'] == $badge->post_title) {
-                                            ?>
-                                            <div class="badges_profil col-2 ">
-                                                <img src="<?php echo get_the_post_thumbnail_url($badge->ID, 'thumbnail'); ?>">
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                    $badge_counter++;
-                                }
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
 </div>

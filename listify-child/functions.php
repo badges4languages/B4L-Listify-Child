@@ -176,7 +176,7 @@ function searchBadges_ajax_handler() {
 	if ($level === ""){
 
 		$args = array(
-            'post_type'   => 'badge',
+            'post_type'   => 'open-badge',
             'orderby' => 'name',
             'order' => 'ASC',
             'posts_per_page' => -1,
@@ -191,7 +191,7 @@ function searchBadges_ajax_handler() {
 	} else {
 
         $args = array(
-            'post_type' => 'badge',
+            'post_type' => 'open-badge',
             'orderby' => 'name',
             'order' => 'ASC',
             'posts_per_page' => -1,

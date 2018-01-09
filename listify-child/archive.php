@@ -1,11 +1,15 @@
 <?php
+/*
+ * Template Name: List Badges
+ */
+
 /**
  * The template for displaying a list of badges.
  *
  *
  *
  * @package Listify Child Theme
- * @since 0.1
+ * @since   0.1
  * @version 0.1
  */
 
@@ -61,44 +65,44 @@ get_header(); ?>
                 <div class="col-auto">
                     <!-- This button call a function in the file /js/code.js to permit to do an ajax call and retrive
                     the information about the badges. -->
-                <button class="btn btn-primary" onclick="searchBadges()">Search</button>
+                    <button class="btn btn-primary" onclick="searchBadges()">Search</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div id="show-search-badge" class="container">
+    <div id="show-search-badge" class="container">
+        <?php
+        $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
 
-    <?php
+        // This is a query that permit to retrieve all badges.
+        $wp_query = new WP_Query(array(
+            'post_type' => 'open-badge',
+            'orderby' => 'name',
+            'order' => 'ASC',
+            'posts_per_page' => 16,
+            'paged' => $paged
+        ));
 
-                    $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
+        if ($wp_query->have_posts()) : ?>
+            <div class="row">
+                <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
 
-                    // This is a query that permit to retrieve all badges.
-                    $wp_query = new WP_Query(array(
-                        'post_type' => 'badge',
-                        'posts_per_page' => 16,
-                        'paged' => $paged
-                    ));
+                    <?php get_template_part('content', 'badge-preview'); ?>
 
-                    if ($wp_query->have_posts()) : ?>
-        <div class="row">
-            <?php while ($wp_query->have_posts()) : $wp_query->the_post(); ?>
+                <?php endwhile; ?>
+            </div>
 
-                <?php get_template_part('content', 'badge-preview'); ?>
+            <?php wp_reset_postdata(); ?>
+            <div class="content-pagination">
+                <?php get_template_part('content', 'pagination'); ?>
+            </div>
 
-            <?php endwhile; ?>
-        </div>
+        <?php else : ?>
+            <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
+        <?php endif; ?>
 
-        <?php wp_reset_postdata(); ?>
-        <div class="content-pagination">
-            <?php get_template_part('content', 'pagination'); ?>
-        </div>
-
-    <?php else : ?>
-        <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
-    <?php endif; ?>
-
-</div>
+    </div>
 
 </div>
 

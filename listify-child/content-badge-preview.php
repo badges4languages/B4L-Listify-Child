@@ -16,7 +16,7 @@
     <div class="badge-preview-in">
         <a href="<?php the_permalink(); ?>">
             <div class="bp-logo">
-				<?php the_post_thumbnail('thumbnail'); ?>
+                <img src="<?php echo \Inc\Utils\Badges::getImage(get_the_ID()); ?>">
             </div>
             <hr class="sep-badge-previw-">
             <div class="bp-title">

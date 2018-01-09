@@ -17,6 +17,10 @@ body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
 }
+.container {
+    text-align: left;
+}
+
 .footer {
     position: absolute;
     bottom: 0;
@@ -212,6 +216,7 @@ body > .container {
 .user-info .img-info img{
 
 }
+*/
 
 .user-info .txt-info {
     float: left;
@@ -235,10 +240,9 @@ body > .container {
 
 
 .btn-update-container{
-    float: left;
 }
 
-
+/*
 .user-badges-lfc{
     width: 45%;
     float: left;
