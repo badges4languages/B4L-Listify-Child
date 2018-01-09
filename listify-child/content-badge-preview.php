@@ -18,7 +18,7 @@
             <div class="bp-logo">
 				<?php the_post_thumbnail('thumbnail'); ?>
             </div>
-            <hr class="sep-badge-previw">
+            <hr class="sep-badge-previw-">
             <div class="bp-title">
 				<?php the_title(); ?>
             </div>

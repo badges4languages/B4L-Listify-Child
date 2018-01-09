@@ -185,6 +185,7 @@ body > .container {
     USER page
    =================================== */
 
+/*
 .user-info {
     position: relative;
     width: 55%;
@@ -238,7 +239,7 @@ body > .container {
 }
 
 
-.user-badges{
+.user-badges-lfc{
     width: 45%;
     float: left;
     padding: 0px 0px 0px 0px;
@@ -282,6 +283,7 @@ body > .container {
     width: 100%;
     height: auto;
 }
+*/
 
 .title-lst{
     margin-top: 70px;

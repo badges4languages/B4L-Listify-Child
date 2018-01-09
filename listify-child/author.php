@@ -21,7 +21,7 @@ $sidebar_args = array(
     'after_title' => '</h3>',
 );
 
-$user_info = get_userdata(get_queried_object_id());
+$idUser = get_queried_object_id();
 
 get_header(); ?>
 
@@ -29,7 +29,11 @@ get_header(); ?>
     <div class="author-title page-title cover-wrapper">
         <div id="profile-page" class="container">
 
-            <!-- ***  USER INFO  ***-->
+            <?php use Templates\UserTemp;
+            UserTemp::getUserPage($idUser);
+            ?>
+
+            <!-- ***  USER INFO  ***--
             <div class="user-info">
                 <div class="author-name">
                     <h1 class="">
@@ -67,8 +71,8 @@ get_header(); ?>
                 </div>
             </div>
 
-            <!-- ***  BADGES  ***-->
-            <div class="user-badges"
+            <!-- ***  BADGES  ***
+            <div class="user-badges-lfc"
                  style="background-image:url('<?php echo get_stylesheet_directory_uri() ?>/assets/img/background/pattern.jpg')">
                 <div class="badge-title">
                     <div class="badge-title-container">
@@ -79,7 +83,7 @@ get_header(); ?>
                     <div class="container">
                         <div class="row justify-content-center">
                             <?php
-                            $allbadges = get_all_badges();
+                            $allbadges = \Inc\Utils\Badges::getAll();
                             $currentbadges = get_the_author_meta('user_badges', get_queried_object_id());
 
                             if (empty($currentbadges)) {
@@ -109,7 +113,7 @@ get_header(); ?>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
