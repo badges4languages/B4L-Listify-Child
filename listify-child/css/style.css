@@ -1,17 +1,14 @@
 /*
  * This is the css style file for the Listify child theme.
  *
- * @version 0.0.1
- * @since   0.6.3
+ * @version 1.0.0
  */
 
-
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 body {
     /* Margin bottom by footer height */
@@ -32,8 +29,7 @@ body {
 }
 
 
-/* Custom page CSS
--------------------------------------------------- */
+/* ## Custom page CSS ## */
 
 body > .container {
     padding: 60px 15px 0;
@@ -118,7 +114,7 @@ body > .container {
 }
 
 /* ===================================
-    BADGES page
+    BADGES LIST page
    =================================== */
 
 .search-badges-container{
@@ -136,9 +132,7 @@ body > .container {
 }
 
 
-/* ===================================
-    BADGES preview
-   =================================== */
+/* ## Preview ## */
 
 .badge-preview{
     padding: 10px;
@@ -189,105 +183,6 @@ body > .container {
     USER page
    =================================== */
 
-/*
-.user-info {
-    position: relative;
-    width: 55%;
-    overflow: hidden;
-    float: left;
-}
-
-.author-name {
-    text-align: left;
-    float: none;
-    margin-bottom: 20px;
-}
-
-
-.author-name h1{
-    font-size: 40px;
-}
-
-.user-info .img-info {
-    float: left;
-    width: 20%;
-}
-
-.user-info .img-info img{
-
-}
-*/
-
-.user-info .txt-info {
-    float: left;
-    width: 80%;
-}
-
-.txt-info li {
-    margin: 4px 0px;
-    font-size: 16px;
-    font-weight: 100;
-    color: black;
-    list-style-type: none;
-    float: left;
-    clear: both;
-    display: inline-block;
-}
-
-.txt-info li:first-child {
-    margin-top: 0px;
-}
-
-
-.btn-update-container{
-}
-
-/*
-.user-badges-lfc{
-    width: 45%;
-    float: left;
-    padding: 0px 0px 0px 0px;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    border: 8px solid #e6e6e6;
-}
-
-.badge-title {
-    float: none;
-    padding: 0px 0px 1.75px 0px;
-    background-color: #e6e6e6;
-}
-
-.badge-title-container{
-    background-color: #e6e6e6;
-    padding-bottom: 5px;
-    text-align: center;
-}
-
-.badge-title h3{
-    font-size: 1.3rem;
-    font-weight: 100;
-    color: white;
-    background-color: #d6d6d6;
-    width: 19%;
-    border-radius: 4px;
-    padding: 1px 1px 3px 1px;
-    margin: auto;
-}
-
-.ub-container{
-    padding: 10px 10px 10px 10px;
-}
-
-.badges_profil{
-    padding: 7px 5px 7px 5px !important;
-}
-
-.badges_profil img{
-    width: 100%;
-    height: auto;
-}
-*/
 
 .title-lst{
     margin-top: 70px;
