@@ -1,5 +1,5 @@
 # Listify Child Theme
-http://listify.astoundify.com/ Child theme for http://badges4languages.com
+http://listify.astoundify.com/ Child theme.
 
 === Listify child theme === \
 Contributors: the MyLanguageSkills team \
