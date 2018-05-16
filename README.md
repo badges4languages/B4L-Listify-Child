@@ -1,5 +1,13 @@
 # Listify Child Theme
-http://listify.astoundify.com/ Child theme.
+A WordPress child theme based on Listify theme (http://listify.astoundify.com/) for the open badges framework.
+
+Contributors: @colomet, @leocharlier
+
+Tags: child theme, badges, listify.
+
+## Community / Support
+
+You can join our [Chat](https://gitter.im/open-badges-framework "chat" ) and talk with us.
 
 === Listify child theme === \
 Contributors: the MyLanguageSkills team \
@@ -11,41 +19,33 @@ License: GPLv2 or later \
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 
-== Description == \
-This is the long description. No limit, and you can use Markdown (as well as in the following sections). \
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and 
-Markdown parsed. \
-A few notes about the sections above:
+## Description
 
-    "Contributors" is a comma separated list of wordpress.org usernames
-    "Tags" is a comma separated list of tags that apply to the plugin
-    "Requires at least" is the lowest version that the plugin will work on
-    "Tested up to" is the highest version that you've successfully used to test the plugin. Note that it might work on higher versions... this is just the highest one you've verified.
+This is a child theme based on the Listify theme. This child theme will be used for the Open Badges Framework plugin. Depends on your status, it allows you to see the catalog of badges available, register, send badges, access to your profile and see the badges you earned.
 
-    Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use /trunk/ for stable.
+## Installation
 
-    Note that the readme.txt of the stable tag is the one that is considered the defining one for the plugin, so if the /trunk/readme.txt file says that the stable tag is 4.3, then it is /tags/4.3/readme.txt that'll be used for displaying information about the plugin. In this situation, the only thing considered from the trunk readme.txt is the stable tag pointer. Thus, if you develop in trunk, you can update the trunk readme.txt to reflect changes in your in-development version, without having that information incorrectly disclosed about the current stable version that lacks those changes -- as long as the trunk's readme.txt points to the correct stable tag.
+1. Clone (or copy) this repository to the `/wp-content/themes/` directory.
+1. Activate the theme through the 'Appearance->Themes' screen in WordPress.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where you put the stable version, in order to eliminate any doubt.
+## Frequently Asked Questions
 
-== Installation == \
-This section describes how to install the plugin and get it working. \
-e.g.
+* [Badges4Languages](doc/badges-for-languages.md).
+* [General documentation](doc/documentation-general.md).
+* [Technical documentation](doc/documentation-technical.md).
+* [Integrations](doc/documentation-integrations.md).
+* [The folder structure](doc/folder-structure.md).
 
-    Upload the plugin files to the /wp-content/plugins/plugin-name directory, or install the plugin through the WordPress plugins screen directly.
-    Activate the plugin through the 'Plugins' screen in WordPress
-    Use the Settings->Plugin Name screen to configure the plugin
-    (Make your instructions match the desired user flow for activating and installing your plugin. Include any steps that might be needed for explanatory purposes)
+## Requirements
 
-== Changelog ==
+Plugin/Template Name works with:
 
-= 0.1 =
+ * ![PHP](https://img.shields.io/badge/PHP-7.X-blue.svg)
 
-* ADDITIONS
-    * New author page
-    * New information about user in the menu
-    * New catalog page for CPT (custom post type) badge
-    * Added the framework Bootstrap 4.0
+## Disclaimers
 
-== Notes ==
+The Open-Badge-Framework plugin is supplied "as is" and all use is at your own risk.
 
+## Screenshots
+
+You can see all of the screenshots of the plugin [here](doc/screenshots.md "screenshots").
