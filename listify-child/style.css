@@ -1,11 +1,114 @@
 /*
- Theme Name:  Listify Child
- Theme URI:   http://astoundify.com/themes/listify
- Author:      My language skills Team
- Author URI:  http://mylanguageskills.wordpress.com
- Description: Listify Child Theme by My language skills
- Version:     0.1
- License:     GNU General Public License
- Template:    listify
+Theme Name:     Listify Child
+Theme URI:      https://astoundify.com/products/listify/
+Template:       listify
+Version:        1.1
 */
 
+/* //////////////////////////////////////
+   /         Single Badge Page          /
+   ////////////////////////////////////// */
+
+/* Adjust the descrption of the badge to be align with the image */
+.badge-description{
+	margin-bottom: 15px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+	display: block;
+	margin-bottom: 10px;
+}
+
+/* //////////////////////////////////////
+   /             Search Form            /
+   ////////////////////////////////////// */
+
+/* Display inline the search form in archive page */
+.searchandfilter ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+    padding: 10px 0;
+    margin: 20px;
+}
+
+/* Make the filter button (on little screens) full widht */
+#filter-button{
+	width: 100%;
+}
+
+/* Adjust the position of the filter form */
+#filter-form-title{
+	margin-top: 0px;
+}
+
+/* //////////////////////////////////////
+   /               Menu                 /
+   ////////////////////////////////////// */
+
+/* Adjust the position of the circled image avatar in menu */
+#menu-avatar{
+	margin-right: 10px;
+}
+
+/* //////////////////////////////////////
+   /            Profile Page            /
+   ////////////////////////////////////// */
+
+/* Make the backgound of badges in profile page transparent instead of grey */
+.badge {
+	background-color: transparent;
+}
+
+/* //////////////////////////////////////
+   /           Little Screens           /
+   ////////////////////////////////////// */
+
+/* For little screens (tablets, phones...), don't display the normal search form in archive page */
+@media (max-width: 999px) {
+	.normal-screen{
+		display: none;
+	}
+}
+
+/* //////////////////////////////////////
+   /           Large Screens            /
+   ////////////////////////////////////// */
+
+@media (min-width: 768px){
+	.col-sm-7 {
+			width: 100%;
+	}
+}
+
+/* For large screens */ 
+@media (min-width: 1000px) {
+	/* Limit the width of images at 1000px */
+    .has-image.entry-cover, 
+    .has-image.entry-cover a, 
+    .has-image.entry-cover--home, 
+    .has-image.entry-cover--home a, 
+    .has-image.listing-cover, 
+    .has-image.listing-cover a, 
+    .has-image.page-cover, 
+    .has-image.page-cover a, 
+    .listify-cover.has-image, 
+    .listify-cover.has-image a {
+	    color: #fff;
+	    text-shadow: rgba(0,0,0,.8) 0 1px 0;
+	    width: 1000px;
+			margin-left: auto;
+	  	margin-right: auto;
+	}
+	
+	.content-area {
+		width: 1000px;
+	    margin-left: auto;
+	  	margin-right: auto;
+	}
+	
+	/* Don't display the button to show the filter form in archive page */
+	.little-screen{
+		display: none;
+	}
+}

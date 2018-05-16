@@ -1,252 +1,290 @@
 <?php
 /**
- * This is the function.php of the child theme and contain all the main information about the theme.
- *
- *
- *
- * @package Listify Child Theme
- * @since 0.1
- * @version 0.1
+ * Listify child theme.
  */
-
 function listify_child_styles() {
-    $parent_style = 'listify-child';
-
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'listify-child-css', get_stylesheet_directory_uri() . '/css/style.css', array( $parent_style ), wp_get_theme()->get('Version'));
-	wp_enqueue_style('bootstrap-css', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', array( $parent_style ), wp_get_theme()->get('Version'));
-	wp_enqueue_script('bootstrap-js', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '1.0', true );
-	wp_enqueue_script('code-js', get_stylesheet_directory_uri() . '/js/code.js', array( 'jquery' ), '1.0', true );
-
+    wp_enqueue_style( 'listify-child', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'listify_child_styles', 999 );
 
-function listify_theme_setup() {
-	add_theme_support('menus');
-	register_nav_menu('primary', 'Primary Header Navigation');
-	register_nav_menu('secondary', 'Secondary Navigation');
+/* //////////////
+   /   Script   /
+   ////////////// */
+
+//Add my script file
+function my_theme_scripts_function() {
+  wp_enqueue_script( 'script', get_stylesheet_directory_uri() . '/js/script.js');
 }
-add_action('init', 'listify_theme_setup');
+add_action('wp_enqueue_scripts','my_theme_scripts_function');
 
+/* ///////////////////
+   /    Taxonomies   /
+   /////////////////// */
 
-require_once("custom_fields.php");
-
-/* This code adapted from: Registration Redirect */
-add_filter( 'registration_redirect', 'ckc_registration_redirect' );
-function ckc_registration_redirect() {
-    return get_page_link(473);
-}
-
-/* This code adapted from: Login Redirect */
-add_filter( 'login_redirect', 'ckc_login_redirect' );
-function ckc_login_redirect() {
-    return home_url();
-}
-
-/** Customizing the WordPress Login Page
- *
- * Load CSS file.
- * https://premium.wpmudev.org/blog/customize-login-page/
- */
-function my_custom_login() {
-echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
-}
-add_action('login_head', 'my_custom_login');
-
-
-function my_custom_js() {
-	echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>';
-}
-// Add hook for admin <head></head>
-add_action('admin_head', 'my_custom_js');
-// Add hook for front-end <head></head>
-add_action('wp_head', 'my_custom_js');
-
-
-/** Customizing the WordPress Login Logo URL
- *
- *
- * hhttp://www.wpbeginner.com/wp-tutorials/how-to-change-the-login-logo-url-in-wordpress/
- */
-add_filter( 'login_headerurl', 'custom_loginlogo_url' );
-function custom_loginlogo_url($url) {
-	return 'http://www.badges4languages.com';
+//Return the list of the term names of a taxonomy
+function get_CPT_terms($postID, $term){
+	$terms_list = wp_get_post_terms($postID, $term);
+	if( empty( $terms_list ) ) :
+		return 'Not Specified';
+	else :
+		$output = '';
+		$i = 0;
+		foreach ($terms_list as $t) {
+			$i++;
+			if($i > 1){ $output .= ', '; }
+			$output .= $t->name.' ';
+		}
+		return $output;
+	endif;
 }
 
+/* /////////////////
+   /    Redirect   /
+   ///////////////// */
 
-/** Limit Upload Size for Non-Admins
- *
- * Limit the upload size limit to 1MB for any users who are not an administrator.
- */
+//Redirect to the homepage after login
+function auto_redirect_after_login() {
+  return home_url();
+}
+add_filter('login_redirect', 'auto_redirect_after_login');
+
+/* //////////////////////
+   /     Shortcodes    /
+   ///////////////////// */
+
+//Create the login form shortcode
+function login_form_shortcode() {
+	if ( is_user_logged_in() )
+		return 'You are already logged in. <a href=".">Ok</a>';
+
+	return wp_login_form(  );
+}
+
+//Create the logout link shortcode
+function logout_link_shortcode() {
+	return wp_logout_url( home_url() );
+}
+
+//Create the profile name shortcode
+function profile_name_shortcode(){
+    $user=wp_get_current_user();
+    $name=$user->user_firstname; 
+    return $name;
+}
+
+//Add the shortcodes
+function my_add_shortcodes() {
+	add_shortcode( 'login-form', 'login_form_shortcode' );
+	add_shortcode( 'logout-link', 'logout_link_shortcode' );
+	add_shortcode('profile-name', 'profile_name_shortcode');
+}
+add_action( 'init', 'my_add_shortcodes' );
+
+/* ////////////////////////
+   /      Custom Menu     /
+   //////////////////////// */
+
+//Add the profile menu item
+function my_custom_menu_item($items)
+{
+    if( is_user_logged_in() ) {
+        $user=wp_get_current_user();
+        $urlAvatar=esc_url( get_avatar_url( $user->ID ) );
+        if( ! empty( $user->user_firstname ) ) :
+        	$name=$user->user_firstname; // or user_login , user_firstname, user_lastname
+        else :
+        	$name=$user->user_login;
+        endif;
+        
+        //Avatar and user name item and submenu item
+        $items .= 
+        '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-87"><a href="https://badges4languages.000webhostapp.com/author/' . $user->user_login . '"><img id="menu-avatar" class="circle-img" src="' . $urlAvatar . '" height="40" width="40">' . $name . '</a>
+          <ul class="sub-menu">
+            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="https://badges4languages.000webhostapp.com/author/' . $user->user_login . '">Profile</a></li>
+            <li class="ion-close-circled menu-item menu-item-type-post_type menu-item-object-page"><a href="' . get_page_link( 179 ) . '" class="popup-trigger-ajax">Sign out</a></li>
+          </ul>
+        </li>';
+    }
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'my_custom_menu_item');
+
+/* /////////////////////////
+   /   Limit Upload Size   /
+   ///////////////////////// */
+
+// Limit the upload size limit to 1MB for any users who are not an administrator.
 function limit_upload_size_limit_for_non_admin( $limit ) {
-	if ( ! current_user_can( 'manage_options' ) ) {
-		$limit = '1000000'; // 1mb in bytes
-	}
-	return $limit;
+  if ( ! current_user_can( 'manage_options' ) ) {
+    $limit = '1000000'; // 1mb in bytes
+  }
+  return $limit;
 }
 add_filter( 'upload_size_limit', 'limit_upload_size_limit_for_non_admin' );
 
-/** Disable Admin Bar
- *
- *  for All Users Except for Administrators
- */
-if (!current_user_can('edit_posts')) {
-	add_filter('show_admin_bar', '__return_false');
+/* ////////////////////////////////
+   /   Custom Registration Form   /
+   //////////////////////////////// */
+
+// Adds the custom fields to the registration form and profile editor.
+function pw_rcp_add_user_fields() {
+
+  $profession       = get_user_meta( get_current_user_id(), 'rcp_profession', true );
+  $location         = get_user_meta( get_current_user_id(), 'rcp_location', true );
+  $university       = get_user_meta( get_current_user_id(), 'rcp_university', true );
+  $mother_tongue    = get_user_meta( get_current_user_id(), 'rcp_mother_tongue', true );
+  $other_education  = get_user_meta( get_current_user_id(), 'rcp_other_education', true );
+
+  ?>
+    <label for="rcp_mother_tongue"><?php _e( 'Mother Tongue', 'rcp' ); ?></label>
+    <input name="rcp_mother_tongue" id="rcp_mother_tongue" type="text" value="<?php echo esc_attr( $mother_tongue ); ?>"/>
+  </p>
+  <p>
+    <label for="rcp_university"><?php _e( 'University Degree', 'rcp' ); ?></label>
+    <input name="rcp_university" id="rcp_university" type="text" value="<?php echo esc_attr( $university ); ?>"/>
+  </p>
+  <p>
+  <p>
+    <label for="rcp_other_education"><?php _e( 'Other Education', 'rcp' ); ?></label>
+    <input name="rcp_other_education" id="rcp_other_education" type="text" value="<?php echo esc_attr( $other_education ); ?>"/>
+  </p>
+  <p>
+    <label for="rcp_profession"><?php _e( 'Profession', 'rcp' ); ?></label>
+    <input name="rcp_profession" id="rcp_profession" type="text" value="<?php echo esc_attr( $profession ); ?>"/>
+  </p>
+  <p>
+    <label for="rcp_location"><?php _e( 'Location', 'rcp' ); ?></label>
+    <input name="rcp_location" id="rcp_location" type="text" value="<?php echo esc_attr( $location ); ?>"/>
+  </p>
+
+  <?php
 }
+add_action( 'rcp_before_subscription_form_fields', 'pw_rcp_add_user_fields' );
+add_action( 'rcp_profile_editor_after', 'pw_rcp_add_user_fields' );
 
-/** Remove links to the Admin Tool-Bar
- *
- */
-add_action( 'admin_bar_menu', 'remove_links_toolbar', 999 );
-function remove_links_toolbar($wp_admin_bar)
-{
- global $wp_admin_bar;
- //$wp_admin_bar->remove_menu('comments');
- //$wp_admin_bar->remove_menu('updates');
+// Adds the custom fields to the member edit screen
+function pw_rcp_add_member_edit_fields( $user_id = 0 ) {
 
- $wp_admin_bar->remove_menu('wp-logo');
+  $profession       = get_user_meta( $user_id, 'rcp_profession', true );
+  $location         = get_user_meta( $user_id, 'rcp_location', true );
+  $university       = get_user_meta( $user_id, 'rcp_university', true );
+  $mother_tongue    = get_user_meta( $user_id, 'rcp_mother_tongue', true );
+  $other_education  = get_user_meta( $user_id, 'rcp_other_education', true );
+  ?>
+
+  <tr valign="top">
+    <th scope="row" valign="top">
+      <label for="rcp_mother_tongue"><?php _e( 'Mother Tongue', 'rcp' ); ?></label>
+    </th>
+    <td>
+      <input name="rcp_mother_tongue" id="rcp_mother_tongue" type="text" value="<?php echo esc_attr( $mother_tongue ); ?>"/>
+      <p class="description"><?php _e( 'The member\'s mother tongue', 'rcp' ); ?></p>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row" valign="top">
+      <label for="rcp_university"><?php _e( 'University', 'rcp' ); ?></label>
+    </th>
+    <td>
+      <input name="rcp_university" id="rcp_university" type="text" value="<?php echo esc_attr( $university ); ?>"/>
+      <p class="description"><?php _e( 'The member\'s University', 'rcp' ); ?></p>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row" valign="top">
+      <label for="rcp_other_education"><?php _e( 'Other Education', 'rcp' ); ?></label>
+    </th>
+    <td>
+      <input name="rcp_other_education" id="rcp_other_education" type="text" value="<?php echo esc_attr( $other_education ); ?>"/>
+      <p class="description"><?php _e( 'The member\'s other qualification', 'rcp' ); ?></p>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row" valign="top">
+      <label for="rcp_profession"><?php _e( 'Profession', 'rcp' ); ?></label>
+    </th>
+    <td>
+      <input name="rcp_profession" id="rcp_profession" type="text" value="<?php echo esc_attr( $profession ); ?>"/>
+      <p class="description"><?php _e( 'The member\'s profession', 'rcp' ); ?></p>
+    </td>
+  </tr>
+  <tr valign="top">
+    <th scope="row" valign="top">
+      <label for="rcp_location"><?php _e( 'Location', 'rcp' ); ?></label>
+    </th>
+    <td>
+      <input name="rcp_location" id="rcp_location" type="text" value="<?php echo esc_attr( $location ); ?>"/>
+      <p class="description"><?php _e( 'The member\'s location', 'rcp' ); ?></p>
+    </td>
+  </tr>
+
+  <?php
 }
-
-
-/** Disable default dashboard widgets
- *
- *  for All Users Except for Administrators
- */
-function disable_default_dashboard_widgets() {
-
-	//remove_meta_box('dashboard_right_now', 'dashboard', 'core');
-	remove_meta_box('dashboard_activity', 'dashboard', 'core');
-	remove_meta_box('dashboard_recent_comments', 'dashboard', 'core');
-	remove_meta_box('dashboard_incoming_links', 'dashboard', 'core');
-	remove_meta_box('dashboard_plugins', 'dashboard', 'core');
-
-	remove_meta_box('dashboard_quick_press', 'dashboard', 'core');
-	remove_meta_box('dashboard_recent_drafts', 'dashboard', 'core');
-	remove_meta_box('dashboard_primary', 'dashboard', 'core');
-	remove_meta_box('dashboard_secondary', 'dashboard', 'core');
-}
-
-if (!current_user_can('manage_options')) {
-        add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets');
-}
-
-
-
-
-
-
-/* Call the login folder and change the default wp login page */
-/*
- * Under construction
- *
-function my_custom_login() {
-echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-styles.css" />';
-}
-add_action('login_head', 'my_custom_login');
- *
- *
- */
-
-
-
-/** show Jetpack only for administrators
- *
- * http://wpguru.co.uk/2014/03/how-to-remove-the-jetpack-admin-menu-from-subscribers/
- *
- */
-
-function pinkstone_remove_jetpack() {
-	if( class_exists( 'Jetpack' ) && !current_user_can( 'manage_options' ) ) {
-		remove_menu_page( 'jetpack' );
-	}
-}
-add_action( 'admin_init', 'pinkstone_remove_jetpack' );
-
+add_action( 'rcp_edit_member_after', 'pw_rcp_add_member_edit_fields' );
 
 /**
- *  This function permit to do a WP_Query and take the right badge to the plugin.
+ * Stores the information submitted during registration
  *
- * @param string "$_POST['target']" permit to retrieve the information about the target (student, teacher)
- * @param string "$_POST['level']" permit to retrieve the information about the level (A1, A2, B1, B2, ...)
  */
-function searchBadges_ajax_handler() {
-	$target = $_POST['target'];
-	$level = $_POST['level'];
+function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 
-	if ($level === ""){
+  if( ! empty( $posted['rcp_profession'] ) ) {
+    update_user_meta( $user_id, 'rcp_profession', sanitize_text_field( $posted['rcp_profession'] ) );
+  }
+  if( ! empty( $posted['rcp_location'] ) ) {
+    update_user_meta( $user_id, 'rcp_location', sanitize_text_field( $posted['rcp_location'] ) );
+  }
+  if( ! empty( $posted['rcp_university'] ) ) {
+    update_user_meta( $user_id, 'rcp_university', sanitize_text_field( $posted['rcp_university'] ) );
+  }
+  if( ! empty( $posted['rcp_mother_tongue'] ) ) {
+    update_user_meta( $user_id, 'rcp_mother_tongue', sanitize_text_field( $posted['rcp_mother_tongue'] ) );
+  }
+  if( ! empty( $posted['rcp_other_education'] ) ) {
+    update_user_meta( $user_id, 'rcp_other_education', sanitize_text_field( $posted['rcp_other_education'] ) );
+  }
+}
+add_action( 'rcp_form_processing', 'pw_rcp_save_user_fields_on_register', 10, 2 );
 
-		$args = array(
-            'post_type'   => 'open-badge',
-            'orderby' => 'name',
-            'order' => 'ASC',
-            'posts_per_page' => -1,
-            'meta_query' => array(
-                array(
-                    'key' => '_type',
-                    'value' => $target,
-                ),
-            )
-        );
+/**
+ * Stores the information submitted profile update
+ *
+ */
+function pw_rcp_save_user_fields_on_profile_save( $user_id ) {
 
-	} else {
+  if( ! empty( $_POST['rcp_profession'] ) ) {
+    update_user_meta( $user_id, 'rcp_profession', sanitize_text_field( $_POST['rcp_profession'] ) );
+  }
 
-        $args = array(
-            'post_type' => 'open-badge',
-            'orderby' => 'name',
-            'order' => 'ASC',
-            'posts_per_page' => -1,
-            'meta_query' => array(
-                array(
-                    'key' => '_type',
-                    'value' => $target,
-                ),
-            ),
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'level',
-                    'field' => 'slug',
-                    'terms' => $level,
-                )
-            ),
-        );
-
-    }
-
-	$response = new WP_Query($args);
-
-	if( $response->have_posts() ):
-
-		echo '<div class="row">';
-
-		while( $response->have_posts() ): $response->the_post(); ?>
-
-			<?php get_template_part( 'content', 'badge-preview' ); ?>
-
-		<?php endwhile;
-
-		echo '</div>';
-
-
-	endif;
-
-	wp_reset_postdata();
-	wp_die(); // close the connection
+  if( ! empty( $_POST['rcp_location'] ) ) {
+    update_user_meta( $user_id, 'rcp_location', sanitize_text_field( $_POST['rcp_location'] ) );
+  }
+  if( ! empty( $_POST['rcp_university'] ) ) {
+    update_user_meta( $user_id, 'rcp_university', sanitize_text_field( $_POST['rcp_university'] ) );
+  }
+  if( ! empty( $_POST['rcp_mother_tongue'] ) ) {
+    update_user_meta( $user_id, 'rcp_mother_tongue', sanitize_text_field( $_POST['rcp_mother_tongue'] ) );
+  }
+  if( ! empty( $_POST['rcp_other_education'] ) ) {
+    update_user_meta( $user_id, 'rcp_other_education', sanitize_text_field( $_POST['rcp_other_education'] ) );
+  }
 }
 
-add_action('wp_ajax_searchBadges', 'searchBadges_ajax_handler'); // add action for logged users
-add_action( 'wp_ajax_nopriv_searchBadges', 'searchBadges_ajax_handler' ); // add action for unlogged users
+add_action( 'rcp_user_profile_updated', 'pw_rcp_save_user_fields_on_profile_save', 10 );
+add_action( 'rcp_edit_member', 'pw_rcp_save_user_fields_on_profile_save', 10 );
 
+/* ////////////////////////////////
+   /     Plugin Update Checker    /
+   //////////////////////////////// */
 
-function getTaxonomyLevel_ajax_handler() {
-	$searchTerm = $_POST['searchTerm'];
-	$values = get_terms( 'level');
-	$count = 0;
-	echo "<option value='$count'>Select</option>";
-	foreach ($values as $value){
-		$count++;
-		echo "<option value='$count'>$value->name</option>";
-	}
-}
-
-add_action('wp_ajax_getTaxonomyLevel', 'getTaxonomyLevel_ajax_handler'); // add action for logged users
-add_action( 'wp_ajax_nopriv_getTaxonomyLevel', 'getTaxonomyLevel_ajax_handler' ); // add action for unlogged users
+/*
+* Auto update from github
+*
+* @since 1.0.0
+*/
+require 'vendor/plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+   'https://github.com/Badges4Languages/open-badges-framework-listify-child/',
+   __FILE__,
+   'listify-child'
+);
