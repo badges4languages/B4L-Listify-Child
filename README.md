@@ -1,9 +1,9 @@
-# Listify Child Theme for Open Badges Framework
-A WordPress child theme based on Listify theme (http://listify.astoundify.com/) for the open badges framework.
+# Open Badges Framework - B4L Child Theme
+A WordPress child theme based on Listify theme for the open badges framework.
 
-Contributors: @colomet, @leocharlier
+Contributors: @colomet, @AleRiccardi, @leocharlier
 
-Tags: child theme, badges, listify.
+Tags: child theme, open badges, listify.
 
 ## Community / Support
 
@@ -11,7 +11,7 @@ You can join our [Chat](https://gitter.im/open-badges-framework "chat" ) and tal
 
 ## Description
 
-This is a child theme based on the Listify theme. This child theme will be used for the Open Badges Framework plugin. Depends on your status, it allows you to see the catalog of badges available, register, send badges, access to your profile and see the badges you earned.
+This is a child theme based on the [Listify theme](http://listify.astoundify.com/). This child theme will be used for the Open Badges Framework plugin. Depends on your status, it allows you to see the catalog of badges available, register, send badges, access to your profile and see the badges you earned.
 
 ## Installation
 
@@ -20,7 +20,7 @@ This is a child theme based on the Listify theme. This child theme will be used 
 
 ## Frequently Asked Questions
 
-* [Badges4Languages](doc/badges-for-languages.md).
+* Badges4Languages : https://github.com/my-language-skills/open-badges-framework/blob/master/doc/badges-for-languages.md
 * [General documentation](doc/documentation-general.md).
 * [Technical documentation](doc/documentation-technical.md).
 * [Integrations](doc/documentation-integrations.md).
@@ -39,10 +39,11 @@ Plugin/Template Name works with:
 
  * ![PHP](https://img.shields.io/badge/PHP-7.0-blue.svg)
  * [![WordPress](https://img.shields.io/badge/Wordpress-4.9.5-green.svg)](https://codex.wordpress.org/Version_4.9.5)
+ * [![Open Badges Framework](https://img.shields.io/badge/Open%20Badges%20Framework-1.0-brightgreen.svg)](https://github.com/my-language-skills/open-badges-framework/releases/tag/1.0)
 
 ## Disclaimers
 
-The Open-Badge-Framework plugin is supplied "as is" and all use is at your own risk.
+The Open Badges Framework child theme is supplied "as is" and all use is at your own risk.
 
 ## Screenshots
 
