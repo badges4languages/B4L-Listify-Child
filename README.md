@@ -5,6 +5,8 @@ Contributors: @colomet, @AleRiccardi, @leocharlier
 
 Tags: child theme, open badges, listify.
 
+License:  [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/Books4Languages/pressbooks-metadata-related_content/blob/master/license.txt)
+
 ## Community / Support
 
 You can join our [Chat](https://gitter.im/open-badges-framework "chat" ) and talk with us.
@@ -27,13 +29,6 @@ This is a child theme based on the [Listify theme](http://listify.astoundify.com
 * [The folder structure](doc/folder-structure.md).
 
 ## Requirements
-
-Version:     0.1 \
-Requires at least: 0.1 \
-Tested up to: 0.1 \
-Stable tag: 0.1 \
-License: GPLv2 or later \
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Plugin/Template Name works with:
 
@@ -62,15 +57,14 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
   * Correct version number of release.
 
 ### now
- * To create students and teacher page.
+ * Integrate all the new features of Open Badges Framework in a fresh theme.
 
 ### soon
- * To review the classes.
- * Inform of the process to the senders of badges.
- * Add a section in settings page to manage time for commenting a class.
- * Replace students' login by mail in the user profiles and class pages.
- * Description metabox - txt with translations.
- * Recomended resolution for cover image in "post class" page.
- * To use schema metadata for the badges information.
- * Fixing spam problem with email.
- * To delete all the information of the plugin option if we wish by deleting the plugin.
+
+## Changelog
+
+### 0.2
+Completely overhauled design, from top to bottom. The theme has been completely rewritten. Version 0.1 just basic functionnalities.
+
+### 0.1
+
