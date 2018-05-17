@@ -70,8 +70,10 @@ Completely overhauled design, from top to bottom. The theme has been completely 
  * Filter form for archive badge page with Search & Filter Plugin.
  * Responsive filter form (toggle button for little screens to display the form).
  * Default image badge.
- * Popup logout .
+ * Popup logout.
  * Redirect to homepage after logout.
+ * Popup login.
+ * Redirect to homepage after login.
 
 ### 0.1
  * Home page : Navigation menu, search form (for listing), recent listings.
