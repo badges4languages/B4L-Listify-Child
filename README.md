@@ -65,7 +65,7 @@ You can see all of the screenshots of the plugin [here](doc/screenshots.md "scre
 
 ### 0.2
 Completely overhauled design, from top to bottom. The theme has been completely rewritten. Version 0.1 just basic functionnalities.
- * Limit the picture size at 1000px.
+ * In the front end (archive and single pages), limit the picture size at 1000px.
  * Navigation Menu with IfMenu Plugin and Ionicons.
  * Filter form for archive badge page with Search & Filter Plugin.
  * Responsive filter form (toggle button for little screens to display the form).
