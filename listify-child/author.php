@@ -112,7 +112,7 @@ get_header(); ?>
 				                        		$url = get_stylesheet_directory_uri() . '/images/default-badge.png';
 				                        	// If it has one, we get the thmbnail's url
 				                        	} else {
-				                        		$url = get_the_post_thumbnail_url( $dbBadge->idBadge );
+				                        		$url = get_the_post_thumbnail_url( $dbBadge->idBadge, 'thumbnail' );
 				                        	}
 				                        	?>
 				                        	<div class="badge flex-item">
@@ -125,7 +125,7 @@ get_header(); ?>
 				                                </div>
 				                                <!-- Name of the badge -->
 				                                <div>
-				                                    <span><?php echo get_the_title($dbBadge->idBadge); ?></span>
+				                                    <span><?php echo get_the_title( $dbBadge->idBadge ); ?></span>
 				                                </div>
 				                                </a>
 				                            </div>
@@ -148,7 +148,7 @@ get_header(); ?>
 
 		<?php
 		//Retrieve the information of the kind of subscription of the user (author).
-		$subscription = rcp_get_subscription(get_queried_object_id());
+		$subscription = rcp_get_subscription( get_queried_object_id() );
 
 		if ($subscription == "Teacher") {
 		    ?>
@@ -210,7 +210,7 @@ get_header(); ?>
 			<div class="content-box-inner">
 				<div class="entry-content">
 					<h2 class="entry-title entry-title--in-cover">You are not logged in. Please log in to access your profile.</h2>
-					<?php do_shortcode('[login-form]'); ?>
+					<?php do_shortcode( '[login-form]' ); ?>
 				</div>
 			</div>
 			</article>
