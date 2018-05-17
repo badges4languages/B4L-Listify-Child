@@ -36,6 +36,7 @@ Profile page:
 	author.php ->
 		- If user is logged in, display his profile (user information and badges earned).
 		- If no user is logged in, display the login form for him to connect.
+		- When it's a teacher, add the classes of th teacher (active ones and historic ones).
 
 Style:
 	Additional CSS (in Customise WP interface) ->
@@ -53,6 +54,7 @@ To debug :
 		- Add social links (Facebook, etc.) to the author template.
 		- When clicking on the badges, redirect to the single page (not the admin badge page).
 		- Add the profession, location, university, mother tongue and other education fiels.
+		- When you disable the admin bar, the dashicons don't appear.
 	Login page ->
 		- Styles of the previous child themes (Others->listify-child->functions and Others->listify-child->login).
 		- Redirect after sign in.

@@ -32,7 +32,7 @@ get_header(); ?>
 				        <div class="author-name">
 				            <h1>
 				            	<!-- First and last name of the user -->
-				                <?php the_author_meta( 'first_name' ); ?>&nbsp;<?php the_author_meta( 'last_name' ); ?>
+				                <?php 	the_author_meta( 'first_name', $current_user->ID ); ?>&nbsp;<?php the_author_meta( 'last_name', $current_user->ID ); ?>
 				            </h1>
 				        </div>
 
@@ -48,24 +48,24 @@ get_header(); ?>
 				                    <div class="txt-info center-item">
 				                        <ul>
 				                            <li>
-				                                <span class="dashicons dashicons-admin-users"></span>
+				                                <span class="ion-person"></span>
 				                                <!-- The display name (chosen by the user) -->
-				                                <?php the_author_meta( 'display_name' ); ?>
+				                                <?php the_author_meta( 'display_name', $current_user->ID ); ?>
 				                            </li>
 				                            <li>
-				                                <span class="dashicons dashicons-calendar"></span>
+				                                <span class="ion-ios-calendar"></span>
 				                                <!-- Registration date -->
 				                                <span> <?php _e( 'Member since','open-badges-framework' ); echo ' ' . date( "d M Y", strtotime( $current_user->user_registered ) ); ?></span>
 				                            </li>
 				                            <li>
-				                                <span class="dashicons dashicons-email-alt"></span>
+				                                <span class="ion-ios-mail"></span>
 				                                <!-- Email -->
-				                                <?php the_author_meta( 'user_email' ); ?>
+				                                <?php the_author_meta( 'user_email', $current_user->ID ); ?>
 				                            </li>
 				                            <li>
-				                                <span class="dashicons dashicons-admin-tools"></span>
+				                                <span class="ion-ios-build"></span>
 				                                <!-- Profession -->
-				                                <?php the_author_meta( 'rcp_profession' ); ?>
+				                                <?php the_author_meta( 'rcp_profession', $current_user->ID ); ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Button linked to the 'Edit profile' page -->
@@ -145,6 +145,65 @@ get_header(); ?>
 			    </div>
 			</div>
 		</div>
+
+		<?php
+		//Retrieve the information of the kind of subscription of the user (author).
+		$subscription = rcp_get_subscription(get_queried_object_id());
+
+		if ($subscription == "Teacher") {
+		    ?>
+		    <div class="title-lst">
+		        <div class="container">
+		            <h2>Some infomation</h2>
+		            <hr class="sep-testo-down">
+		        </div>
+		    </div>
+		    <div class="container listings-user">
+		        <div class="row">
+		            <div class="col-3">
+		                <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
+		                    <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes"
+		                       role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
+		                        Active classes
+		                    </a>
+		                    <a class="nav-list" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-hist-classes" role="tab"
+		                       aria-controls="v-pills-act-classes" aria-expanded="true">
+		                        Historic classes
+		                    </a>
+		                </div>
+		            </div>
+		            <div class="col-9">
+		                <div class="tab-content" id="v-pills-tabContent">
+		                    <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel"
+		                         aria-labelledby="v-pills-home-tab">
+		                        <?php
+
+		                        $none = the_widget('Listify_Widget_Author_Listings',
+		                            array(
+		                                'title' => 'List of the active classes',
+		                                'per_page' => 1000
+		                            )
+		                        );
+
+		                        ?>
+		                    </div>
+		                    <div class="tab-pane fade" id="v-pills-hist-classes" role="tabpanel"
+		                         aria-labelledby="v-pills-profile-tab">
+		                        <div class="container">
+		                            <h4 class="">Coming soon</h4>
+		                            <p class="lead">This information will be available soon.</p>
+		                        </div>
+		                    </div>
+
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		    <?php
+		}
+		?>
+
+
 	<?php //If no user is logged in, we display the login form for him to connect.
 	else: ?>
 		<article id="post-177" class="post-177 page type-page status-publish hentry content-box content-box-wrapper">

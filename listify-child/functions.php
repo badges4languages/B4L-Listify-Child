@@ -222,10 +222,7 @@ function pw_rcp_add_member_edit_fields( $user_id = 0 ) {
 }
 add_action( 'rcp_edit_member_after', 'pw_rcp_add_member_edit_fields' );
 
-/**
- * Stores the information submitted during registration
- *
- */
+// Stores the information submitted during registration
 function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 
   if( ! empty( $posted['rcp_profession'] ) ) {
@@ -246,10 +243,7 @@ function pw_rcp_save_user_fields_on_register( $posted, $user_id ) {
 }
 add_action( 'rcp_form_processing', 'pw_rcp_save_user_fields_on_register', 10, 2 );
 
-/**
- * Stores the information submitted profile update
- *
- */
+// Stores the information submitted profile update
 function pw_rcp_save_user_fields_on_profile_save( $user_id ) {
 
   if( ! empty( $_POST['rcp_profession'] ) ) {
@@ -284,7 +278,47 @@ add_action( 'rcp_edit_member', 'pw_rcp_save_user_fields_on_profile_save', 10 );
 */
 require 'vendor/plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-   'https://github.com/Badges4Languages/open-badges-framework-listify-child/',
+   'https://github.com/my-language-skills/open-badges-framework-listify-child/',
    __FILE__,
-   'listify-child'
+   'open-badges-framework-listify-child'
 );
+
+/* ////////////////////////////////
+   /           Admin              /
+   //////////////////////////////// */
+
+//Disable Admin Bar for All Users Except for Administrators
+if ( !current_user_can( 'administrator' ) ) {
+  add_filter( 'show_admin_bar', '__return_false' );
+}
+
+// Remove links to the Admin Tool-Bar
+add_action( 'admin_bar_menu', 'remove_links_toolbar', 999 );
+function remove_links_toolbar($wp_admin_bar)
+{
+ global $wp_admin_bar;
+ //$wp_admin_bar->remove_menu('comments');
+ //$wp_admin_bar->remove_menu('updates');
+
+ $wp_admin_bar->remove_menu('wp-logo');
+}
+
+
+// Disable default dashboard widgets for All Users Except for Administrators
+function disable_default_dashboard_widgets() {
+
+  //remove_meta_box('dashboard_right_now', 'dashboard', 'core');
+  remove_meta_box('dashboard_activity', 'dashboard', 'core');
+  remove_meta_box('dashboard_recent_comments', 'dashboard', 'core');
+  remove_meta_box('dashboard_incoming_links', 'dashboard', 'core');
+  remove_meta_box('dashboard_plugins', 'dashboard', 'core');
+
+  remove_meta_box('dashboard_quick_press', 'dashboard', 'core');
+  remove_meta_box('dashboard_recent_drafts', 'dashboard', 'core');
+  remove_meta_box('dashboard_primary', 'dashboard', 'core');
+  remove_meta_box('dashboard_secondary', 'dashboard', 'core');
+}
+
+if (!current_user_can('manage_options')) {
+        add_action('wp_dashboard_setup', 'disable_default_dashboard_widgets');
+}
