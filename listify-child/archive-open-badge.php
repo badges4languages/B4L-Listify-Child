@@ -52,7 +52,6 @@ get_header(); ?>
 				if ( have_posts() ) :
 					while ( have_posts() ) :
 						the_post();
-
 						// Display the custom template archive-badge-content.php
 						get_template_part( 'archive-badge-content' );
 					endwhile;
@@ -65,10 +64,6 @@ get_header(); ?>
 				get_template_part( 'content', 'pagination' ); ?>
 
 			</main>
-
-			<?php if ( 'right' == esc_attr( get_theme_mod( 'content-sidebar-position', 'right' ) ) ) : ?>
-				<?php get_sidebar(); ?>
-			<?php endif; ?>
 
 		</div>
 	</div>

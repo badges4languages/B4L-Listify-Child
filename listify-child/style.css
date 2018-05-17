@@ -13,6 +13,19 @@
  Template:    listify
 */
 
+/* //////////////////////////////////////
+   /         Archive Badge Page          /
+   ////////////////////////////////////// */
+.badge-description-archive{
+	width: 100%;
+	display: inline-flex;
+	margin-bottom: 5px;
+}
+
+.badge-description-content{
+	width: 100%;
+	text-align: center;
+}
 
 /* //////////////////////////////////////
    /         Single Badge Page          /
@@ -26,6 +39,12 @@
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
 	display: block;
 	margin-bottom: 10px;
+}
+
+/* Reduce the space between the cover image and the Return button */
+.content-area{
+	margin-bottom: 10px;
+	margin-top: 15px;
 }
 
 /* //////////////////////////////////////
@@ -77,6 +96,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 @media (max-width: 999px) {
 	.normal-screen{
 		display: none;
+	}
+
+	.badge-description-archive{
+		display: inline;
+	}
+
+	.badge-description-content{
+	  text-align: left;
 	}
 }
 

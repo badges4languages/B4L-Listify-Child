@@ -19,25 +19,6 @@ endif;
 	</header><!-- .entry-header -->
 	<?php endif; ?>
 	<div class="content-box-inner">
-		<?php if ( ! is_singular( 'page' ) ) : ?>
-		<div class="entry-meta">
-			<span class="entry-author author vcard">
-				<?php echo get_avatar( get_the_author_meta( 'ID' ), 50 ); ?>
-				<a class="url fn n" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>"><?php the_author(); ?></a>
-			</span>
-
-			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-			<span class="entry-comments">
-				<?php comments_popup_link( __( '0 Comments', 'listify' ), __( '1 Comment', 'listify' ), __( '% Comments', 'listify' ) ); ?>
-			</span>
-			<?php endif; ?>
-
-			<span class="entry-share">
-				<?php do_action( 'listify_share_object' ); ?>
-			</span>
-		</div>
-		<?php endif; ?>
-
 		<!-- Description of the badge (Certification, Target, Fields of Education and Level). 
 		Display the terms of taxonomies or post meta. -->
 		<div class="badge-description">

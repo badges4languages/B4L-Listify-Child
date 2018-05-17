@@ -32,20 +32,6 @@ endif;
 	<?php endif; ?>
 	
 	<div class="content-box-inner">
-		<?php if ( ! is_singular( 'page' ) ) : ?>
-		<div class="entry-meta">
-
-			<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-			<span class="entry-comments">
-				<?php comments_popup_link( __( '0 Comments', 'listify' ), __( '1 Comment', 'listify' ), __( '% Comments', 'listify' ) ); ?>
-			</span>
-			<?php endif; ?>
-
-			<span class="entry-share">
-				<?php do_action( 'listify_share_object' ); ?>
-			</span>
-		</div>
-		<?php endif; ?>
 
 		<?php if ( is_singular() ) : ?>
 			<div class="entry-content">
@@ -53,6 +39,24 @@ endif;
 			</div>
 		<?php else : ?>
 			<div class="entry-summary">
+				<!-- Description of the badge (Certification, Target, Fields of Education and Level). 
+				Display the terms of taxonomies or post meta. -->
+				<div class="badge-description-archive">
+					<?php  if( get_post_meta($post->ID, '_certification', true) == 'certified' ): ?>
+						<div class="badge-description-content"> <b>Certification Type: </b>Certified </div>
+					<?php else: ?>
+						<div class="badge-description-content"> <b>Certification Type: </b>Not Certified </div>
+					<?php endif; ?>
+
+					<?php if( get_post_meta($post->ID, '_target', true) == 'teacher' ): ?>
+						<div class="badge-description-content"> <b>Target: </b>Teacher </div>
+					<?php else: ?>
+						<div class="badge-description-content"> <b>Target: </b>Student </div>
+					<?php endif; ?>
+					
+					<div class="badge-description-content"> <b>Field(s) of Education: </b><?php echo get_CPT_terms($post->ID, 'field_of_education' ); ?> </div>
+					<div class="badge-description-content"> <b>Level(s): </b><?php echo get_CPT_terms($post->ID, 'level' ); ?> </div>
+				</div>
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
 		<?php endif; ?>
