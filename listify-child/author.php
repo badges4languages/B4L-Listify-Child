@@ -53,17 +53,17 @@ get_header(); ?>
 				                                <?php the_author_meta( 'display_name', $current_user->ID ); ?>
 				                            </li>
 				                            <li>
-				                                <span class="ion-ios-calendar"></span>
+				                                <span class="ion-calendar"></span>
 				                                <!-- Registration date -->
 				                                <span> <?php _e( 'Member since','open-badges-framework' ); echo ' ' . date( "d M Y", strtotime( $current_user->user_registered ) ); ?></span>
 				                            </li>
 				                            <li>
-				                                <span class="ion-ios-mail"></span>
+				                                <span class="ion-email"></span>
 				                                <!-- Email -->
 				                                <?php the_author_meta( 'user_email', $current_user->ID ); ?>
 				                            </li>
 				                            <li>
-				                                <span class="ion-ios-build"></span>
+				                                <span class="ion-briefcase"></span>
 				                                <!-- Profession -->
 				                                <?php the_author_meta( 'rcp_profession', $current_user->ID ); ?>
 				                            </li>

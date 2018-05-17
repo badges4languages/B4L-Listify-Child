@@ -38,26 +38,13 @@ function get_CPT_terms($postID, $term){
 	endif;
 }
 
-/* /////////////////
-   /    Redirect   /
-   ///////////////// */
-
-//Redirect to the homepage after login
-function auto_redirect_after_login() {
-  return home_url();
-}
-add_filter('login_redirect', 'auto_redirect_after_login');
-
 /* //////////////////////
    /     Shortcodes    /
    ///////////////////// */
-
-//Create the login form shortcode
-function login_form_shortcode() {
-	if ( is_user_logged_in() )
-		return 'You are already logged in. <a href=".">Ok</a>';
-
-	return wp_login_form(  );
+//Create a login form shortcode that redirect to the homepage
+function login_form_redirect_shortcode(){
+  $user=wp_get_current_user();
+  return do_shortcode('[login_form redirect="'. home_url() . '"]');
 }
 
 //Create the logout link shortcode
@@ -74,9 +61,9 @@ function profile_name_shortcode(){
 
 //Add the shortcodes
 function my_add_shortcodes() {
-	add_shortcode( 'login-form', 'login_form_shortcode' );
 	add_shortcode( 'logout-link', 'logout_link_shortcode' );
 	add_shortcode('profile-name', 'profile_name_shortcode');
+  add_shortcode( 'login-form-redirect', 'login_form_redirect_shortcode' );
 }
 add_action( 'init', 'my_add_shortcodes' );
 
@@ -98,9 +85,9 @@ function my_custom_menu_item($items)
         
         //Avatar and user name item and submenu item
         $items .= 
-        '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-87"><a href="https://badges4languages.000webhostapp.com/author/' . $user->user_login . '"><img id="menu-avatar" class="circle-img" src="' . $urlAvatar . '" height="40" width="40">' . $name . '</a>
+        '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-87"><a href="'. get_page_link( 187 ) . '/' . $user->user_login . '"><img id="menu-avatar" class="circle-img" src="' . $urlAvatar . '" height="40" width="40">' . $name . '</a>
           <ul class="sub-menu">
-            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="https://badges4languages.000webhostapp.com/author/' . $user->user_login . '">Profile</a></li>
+            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="'. get_page_link( 187 ) . '/' . $user->user_login . '">Profile</a></li>
             <li class="ion-close-circled menu-item menu-item-type-post_type menu-item-object-page"><a href="' . get_page_link( 179 ) . '" class="popup-trigger-ajax">Sign out</a></li>
           </ul>
         </li>';
