@@ -43,7 +43,6 @@ function get_CPT_terms($postID, $term){
    ///////////////////// */
 //Create a login form shortcode that redirect to the homepage
 function login_form_redirect_shortcode(){
-  $user=wp_get_current_user();
   return do_shortcode('[login_form redirect="'. home_url() . '"]');
 }
 

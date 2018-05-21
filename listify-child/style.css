@@ -120,29 +120,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* For large screens */ 
 @media (min-width: 1000px) {
 	/* Limit the width of images at 1000px */
-    .has-image.entry-cover, 
-    .has-image.entry-cover a, 
-    .has-image.entry-cover--home, 
-    .has-image.entry-cover--home a, 
-    .has-image.listing-cover, 
-    .has-image.listing-cover a, 
-    .has-image.page-cover, 
-    .has-image.page-cover a, 
-    .listify-cover.has-image, 
-    .listify-cover.has-image a {
-	    color: #fff;
-	    text-shadow: rgba(0,0,0,.8) 0 1px 0;
-	    width: 1000px;
-			margin-left: auto;
-	  	margin-right: auto;
+	.badge-archive{
+		max-width: 1000px;
 	}
-	
-	.content-area {
-		width: 1000px;
-	    margin-left: auto;
-	  	margin-right: auto;
+
+	.badge-image{
+		max-width: 1000px;
+		margin: auto;
 	}
-	
+
 	/* Don't display the button to show the filter form in archive page */
 	.little-screen{
 		display: none;

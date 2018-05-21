@@ -10,13 +10,13 @@ get_header(); ?>
 	<?php // Badge without featured image
 	if ( ! has_post_thumbnail() ): ?>
 		<!-- Add classes and default badge image url -->
-		<div style="background-image: url( <?php echo get_stylesheet_directory_uri() . '/images/default-badge.png'; ?>);" class="page-cover page-cover--large has-image">
+		<div style="background-image: url( <?php echo get_stylesheet_directory_uri() . '/images/default-badge.png'; ?>);" class="page-cover page-cover--large has-image badge-image">
 	<?php //Badge with normal featured image (original code)
 	else: ?>
 		<div 
 			<?php
 			echo apply_filters(
-				'listify_cover', 'page-cover page-cover--large', array( // WPCS: XSS ok.
+				'listify_cover', 'page-cover page-cover--large badge-image', array( // WPCS: XSS ok.
 					'size' => 'full',
 				)
 			);
