@@ -33,7 +33,7 @@ get_header(); ?>
 </h1>
 	</div>
 
-	<div id="primary" class="container">
+	<div id="primary" class="container single-badge-content">
 		<div class="row content-area">
 
 			<?php if ( 'left' === esc_attr( listify_theme_mod( 'content-sidebar-position', 'right' ) ) ) : ?>

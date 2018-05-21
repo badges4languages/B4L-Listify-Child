@@ -129,6 +129,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 		margin: auto;
 	}
 
+	.normal-screen{
+		max-width: 1000px;
+	}
+
+	.single-badge-content{
+		max-width: 1000px;
+	}
+
 	/* Don't display the button to show the filter form in archive page */
 	.little-screen{
 		display: none;
