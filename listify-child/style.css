@@ -1,0 +1,144 @@
+/*
+ Theme Name:  Listify Theme by MLS
+ Theme URI:   http://astoundify.com/themes/listify
+ Author:      My language skills Team
+ Author URI:  http://mylanguageskills.wordpress.com
+ Description: Listify Child Theme by My language skills
+ Version:     1.0
+ License:     GNU General Public License
+ License URI: license.txt
+ Text Domain: listify
+ Domain Path: /languages/
+ Tags: Badges4Languages
+ Template:    listify
+*/
+
+/* //////////////////////////////////////
+   /         Archive Badge Page          /
+   ////////////////////////////////////// */
+.badge-description-archive{
+	width: 100%;
+	display: inline-flex;
+	margin-bottom: 5px;
+}
+
+.badge-description-content{
+	width: 100%;
+	text-align: center;
+}
+
+/* //////////////////////////////////////
+   /         Single Badge Page          /
+   ////////////////////////////////////// */
+
+/* Adjust the descrption of the badge to be align with the image */
+.badge-description{
+	margin-bottom: 15px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+	display: block;
+	margin-bottom: 10px;
+}
+
+/* Reduce the space between the cover image and the Return button */
+.content-area{
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+/* //////////////////////////////////////
+   /             Search Form            /
+   ////////////////////////////////////// */
+
+/* Display inline the search form in archive page */
+.searchandfilter ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+    padding: 10px 0;
+    margin: 20px;
+}
+
+/* Make the filter button (on little screens) full widht */
+#filter-button{
+	width: 100%;
+}
+
+/* Adjust the position of the filter form */
+#filter-form-title{
+	margin-top: 0px;
+}
+
+/* //////////////////////////////////////
+   /               Menu                 /
+   ////////////////////////////////////// */
+
+/* Adjust the position of the circled image avatar in menu */
+#menu-avatar{
+	margin-right: 10px;
+}
+
+/* //////////////////////////////////////
+   /            Profile Page            /
+   ////////////////////////////////////// */
+
+/* Make the backgound of badges in profile page transparent instead of grey */
+.badge {
+	background-color: transparent;
+}
+
+/* //////////////////////////////////////
+   /           Little Screens           /
+   ////////////////////////////////////// */
+
+/* For little screens (tablets, phones...), don't display the normal search form in archive page */
+@media (max-width: 999px) {
+	.normal-screen{
+		display: none;
+	}
+
+	.badge-description-archive{
+		display: inline;
+	}
+
+	.badge-description-content{
+	  text-align: left;
+	}
+}
+
+/* //////////////////////////////////////
+   /           Large Screens            /
+   ////////////////////////////////////// */
+
+@media (min-width: 768px){
+	.col-sm-7 {
+			width: 100%;
+	}
+}
+
+/* For large screens */ 
+@media (min-width: 1000px) {
+	/* Limit the width of images at 1000px */
+	.badge-archive{
+		max-width: 1000px;
+	}
+
+	.badge-image{
+		max-width: 1000px;
+		margin: auto;
+	}
+
+	.normal-screen{
+		max-width: 1000px;
+	}
+
+	.single-badge-content{
+		max-width: 1000px;
+	}
+
+	/* Don't display the button to show the filter form in archive page */
+	.little-screen{
+		display: none;
+	}
+}
