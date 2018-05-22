@@ -23,7 +23,6 @@ $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
    'open-badges-framework-listify-child'
 );
 
-require_once( "includes/custom_fields.php" );
 require_once( "includes/include_script.php" );
 require_once( "includes/shortcodes.php" );
 require_once( "includes/custom_menu.php" );

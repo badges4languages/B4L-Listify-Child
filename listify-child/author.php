@@ -24,6 +24,8 @@ get_header(); ?>
 			        	<?php 
 			        	//Get the current user
 			        	$current_user = wp_get_current_user();
+			        	//Get user data
+			        	$user_data = get_userdata( $current_user->ID );
 			        	//Get the avatar's url of the user
 			        	$urlImg = esc_url( get_avatar_url( $current_user->ID ) );
 						?>
@@ -64,8 +66,8 @@ get_header(); ?>
 				                            </li>
 				                            <li>
 				                                <span class="ion-briefcase"></span>
-				                                <!-- Profession -->
-				                                <?php the_author_meta( 'rcp_profession', $current_user->ID ); ?>
+				                                <!-- Roles -->
+				                                <?php echo implode(', ', $user_data->roles); ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Button linked to the 'Edit profile' page -->
