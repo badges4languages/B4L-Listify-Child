@@ -79,7 +79,6 @@ Completely overhauled design, from top to bottom. The theme has been completely 
  * Home page : Navigation menu, search form (for listing), recent listings.
  * Register form.
  * Edit Profile form.
- * Custom fields for user profile (education, profession, etc.).
  * Membership page.
  * List bage page : Search form, Result of the search.
  * Single bage page : Image cover, description of the badge.
