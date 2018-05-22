@@ -69,7 +69,7 @@ Completely overhauled design, from top to bottom. The theme has been completely 
  * Navigation Menu with IfMenu Plugin and Ionicons.
  * Filter form for archive badge page with Search & Filter Plugin.
  * Responsive filter form (toggle button for little screens to display the form).
- * Default image badge.
+ * Default image badge. #4
  * Popup logout.
  * Redirect to homepage after logout.
  * Popup login.
