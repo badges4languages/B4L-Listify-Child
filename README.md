@@ -74,6 +74,7 @@ Completely overhauled design, from top to bottom. The theme has been completely 
  * Redirect to homepage after logout.
  * Popup login.
  * Redirect to homepage after login.
+ * When a teacher has no active classes, display a message to warn him.
 
 ### 0.1
  * Home page : Navigation menu, search form (for listing), recent listings.
