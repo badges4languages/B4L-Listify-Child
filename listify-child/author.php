@@ -82,7 +82,7 @@ get_header(); ?>
 				            </div>
 				        </section>
 
-				        <!-- The second section is about the badges earned by the user -->
+				        <!-- Second section is about the badges earned by the user -->
 				        <?php 
 				        // Get the data base info about the user.
 				        $userDb = apply_filters('theme_DbUser_get_single', ["idWP" => $current_user->ID] );
@@ -162,7 +162,8 @@ get_header(); ?>
 		    </div>
 		    <div class="container listings-user">
 		        <div class="row">
-		            <div class="col-3">
+		        	<!-- Remove comment to have links to get directly to the active/historic classes of the teacher. -->
+		            <!-- <div class="col-3">
 		                <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
 		                    <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes"
 		                       role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
@@ -173,19 +174,29 @@ get_header(); ?>
 		                        Historic classes
 		                    </a>
 		                </div>
-		            </div>
+		            </div> -->
 		            <div class="col-9">
 		                <div class="tab-content" id="v-pills-tabContent">
 		                    <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel"
 		                         aria-labelledby="v-pills-home-tab">
 		                        <?php
 
-		                        $none = the_widget('Listify_Widget_Author_Listings',
-		                            array(
-		                                'title' => 'List of the active classes',
-		                                'per_page' => 1000
-		                            )
-		                        );
+		                        $teacher_classes = get_posts( array(
+							        'author'      => $current_user->ID,
+							        'post_type'   => 'job_listing',
+							        'numberposts' => -1
+								) );
+
+								if( !empty( $teacher_classes ) ) {
+									$none = the_widget('Listify_Widget_Author_Listings',
+			                            array(
+			                                'title' => 'List of the active classes',
+			                                'per_page' => 1000
+			                            )
+			                        );
+								} else {
+									echo "<p class=\"lead\">You don't have any class for now.</p>";
+								}
 
 		                        ?>
 		                    </div>
@@ -196,7 +207,6 @@ get_header(); ?>
 		                            <p class="lead">This information will be available soon.</p>
 		                        </div>
 		                    </div>
-
 		                </div>
 		            </div>
 		        </div>

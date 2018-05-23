@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying Archive pages.
+ * The template for displaying Open Badge Archive page.
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
