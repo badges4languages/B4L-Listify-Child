@@ -20,7 +20,7 @@ get_header(); ?>
 		    <p>Here you can find all the badge that we have available.</p>
 
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="125"]'); ?>
+		    echo do_shortcode('[searchandfilter id="248"]'); ?>
 		</div>
 	</div>
 
@@ -30,13 +30,12 @@ get_header(); ?>
 	        <h1 id="filter-form-title">Badges</h1>
 			<p>Here you can find all the badge that we have available.</p>
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="125"]'); ?>
+		    echo do_shortcode('[searchandfilter id="248"]'); ?>
 		</div>
     </div>
 
-	<div <?php echo apply_filters( 'listify_cover', 'page-cover' ); ?>>
-		<h1 class="page-title cover-wrapper">Badges</h1>
-	</div>
+
+	<h1 class="page-title cover-wrapper">Badges</h1>
 
 	<div id="primary" class="container badge-archive">
 		<div class="row content-area">
