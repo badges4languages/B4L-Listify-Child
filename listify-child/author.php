@@ -40,7 +40,8 @@ get_header(); ?>
 
 				        <!-- First section is about the general user info -->
 				        <section>
-				            <div class="user-info-admin flex-container">
+				        	<!-- Display for tablets and large screens -->
+				            <div class="user-info-admin flex-container user-info-large-screen">
 				                <div class="img-user flex-item">
 				                	<!-- User's avatar (displayed with the url we get befor) -->
 				                    <img class="circle-img" src="<?php echo $urlImg; ?>">
@@ -52,7 +53,7 @@ get_header(); ?>
 				                            <li>
 				                                <span class="ion-person"></span>
 				                                <!-- The display name (chosen by the user) -->
-				                                <?php the_author_meta( 'display_name', $current_user->ID ); ?>
+				                                <?php the_author_meta( 'display_name' ); ?>
 				                            </li>
 				                            <li>
 				                                <span class="ion-calendar"></span>
@@ -62,24 +63,201 @@ get_header(); ?>
 				                            <li>
 				                                <span class="ion-email"></span>
 				                                <!-- Email -->
-				                                <?php the_author_meta( 'user_email', $current_user->ID ); ?>
+				                                <?php the_author_meta( 'user_email' ); ?>
 				                            </li>
 				                            <li>
-				                                <span class="ion-briefcase"></span>
+				                                <span class="ion-hammer"></span>
 				                                <!-- Roles -->
 				                                <?php echo implode(', ', $user_data->roles); ?>
 				                            </li>
+				                        </ul>
+				                    </div>
+				                </div>
+				                <div class="username-user center-container flex-item">
+				                    <div class="txt-info center-item">
+				                        <ul>
 				                            <li>
-				                            	<!-- Button linked to the 'Edit profile' page -->
-		                                        <div class="btn-update-container">
-		                                            <a href="<?php echo get_page_link( 420 ); ?>"
-		                                               class="btn btn-secondary"><?php _e( 'Edit your profile','open-badges-framework' ); ?></a>
-		                                        </div>
+				                                <span class="ion-information"></span>
+				                                Year of birth : <?php echo the_author_meta( 'year_of_birth' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-flag"></span>
+				                                <?php the_author_meta( 'country' ); ?> - <?php the_author_meta( 'city' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-chatboxes"></span>
+				                                <?php the_author_meta( 'mother_tongue' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-briefcase"></span>
+				                                <?php 
+				                                    echo the_author_meta( 'primary_degree' );
+				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
+				                                        echo ' - ';
+				                                        the_author_meta( 'secondary_degree' );
+				                                    }
+				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
+				                                        echo ' - ';
+				                                        the_author_meta( 'tertiary_degree' );
+				                                    }
+				                                ?>
 				                            </li>
 				                        </ul>
 				                    </div>
 				                </div>
 				            </div>
+
+				            <!-- Display for phone screens -->
+				            <div class="user-info-admin flex-container user-info-little-screen">
+				                <div class="username-user center-container flex-item">
+				                    <div class="txt-info center-item">
+				                        <ul>
+				                            <li>
+				                                <span class="ion-person"></span>
+				                                <?php echo $user_data->display_name; ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-calendar"></span>
+				                                <span> <?php _e('Member since: ','open-badges-framework'); echo date("d M Y", strtotime($user_data->user_registered)); ?></span>
+				                            </li>
+				                            <li>
+				                                <span class="ion-email"></span>
+				                                <?php echo $user_data->user_email; ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-hammer"></span>
+				                                <?php echo implode(', ', $user_data->roles); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-information"></span>
+				                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-flag"></span>
+				                                <?php echo get_the_author_meta( 'country' ); ?> - <?php echo get_the_author_meta( 'city' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-chatboxes"></span>
+				                                <?php echo get_the_author_meta( 'mother_tongue' ); ?>
+				                            </li>
+				                            <li>
+				                                <span class="ion-briefcase"></span>
+				                                <?php 
+				                                    echo get_the_author_meta( 'primary_degree' );
+				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
+				                                        echo ' - ' . get_the_author_meta( 'secondary_degree' );
+				                                    }
+				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
+				                                        echo ' - ' . get_the_author_meta( 'tertiary_degree' );
+				                                    }
+				                                ?>
+				                            </li>
+				                        </ul>
+				                    </div>
+				                </div>
+				            </div>
+
+				            <!-- User Social Links -->
+				            <h2 class="social-links-title">Find me on :</h2>
+				            <div class="user-info-admin flex-container">
+				                <div class="username-user center-container flex-item">
+				                    <div class="txt-info center-item">
+				                        <ul>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_ios-globe.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( $user_data->user_url ) ){
+				                                    echo '<a href="<?php echo $user_data->user_url; ?>">Website</a>';
+				                                } else{
+				                                    echo 'No Website';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-facebook.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'facebook' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'facebook' ) .'">Facebook</a>';
+				                                } else{
+				                                    echo 'No Facebook';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-twitter.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'twitter' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'twitter' ) .'">Twitter</a>';
+				                                } else{
+				                                    echo 'No Twitter';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-googleplus.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'googleplus' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'googleplus' ) .'">Google+</a>';
+				                                } else{
+				                                    echo 'No Google+';
+				                                }
+				                                ?>
+				                            </li>
+				                        </ul>
+				                    </div>
+				                </div>
+				                <div class="username-user center-container flex-item">
+				                    <div class="txt-info center-item">
+				                        <ul>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'pinterest' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'pinterest' ) .'">Pinterest</a>';
+				                                } else{
+				                                    echo 'No Pinterest';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-linkedin.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'linkedin' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'linkedin' ) .'">LinkedIn</a>';
+				                                } else{
+				                                    echo 'No LinkedIn';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-github.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'github' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'github' ) .'">GitHub</a>';
+				                                } else{
+				                                    echo 'No GitHub';
+				                                }
+				                                ?>
+				                            </li>
+				                            <li>
+				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-instagram.svg'?>" height="17px" width="17px"></span>
+				                                <?php 
+				                                if( !empty( get_the_author_meta( 'instagram' ) ) ){
+				                                    echo '<a href="'. get_the_author_meta( 'instagram' ) .'">Instagram</a>';
+				                                } else{
+				                                    echo 'No Instagram';
+				                                }
+				                                ?>
+				                            </li>
+				                        </ul>
+				                    </div>
+				                </div>
+				            </div>
+				            <!-- Button linked to the 'Edit profile' page -->
+                            <div class="btn-update-container">
+                                <a href="<?php echo get_page_link( 57 ); ?>"
+                                   class="btn btn-secondary"><?php _e( 'Edit your profile','open-badges-framework' ); ?></a>
+                            </div>
 				        </section>
 
 				        <!-- Second section is about the badges earned by the user -->

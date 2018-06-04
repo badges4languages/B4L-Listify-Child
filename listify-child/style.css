@@ -88,6 +88,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 	background-color: transparent;
 }
 
+.social-links-title{
+	text-align: left;
+}
+
 /* //////////////////////////////////////
    /           Little Screens           /
    ////////////////////////////////////// */
