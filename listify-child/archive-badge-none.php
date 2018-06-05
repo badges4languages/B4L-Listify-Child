@@ -14,7 +14,7 @@
 		<?php /*if ( current_user_can( 'publish_posts' ) ) : ?>	
 			<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'listify' ), esc_url( admin_url( 'post-new.php' ) ) );*/ ?><!-- </p> -->
 
-			<p><?php _e( 'Sorry, it seems like no badge match with your search.', 'listify' ); ?></p>
+			<p><?php _e( 'Sorry, it seems like no badge matches with your search.', 'listify' ); ?></p>
 
 	</div>
 </article><!-- #post-## -->
