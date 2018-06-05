@@ -33,8 +33,16 @@ get_header(); ?>
 				        <!-- User info -->
 				        <div class="author-name">
 				            <h1>
-				            	<!-- First and last name of the user -->
-				                <?php 	the_author_meta( 'first_name', $current_user->ID ); ?>&nbsp;<?php the_author_meta( 'last_name', $current_user->ID ); ?>
+				            	<!-- If exists, first and last name of the user -->
+				                <?php 
+				                if( !empty( get_the_author_meta( 'first_name' ) ) && !empty( get_the_author_meta('last_name') ) ){
+				                	the_author_meta( 'first_name', $current_user->ID ); ?>&nbsp;<?php the_author_meta( 'last_name', $current_user->ID );
+				                } 
+				                //Else, display name
+				                else{
+				                	the_author_meta( 'display_name' );
+				                }?>
+				                
 				            </h1>
 				        </div>
 
@@ -255,7 +263,7 @@ get_header(); ?>
 				            </div>
 				            <!-- Button linked to the 'Edit profile' page -->
                             <div class="btn-update-container">
-                                <a href="<?php echo get_page_link( 57 ); ?>"
+                                <a href="<?php echo get_page_link( 370 ); ?>"
                                    class="btn btn-secondary"><?php _e( 'Edit your profile','open-badges-framework' ); ?></a>
                             </div>
 				        </section>

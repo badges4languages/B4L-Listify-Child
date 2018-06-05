@@ -20,7 +20,7 @@ get_header(); ?>
 		    <p>Here you can find all the badge that we have available.</p>
 
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="248"]'); ?>
+		    echo do_shortcode('[searchandfilter id="428"]'); ?>
 		</div>
 	</div>
 
@@ -30,7 +30,7 @@ get_header(); ?>
 	        <h1 id="filter-form-title">Badges</h1>
 			<p>Here you can find all the badge that we have available.</p>
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="248"]'); ?>
+		    echo do_shortcode('[searchandfilter id="428"]'); ?>
 		</div>
     </div>
 
