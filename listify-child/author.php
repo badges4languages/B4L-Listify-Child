@@ -49,7 +49,7 @@ get_header(); ?>
 				        <!-- First section is about the general user info -->
 				        <section>
 				        	<!-- Display for tablets and large screens -->
-				            <div class="user-info-admin flex-container user-info-large-screen">
+				            <div class="user-info-admin flex-container profile-large-screen">
 				                <div class="img-user flex-item">
 				                	<!-- User's avatar (displayed with the url we get befor) -->
 				                    <img class="circle-img" src="<?php echo $urlImg; ?>">
@@ -116,7 +116,7 @@ get_header(); ?>
 				            </div>
 
 				            <!-- Display for phone screens -->
-				            <div class="user-info-admin flex-container user-info-little-screen">
+				            <div class="user-info-admin flex-container profile-little-screen">
 				                <div class="username-user center-container flex-item">
 				                    <div class="txt-info center-item">
 				                        <ul>
@@ -168,8 +168,8 @@ get_header(); ?>
 				            <!-- User Social Links -->
 				            <h2 class="social-links-title">Find me on :</h2>
 				            <div class="user-info-admin flex-container">
-				                <div class="username-user center-container flex-item">
-				                    <div class="txt-info center-item">
+				                <div class="username-user center-container flex-item" style="margin-left: 0px;">
+				                    <div class="txt-info center-item" style="margin-left: 0px;">
 				                        <ul>
 				                            <li>
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_ios-globe.svg'?>" height="17px" width="17px"></span>
@@ -214,8 +214,8 @@ get_header(); ?>
 				                        </ul>
 				                    </div>
 				                </div>
-				                <div class="username-user center-container flex-item">
-				                    <div class="txt-info center-item">
+				                <div class="username-user center-container flex-item" style="margin-left: 0px;">
+				                    <div class="txt-info center-item" style="margin-left: 0px;">
 				                        <ul>
 				                            <li>
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
