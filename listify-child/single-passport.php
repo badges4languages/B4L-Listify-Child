@@ -7,31 +7,13 @@
 
 get_header(); ?>
 
-	<?php // Badge without featured image
-	if ( ! has_post_thumbnail() ): ?>
-		<!-- Add classes and default badge image url -->
-		<div style="background-image: url( <?php echo get_stylesheet_directory_uri() . '/images/default-badge.png'; ?>);" class="page-cover page-cover--large has-image badge-image">
-	<?php //Badge with normal featured image (original code)
-	else: ?>
-		<div 
-			<?php
-			echo apply_filters(
-				'listify_cover', 'page-cover page-cover--large badge-image', array( // WPCS: XSS ok.
-					'size' => 'full',
-				)
-			);
-			?>
-		>
-	<?php endif; ?>
-	
-		<h1 class="page-title cover-wrapper" style="color: white;">
-		<?php
-		the_post();
-		the_title();
-		rewind_posts();
+<h1 class="page-title cover-wrapper">
+<?php
+	the_post();
+	the_title();
+	rewind_posts();
 ?>
 </h1>
-	</div>
 
 	<div id="primary" class="container single-badge-content">
 		<div class="row content-area">
@@ -52,9 +34,8 @@ get_header(); ?>
 				?>
 
 					<?php 
-						if (get_post_type() == 'open-badge' ) :
-							//Display the custom template single-badge-content.php
-							get_template_part( 'templates/single/single-badge-content' );
+						if (get_post_type() == 'passport' ) :
+							get_template_part( 'templates/single/single-passport-content' );
 						else :
 							get_template_part( 'content' );
 						endif;

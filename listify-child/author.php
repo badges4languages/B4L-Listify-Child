@@ -1,16 +1,11 @@
 <?php
 /**
- * The template for displaying Author pages.
+ * The template for displaying Author page.
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package Listify
  */
-
-// Only use this template if we have custom data to load.
-if ( ! listify_has_integration( 'wp-job-manager' ) ) {
-	return locate_template( array( 'archive.php' ), true );
-}
 
 get_header(); ?>
 	
@@ -60,7 +55,7 @@ get_header(); ?>
 				                        <ul>
 				                            <li>
 				                                <span class="ion-person"></span>
-				                                <!-- The display name (chosen by the user) -->
+				                                <!-- The display name -->
 				                                <?php the_author_meta( 'display_name' ); ?>
 				                            </li>
 				                            <li>
@@ -75,8 +70,8 @@ get_header(); ?>
 				                            </li>
 				                            <li>
 				                                <span class="ion-hammer"></span>
-				                                <!-- Roles -->
-				                                <?php echo implode(', ', $user_data->roles); ?>
+				                                <!-- Subscription type -->
+				                                <?php echo rcp_get_subscription( get_queried_object_id() ); ?>
 				                            </li>
 				                        </ul>
 				                    </div>
@@ -85,25 +80,32 @@ get_header(); ?>
 				                    <div class="txt-info center-item">
 				                        <ul>
 				                            <li>
+				                            	<!-- Year of birth -->
 				                                <span class="ion-information"></span>
 				                                Year of birth : <?php echo the_author_meta( 'year_of_birth' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Country and city -->
 				                                <span class="ion-flag"></span>
 				                                <?php the_author_meta( 'country' ); ?> - <?php the_author_meta( 'city' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Mother tongue -->
 				                                <span class="ion-chatboxes"></span>
 				                                <?php the_author_meta( 'mother_tongue' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Degrees -->
 				                                <span class="ion-briefcase"></span>
 				                                <?php 
+				                                	//Primary degree
 				                                    echo the_author_meta( 'primary_degree' );
+				                                    //Secondary degree
 				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
 				                                        echo ' - ';
 				                                        the_author_meta( 'secondary_degree' );
 				                                    }
+				                                    //Tertiary degree (if is set)
 				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
 				                                        echo ' - ';
 				                                        the_author_meta( 'tertiary_degree' );
@@ -121,40 +123,51 @@ get_header(); ?>
 				                    <div class="txt-info center-item">
 				                        <ul>
 				                            <li>
+				                            	<!-- The display name -->
 				                                <span class="ion-person"></span>
 				                                <?php echo $user_data->display_name; ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Registration date -->
 				                                <span class="ion-calendar"></span>
 				                                <span> <?php _e('Member since: ','open-badges-framework'); echo date("d M Y", strtotime($user_data->user_registered)); ?></span>
 				                            </li>
 				                            <li>
+				                            	<!-- Email -->
 				                                <span class="ion-email"></span>
 				                                <?php echo $user_data->user_email; ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Subscription type -->
 				                                <span class="ion-hammer"></span>
-				                                <?php echo implode(', ', $user_data->roles); ?>
+				                                <?php echo rcp_get_subscription( get_queried_object_id() ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Year of birth -->
 				                                <span class="ion-information"></span>
 				                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Country and city -->
 				                                <span class="ion-flag"></span>
 				                                <?php echo get_the_author_meta( 'country' ); ?> - <?php echo get_the_author_meta( 'city' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Mother tongue -->
 				                                <span class="ion-chatboxes"></span>
 				                                <?php echo get_the_author_meta( 'mother_tongue' ); ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Degrees -->
 				                                <span class="ion-briefcase"></span>
 				                                <?php 
+				                                	//Primary degree
 				                                    echo get_the_author_meta( 'primary_degree' );
+				                                    //Secondary degree (if is set)
 				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
 				                                        echo ' - ' . get_the_author_meta( 'secondary_degree' );
 				                                    }
+				                                    //Tertiary degree (if is set)
 				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
 				                                        echo ' - ' . get_the_author_meta( 'tertiary_degree' );
 				                                    }
@@ -172,6 +185,7 @@ get_header(); ?>
 				                    <div class="txt-info center-item" style="margin-left: 0px;">
 				                        <ul>
 				                            <li>
+				                            	<!-- User Web Site -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_ios-globe.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( $user_data->user_url ) ){
@@ -182,6 +196,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Facebook -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-facebook.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'facebook' ) ) ){
@@ -192,6 +207,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Twitter -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-twitter.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'twitter' ) ) ){
@@ -202,6 +218,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Google + -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-googleplus.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'googleplus' ) ) ){
@@ -218,6 +235,7 @@ get_header(); ?>
 				                    <div class="txt-info center-item" style="margin-left: 0px;">
 				                        <ul>
 				                            <li>
+				                            	<!-- Pinterest -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'pinterest' ) ) ){
@@ -228,6 +246,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- LinkedIn -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-linkedin.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'linkedin' ) ) ){
@@ -238,6 +257,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- GitHub -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-github.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'github' ) ) ){
@@ -248,6 +268,7 @@ get_header(); ?>
 				                                ?>
 				                            </li>
 				                            <li>
+				                            	<!-- Instagram -->
 				                                <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-instagram.svg'?>" height="17px" width="17px"></span>
 				                                <?php 
 				                                if( !empty( get_the_author_meta( 'instagram' ) ) ){
@@ -340,6 +361,7 @@ get_header(); ?>
 
 		if ($subscription == "Teacher") {
 		    ?>
+		    <!-- Display the classes of the user if he is a teacher -->
 		    <div class="title-lst">
 		        <div class="container">
 		            <h2>Some infomation</h2>

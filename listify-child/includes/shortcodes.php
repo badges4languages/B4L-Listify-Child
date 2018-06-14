@@ -3,6 +3,7 @@
 /* //////////////////////
    /     Shortcodes    /
    ///////////////////// */
+
 //Create a login form shortcode that redirect to the homepage
 function login_form_redirect_shortcode(){
   return do_shortcode('[login_form redirect="'. home_url() . '"]');

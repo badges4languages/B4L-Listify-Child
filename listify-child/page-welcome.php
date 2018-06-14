@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying pages.
+ * The template for displaying the welcome page after the RCP registration.
  *
  * @package Listify
  */

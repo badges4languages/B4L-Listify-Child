@@ -52,11 +52,11 @@ get_header(); ?>
 					while ( have_posts() ) :
 						the_post();
 						// Display the custom template archive-badge-content.php
-						get_template_part( 'archive-badge-content' );
+						get_template_part( 'templates/archives/archive-badge-content' );
 					endwhile;
 				// If not, display the custom template archive-badge-none.php
 				else :
-					get_template_part( 'archive-badge-none' );
+					get_template_part( 'templates/archives/archive-badge-none' );
 				endif;
 
 				// Display the pagination template (if there are more than 5 results)
