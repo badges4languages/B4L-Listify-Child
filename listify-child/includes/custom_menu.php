@@ -18,11 +18,11 @@ function my_custom_menu_item($items)
         
         //Avatar and user name item and submenu item
         $items .= 
-        '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-87"><a href="'. get_page_link( 417 ) . '/' . $user->user_login . '"><img id="menu-avatar" class="circle-img" src="' . $urlAvatar . '" height="40" width="40">' . $name . '</a>
+        '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-87"><a href="'. get_permalink( get_page_by_path( 'author' ) ) . '/' . $user->user_login . '"><img id="menu-avatar" class="circle-img" src="' . $urlAvatar . '" height="40" width="40">' . $name . '</a>
           <ul class="sub-menu">
-            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="'. get_page_link( 417 ) . '/' . $user->user_login . '">Profile</a></li>
-            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="'. get_page_link( 484 ) . '">Portfolios</a></li>
-            <li class="ion-close-circled menu-item menu-item-type-post_type menu-item-object-page"><a href="' . get_page_link( 419 ) . '" class="popup-trigger-ajax">Sign out</a></li>
+            <li class="ion-person menu-item menu-item-type-post_type menu-item-object-page"><a href="'. get_permalink( get_page_by_path( 'author' ) ) . '/' . $user->user_login . '">Profile</a></li>
+            <li class="ion-briefcase menu-item menu-item-type-post_type menu-item-object-page"><a href="'. get_permalink( get_page_by_path( 'passport' ) ) . '">Portfolios</a></li>
+            <li class="ion-close-circled menu-item menu-item-type-post_type menu-item-object-page"><a href="' . get_permalink( get_page_by_path( 'sign-out' ) ) . '" class="popup-trigger-ajax">Sign out</a></li>
           </ul>
         </li>';
     }

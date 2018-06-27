@@ -12,7 +12,7 @@ get_header(); ?>
 	<!-- For tablets and smartphones, the search form is hidden. A toggle button display the search form. -->
 	<div id="primary" class="container little-screen">
 		<!-- Toggle button -->
-		<button onclick="toggle()" class="button button-small" id="filter-button">Search Filter</button>
+		<button onclick="toggle_filter_form()" class="button button-small" id="filter-button">Search Filter</button>
 
 		<!-- Search form -->
 		<div id="filter-form">
@@ -30,7 +30,7 @@ get_header(); ?>
 	        <h1 id="filter-form-title">Badges</h1>
 			<p>Here you can find all the badge that we have available.</p>
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="428"]'); ?>
+		    echo do_shortcode('[searchandfilter slug="search-badges"]'); ?>
 		</div>
     </div>
 

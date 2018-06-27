@@ -48,6 +48,58 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 }
 
 /* //////////////////////////////////////
+   /         Archive Badge Page          /
+   ////////////////////////////////////// */
+.new-passport-container{
+	margin-top: 10px;
+}
+
+#add-passport-form{
+	display: none;
+}
+
+#passportTitle{
+	margin-right: 20px;
+}
+
+.passport-button{
+	margin-left: 20px;
+}
+
+/* /////////////////////////////////////////
+   /         Single Passport Page          /
+   ///////////////////////////////////////// */
+#passport-list{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.passport-title{
+	padding-bottom: 0px;
+}
+
+.passport-save-button{
+	float: right;
+	margin-top: 20px;
+}
+
+.passport-delete-button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    float: right;
+	margin-top: 20px;
+	margin-right: 10px;
+	background-color: #d62121;
+}
+
+.passport-delete-button:hover {
+    background-color: #d62121;
+}
+
+
+
+/* //////////////////////////////////////
    /             Search Form            /
    ////////////////////////////////////// */
 
@@ -68,6 +120,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* Adjust the position of the filter form */
 #filter-form-title{
 	margin-top: 0px;
+}
+
+#filter-form{
+	display: none;
 }
 
 /* //////////////////////////////////////
@@ -108,6 +164,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 
 	.badge-description-content{
 	  text-align: left;
+	}
+
+	#portfolio-cover{
+		display: none;
 	}
 }
 

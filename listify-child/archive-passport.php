@@ -14,6 +14,53 @@ $style      = 'grid-standard' == $blog_style ? 'standard' : 'cover';
 $sidebar    = 'none' != esc_attr( listify_theme_mod( 'content-sidebar-position', 'right' ) ) && is_active_sidebar( 'widget-area-sidebar-1' );
 
 get_header(); ?>
+	<div id="primary" class="container new-passport-container">
+		<!-- Toggle button -->
+		<button onclick="toggle_passport_form()" class="button button-small" id="filter-button">Add new Portfolio</button>
+
+		<!-- Search form -->
+		<div id="add-passport-form">
+
+			<h1>New Portfolio</h1>
+
+			<div id="error-content">
+
+			</div>
+
+			<?php if ( $postTitleError != '' ) { ?>
+			    <span style="color: red;"><?php echo $postTitleError; ?></span>
+			    <div class="clearfix"></div>
+			<?php } ?>
+
+			<form action="" id="new-passport-form" method="POST">
+		        <label for="passportTitle">Title : </label>
+		 
+		        <input type="text" name="passportTitle" id="passportTitle" class="required" value="<?php if ( isset( $_POST['passportTitle'] ) ) echo $_POST['passportTitle']; ?>" />
+			 	
+			 	<?php 
+				if( is_plugin_active( "open-badges-framework/open-badges-framework.php" ) ) {
+					// Display the children of the right PARENT
+				    $parents = apply_filters( 'plugin_get_sub', $parents );
+				    ?>
+			        <label for="passportLanguage">Language : </label>
+			 
+			        <select name="passportLanguage" id="passportLanguage" class="required">
+				    	<option selected="true" disabled="disabled">Select</option>
+					    <?php
+						    foreach ((array)$parents['most-important'] as $language) {
+						    	echo '<option value="' . $language->term_id . '">' . $language->name . '</option>';
+						    }
+					    ?>
+				    </select>
+				<?php } ?>
+				    
+		        <input type="hidden" name="user" id="user" value="<?php echo get_current_user_id(); ?>" />
+		 
+		        <button type="submit" class="button button-small passport-button">Save Portfolio</button>	 
+			</form>
+
+		</div>
+	</div>
 
 	<div <?php echo apply_filters( 'listify_cover', 'page-cover' ); ?>>
 		<h1 class="page-title cover-wrapper">Portfolios</h1>
@@ -34,15 +81,20 @@ get_header(); ?>
 				<?php endif; ?>
 
 				<?php
-				while ( have_posts() ) :
-					the_post();
+				// Checking if there is at least one badge
+				if ( have_posts() ) :
+					while ( have_posts() ) :
+						the_post();
+						// Display the custom template archive-passport-content.php
+						get_template_part( 'templates/archives/archive-passport-content' );
+					endwhile;
+				// If not, display the custom template archive-passport-none.php
+				else :
+					get_template_part( 'templates/archives/archive-passport-none' );
+				endif;
 
-					//Display only the passports of the current user connected (give access to only his portfolios)
-					if( get_the_author_meta('ID') == get_current_user_id() ){
-						get_template_part( 'content' );
-					}
-				endwhile;
-				?>
+				// Display the pagination template (if there are more than 5 results)
+				get_template_part( 'content', 'pagination' ); ?>
 
 				<?php if ( 'default' != $blog_style ) : ?>
 					<?php remove_filter( 'excerpt_length', 'listify_short_excerpt_length' ); ?>

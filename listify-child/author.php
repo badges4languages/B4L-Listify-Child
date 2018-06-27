@@ -7,7 +7,8 @@
  * @package Listify
  */
 
-get_header(); ?>
+get_header(); 
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 	
 	<?php //If a user is logged in, we display his profile
 	if( is_user_logged_in() ): ?>
@@ -30,12 +31,12 @@ get_header(); ?>
 				            <h1>
 				            	<!-- If exists, first and last name of the user -->
 				                <?php 
-				                if( !empty( get_the_author_meta( 'first_name' ) ) && !empty( get_the_author_meta('last_name') ) ){
-				                	the_author_meta( 'first_name', $current_user->ID ); ?>&nbsp;<?php the_author_meta( 'last_name', $current_user->ID );
+				                if( !empty( $current_user->first_name ) && !empty( $current_user->last_name ) ){
+				                	echo $current_user->first_name . ' ' . $current_user->last_name;
 				                } 
 				                //Else, display name
 				                else{
-				                	the_author_meta( 'display_name' );
+				                	echo $current_user->display_name;
 				                }?>
 				                
 				            </h1>
@@ -56,7 +57,7 @@ get_header(); ?>
 				                            <li>
 				                                <span class="ion-person"></span>
 				                                <!-- The display name -->
-				                                <?php the_author_meta( 'display_name' ); ?>
+				                                <?php echo $current_user->display_name; ?>
 				                            </li>
 				                            <li>
 				                                <span class="ion-calendar"></span>
@@ -66,12 +67,21 @@ get_header(); ?>
 				                            <li>
 				                                <span class="ion-email"></span>
 				                                <!-- Email -->
-				                                <?php the_author_meta( 'user_email' ); ?>
+				                                <?php echo $current_user->user_email; ?>
 				                            </li>
 				                            <li>
 				                                <span class="ion-hammer"></span>
 				                                <!-- Subscription type -->
-				                                <?php echo rcp_get_subscription( get_queried_object_id() ); ?>
+				                                <?php
+					                                //If Restrict Content Pro plugin is activated, we display the user subscription
+				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+				                                        echo rcp_get_subscription( get_queried_object_id() );
+				                                    } 
+				                                    //If not, we display the WP roles
+				                                    else{
+				                                        echo implode( ', ', $user_data->roles );
+				                                    }
+                                    			?>
 				                            </li>
 				                        </ul>
 				                    </div>
@@ -82,33 +92,62 @@ get_header(); ?>
 				                            <li>
 				                            	<!-- Year of birth -->
 				                                <span class="ion-information"></span>
-				                                Year of birth : <?php echo the_author_meta( 'year_of_birth' ); ?>
+				                                <?php 
+				                                    if( !empty( get_the_author_meta( 'year_of_birth' ) ) ){
+				                                        echo 'Year of birth : ';
+				                                        the_author_meta( 'year_of_birth' );
+				                                    } else{
+				                                        echo 'No year of birth';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Country and city -->
 				                                <span class="ion-flag"></span>
-				                                <?php the_author_meta( 'country' ); ?> - <?php the_author_meta( 'city' ); ?>
+				                                <?php   
+				                                    if( !empty( get_the_author_meta( 'country' ) ) && !empty( get_the_author_meta( 'city' ) ) ){
+				                                        the_author_meta( 'country' );
+				                                        echo ' - ';
+														the_author_meta( 'city' );
+				                                    } else if( !empty( get_the_author_meta( 'country' ) ) || !empty( get_the_author_meta( 'city' ) ) ) {
+				                                        the_author_meta( 'country' );
+														the_author_meta( 'city' );
+				                                    } else{
+				                                        echo 'No country and city';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Mother tongue -->
 				                                <span class="ion-chatboxes"></span>
-				                                <?php the_author_meta( 'mother_tongue' ); ?>
+				                                <?php 
+				                                    if( !empty( get_the_author_meta( 'mother_tongue' ) ) ){
+				                                        echo 'Mother tongue : ';
+				                                        the_author_meta( 'mother_tongue' );
+				                                    } else{
+				                                        echo 'No mother tongue';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Degrees -->
 				                                <span class="ion-briefcase"></span>
 				                                <?php 
 				                                	//Primary degree
-				                                    echo the_author_meta( 'primary_degree' );
-				                                    //Secondary degree
-				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
-				                                        echo ' - ';
-				                                        the_author_meta( 'secondary_degree' );
-				                                    }
-				                                    //Tertiary degree (if is set)
-				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
-				                                        echo ' - ';
-				                                        the_author_meta( 'tertiary_degree' );
+				                                    if( !empty( get_the_author_meta( 'primary_degree' ) ) ){
+				                                        the_author_meta( 'primary_degree' );
+				                                        //Secondary degree
+					                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
+					                                        echo ' - ';
+					                                        the_author_meta( 'secondary_degree' );
+					                                    }
+					                                    //Tertiary degree
+					                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
+					                                        echo ' - ';
+					                                        the_author_meta( 'tertiary_degree' );
+					                                    }
+				                                    } else{
+				                                        echo 'No degree';
 				                                    }
 				                                ?>
 				                            </li>
@@ -125,51 +164,91 @@ get_header(); ?>
 				                            <li>
 				                            	<!-- The display name -->
 				                                <span class="ion-person"></span>
-				                                <?php echo $user_data->display_name; ?>
+				                                <?php echo $current_user->display_name; ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Registration date -->
 				                                <span class="ion-calendar"></span>
-				                                <span> <?php _e('Member since: ','open-badges-framework'); echo date("d M Y", strtotime($user_data->user_registered)); ?></span>
+				                                <span> <?php _e( 'Member since','open-badges-framework' ); echo ' ' . date( "d M Y", strtotime( $current_user->user_registered ) ); ?></span>
 				                            </li>
 				                            <li>
 				                            	<!-- Email -->
 				                                <span class="ion-email"></span>
-				                                <?php echo $user_data->user_email; ?>
+				                                <?php echo $current_user->user_email; ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Subscription type -->
 				                                <span class="ion-hammer"></span>
-				                                <?php echo rcp_get_subscription( get_queried_object_id() ); ?>
+				                                <?php
+					                                //If Restrict Content Pro plugin is activated, we display the user subscription
+				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+				                                        echo rcp_get_subscription( get_queried_object_id() );
+				                                    } 
+				                                    //If not, we display the WP roles
+				                                    else{
+				                                        echo implode( ', ', $user_data->roles );
+				                                    }
+                                    			?>
 				                            </li>
 				                            <li>
 				                            	<!-- Year of birth -->
 				                                <span class="ion-information"></span>
-				                                Year of birth : <?php echo get_the_author_meta( 'year_of_birth' ); ?>
+				                                <?php 
+				                                    if( !empty( get_the_author_meta( 'year_of_birth' ) ) ){
+				                                        echo 'Year of birth : ';
+				                                        the_author_meta( 'year_of_birth' );
+				                                    } else{
+				                                        echo 'No year of birth';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Country and city -->
 				                                <span class="ion-flag"></span>
-				                                <?php echo get_the_author_meta( 'country' ); ?> - <?php echo get_the_author_meta( 'city' ); ?>
+				                                <?php   
+				                                    if( !empty( get_the_author_meta( 'country' ) ) && !empty( get_the_author_meta( 'city' ) ) ){
+				                                        the_author_meta( 'country' );
+				                                        echo ' - ';
+														the_author_meta( 'city' );
+				                                    } else if( !empty( get_the_author_meta( 'country' ) ) || !empty( get_the_author_meta( 'city' ) ) ) {
+				                                        the_author_meta( 'country' );
+														the_author_meta( 'city' );
+				                                    } else{
+				                                        echo 'No country and city';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Mother tongue -->
 				                                <span class="ion-chatboxes"></span>
-				                                <?php echo get_the_author_meta( 'mother_tongue' ); ?>
+				                                <?php 
+				                                    if( !empty( get_the_author_meta( 'mother_tongue' ) ) ){
+				                                        echo 'Mother tongue : ';
+				                                        the_author_meta( 'mother_tongue' );
+				                                    } else{
+				                                        echo 'No mother tongue';
+				                                    }
+				                                ?>
 				                            </li>
 				                            <li>
 				                            	<!-- Degrees -->
 				                                <span class="ion-briefcase"></span>
 				                                <?php 
 				                                	//Primary degree
-				                                    echo get_the_author_meta( 'primary_degree' );
-				                                    //Secondary degree (if is set)
-				                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
-				                                        echo ' - ' . get_the_author_meta( 'secondary_degree' );
-				                                    }
-				                                    //Tertiary degree (if is set)
-				                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
-				                                        echo ' - ' . get_the_author_meta( 'tertiary_degree' );
+				                                    if( !empty( get_the_author_meta( 'primary_degree' ) ) ){
+				                                        the_author_meta( 'primary_degree' );
+				                                        //Secondary degree
+					                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
+					                                        echo ' - ';
+					                                        the_author_meta( 'secondary_degree' );
+					                                    }
+					                                    //Tertiary degree
+					                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
+					                                        echo ' - ';
+					                                        the_author_meta( 'tertiary_degree' );
+					                                    }
+				                                    } else{
+				                                        echo 'No degree';
 				                                    }
 				                                ?>
 				                            </li>
@@ -283,10 +362,15 @@ get_header(); ?>
 				                </div>
 				            </div>
 				            <!-- Button linked to the 'Edit profile' page -->
-                            <div class="btn-update-container">
-                                <a href="<?php echo get_page_link( 370 ); ?>"
-                                   class="btn btn-secondary"><?php _e( 'Edit your profile','open-badges-framework' ); ?></a>
-                            </div>
+				            <?php
+				            	if( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+				            ?>
+	                            <div class="btn-update-container">
+	                            	<?php if ( esc_url( get_permalink( $rcp_options['edit_profile'] ) ) ){ ?>
+	                                	<a href="<?php echo esc_url(get_permalink($rcp_options['edit_profile'])); ?>" class="btn btn-secondary"><?php _e( 'Edit your profile','open-badges-framework' ); ?></a>
+	                                <?php } ?>
+	                            </div>
+	                        <?php } ?>
 				        </section>
 
 				        <!-- Second section is about the badges earned by the user -->
@@ -357,69 +441,71 @@ get_header(); ?>
 
 		<?php
 		//Retrieve the information of the kind of subscription of the user (author).
-		$subscription = rcp_get_subscription( get_queried_object_id() );
+		if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) && is_plugin_active( 'wp-job-manager/wp-job-manager.php' ) ){
+			$subscription = rcp_get_subscription( get_queried_object_id() );
 
-		if ($subscription == "Teacher") {
-		    ?>
-		    <!-- Display the classes of the user if he is a teacher -->
-		    <div class="title-lst">
-		        <div class="container">
-		            <h2>Some infomation</h2>
-		            <hr class="sep-testo-down">
-		        </div>
-		    </div>
-		    <div class="container listings-user">
-		        <div class="row">
-		        	<!-- Remove comment to have links to get directly to the active/historic classes of the teacher. -->
-		            <!-- <div class="col-3">
-		                <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
-		                    <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes"
-		                       role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
-		                        Active classes
-		                    </a>
-		                    <a class="nav-list" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-hist-classes" role="tab"
-		                       aria-controls="v-pills-act-classes" aria-expanded="true">
-		                        Historic classes
-		                    </a>
-		                </div>
-		            </div> -->
-		            <div class="col-9">
-		                <div class="tab-content" id="v-pills-tabContent">
-		                    <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel"
-		                         aria-labelledby="v-pills-home-tab">
-		                        <?php
+			if ($subscription == "Teacher") {
+			    ?>
+			    <!-- Display the classes of the user if he is a teacher -->
+			    <div class="title-lst">
+			        <div class="container">
+			            <h2>Some infomation</h2>
+			            <hr class="sep-testo-down">
+			        </div>
+			    </div>
+			    <div class="container listings-user">
+			        <div class="row">
+			        	<!-- Remove comment to have links to get directly to the active/historic classes of the teacher. -->
+			            <!-- <div class="col-3">
+			                <div class="nav flex-column list-column nav-pills" id="v-pills-tab" role="tablist">
+			                    <a class="nav-list active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-act-classes"
+			                       role="tab" aria-controls="v-pills-act-classes" aria-expanded="true">
+			                        Active classes
+			                    </a>
+			                    <a class="nav-list" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-hist-classes" role="tab"
+			                       aria-controls="v-pills-act-classes" aria-expanded="true">
+			                        Historic classes
+			                    </a>
+			                </div>
+			            </div> -->
+			            <div class="col-9">
+			                <div class="tab-content" id="v-pills-tabContent">
+			                    <div class="tab-pane fade show active" id="v-pills-act-classes" role="tabpanel"
+			                         aria-labelledby="v-pills-home-tab">
+			                        <?php
 
-		                        $teacher_classes = get_posts( array(
-							        'author'      => $current_user->ID,
-							        'post_type'   => 'job_listing',
-							        'numberposts' => -1
-								) );
+			                        $teacher_classes = get_posts( array(
+								        'author'      => $current_user->ID,
+								        'post_type'   => 'job_listing',
+								        'numberposts' => -1
+									) );
 
-								if( !empty( $teacher_classes ) ) {
-									$none = the_widget('Listify_Widget_Author_Listings',
-			                            array(
-			                                'title' => 'List of the active classes',
-			                                'per_page' => 1000
-			                            )
-			                        );
-								} else {
-									echo "<p class=\"lead\">You don't have any class for now.</p>";
-								}
+									if( !empty( $teacher_classes ) ) {
+										$none = the_widget('Listify_Widget_Author_Listings',
+				                            array(
+				                                'title' => 'List of the active classes',
+				                                'per_page' => 1000
+				                            )
+				                        );
+									} else {
+										echo "<p class=\"lead\">You don't have any class for now.</p>";
+									}
 
-		                        ?>
-		                    </div>
-		                    <div class="tab-pane fade" id="v-pills-hist-classes" role="tabpanel"
-		                         aria-labelledby="v-pills-profile-tab">
-		                        <div class="container">
-		                            <h4 class="">Coming soon</h4>
-		                            <p class="lead">This information will be available soon.</p>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <?php
+			                        ?>
+			                    </div>
+			                    <div class="tab-pane fade" id="v-pills-hist-classes" role="tabpanel"
+			                         aria-labelledby="v-pills-profile-tab">
+			                        <div class="container">
+			                            <h4 class="">Coming soon</h4>
+			                            <p class="lead">This information will be available soon.</p>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <?php
+			}
 		}
 		?>
 
