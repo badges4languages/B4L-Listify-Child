@@ -21,6 +21,7 @@ if( !isset($aResult['error']) ) {
             //Check again if there is a passport student (same as title)
 			else if( !isset($_POST['passportStudent']) ) { $aResult['error'] = 'No student!'; }
 
+            //If everything is good, we create the passport
             else {
             	$passport_information = array(
 				    'post_title' => $_POST['passportTitle'],
@@ -34,7 +35,9 @@ if( !isset($aResult['error']) ) {
 				    )
 				);
 
+                //If the passport is well inserted
 				if ( $postID = wp_insert_post( $passport_information ) ) {
+                    //We redirect to the single passport page
 					$aResult['redirectLink'] = get_post_permalink( $postID );
 				} else {
 					$aResult['error'] = 'Can\'t insert the passport in database, try later!';
@@ -42,22 +45,29 @@ if( !isset($aResult['error']) ) {
 			}
             break;
 
+        //Update a passport (competencies form)
         case 'update_passport':
+            //Check if the current passport exists
         	if( !isset($_POST['post']) ) { $aResult['error'] = 'No passport!'; }
 
+            //We update the post meta (checkboxes)
         	else if( update_post_meta( $_POST['post'], "_passport", $_POST['passportChecked'] ) ){
         		
         	} else {
-                $aResult['error'] = 'Impossible to update, try later!';
+                $aResult['error'] = 'Can\'t update the passport, try later!';
             }
         	break;
 
+        //Delete a passport
         case 'delete_passport':
+            //Check if the passport exists
         	if( !isset($_POST['post']) ) { $aResult['error'] = 'No passport!'; }
 
         	else{
+                //If the passports has a thumbnail
                 if( has_post_thumbnail( $_POST['post'] ) ){
                     $attachment_id = get_post_thumbnail_id( $_POST['post'] );
+                    //We delete the thumbnail and the associated file
                     if ( wp_delete_attachment( $attachment_id, true ) ){
                 		
                     } else {
@@ -65,7 +75,9 @@ if( !isset($aResult['error']) ) {
                     }
                 }
 
+                //Then we delete the post
                 if( wp_delete_post( $_POST['post'] ) ){
+                    //And we remove the directory that contains the thumbnail file (if it exists)
                     $wp_upload_dir = wp_upload_dir();
                     $uploaddir = $wp_upload_dir['basedir'] . '/portfolios/'. get_current_user_id() . '/' . $_POST['post'] . '/';
 
@@ -81,10 +93,14 @@ if( !isset($aResult['error']) ) {
 
         	break;
 
+        //Add or change the passport thumbnail
         case 'passport_thumbnail':
+            //If the passport have a thumbnail
             if( has_post_thumbnail( $_POST['post'] ) ){
+                //We first delete the file of the previous thumbnail
                 $attachment_id = get_post_thumbnail_id( $_POST['post'] );
                 if ( wp_delete_attachment( $attachment_id, true ) ){
+                    //Then we add the new one
                     $files = array();
                     if(isset($_FILES)){
 
@@ -143,7 +159,9 @@ if( !isset($aResult['error']) ) {
                 } else {
                     $aResult['error'] = 'Attachement deletion impossible! Try later.';
                 }
-            } else {
+            } 
+            //If it's the first thumbnail, we just add the thumbnail and creates the repository that will contain the file
+            else {
                 $files = array();
                 if(isset($_FILES)){
 

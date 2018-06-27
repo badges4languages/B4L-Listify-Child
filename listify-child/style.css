@@ -30,8 +30,6 @@
 /* //////////////////////////////////////
    /         Single Badge Page          /
    ////////////////////////////////////// */
-
-/* Adjust the descrption of the badge to be align with the image */
 .badge-description{
 	margin-bottom: 15px;
 }
@@ -41,7 +39,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 	margin-bottom: 10px;
 }
 
-/* Reduce the space between the cover image and the Return button */
 .content-area{
 	margin-bottom: 10px;
 	margin-top: 15px;
@@ -102,8 +99,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* //////////////////////////////////////
    /             Search Form            /
    ////////////////////////////////////// */
-
-/* Display inline the search form in archive page */
 .searchandfilter ul li {
     list-style: none;
     display: inline-block;
@@ -112,12 +107,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
     margin: 20px;
 }
 
-/* Make the filter button (on little screens) full widht */
 #filter-button{
 	width: 100%;
 }
 
-/* Adjust the position of the filter form */
 #filter-form-title{
 	margin-top: 0px;
 }
@@ -129,8 +122,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* //////////////////////////////////////
    /               Menu                 /
    ////////////////////////////////////// */
-
-/* Adjust the position of the circled image avatar in menu */
 #menu-avatar{
 	margin-right: 10px;
 }
@@ -138,8 +129,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* //////////////////////////////////////
    /            Profile Page            /
    ////////////////////////////////////// */
-
-/* Make the backgound of badges in profile page transparent instead of grey */
 .badge {
 	background-color: transparent;
 }
@@ -151,8 +140,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* //////////////////////////////////////
    /           Little Screens           /
    ////////////////////////////////////// */
-
-/* For little screens (tablets, phones...), don't display the normal search form in archive page */
 @media (max-width: 999px) {
 	.normal-screen{
 		display: none;
@@ -180,7 +167,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 /* //////////////////////////////////////
    /           Large Screens            /
    ////////////////////////////////////// */
-
 @media (min-width: 610px) {
     .profile-little-screen.flex-container{
         display: none;
@@ -193,9 +179,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 	}
 }
 
-/* For large screens */ 
 @media (min-width: 1000px) {
-	/* Limit the width of images at 1000px */
 	.badge-archive{
 		max-width: 1000px;
 	}
@@ -212,8 +196,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
 	.single-badge-content{
 		max-width: 1000px;
 	}
-
-	/* Don't display the button to show the filter form in archive page */
+	
 	.little-screen{
 		display: none;
 	}

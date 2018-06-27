@@ -18,7 +18,7 @@ get_header(); ?>
 		<!-- Toggle button -->
 		<button onclick="toggle_passport_form()" class="button button-small" id="filter-button">Add new Portfolio</button>
 
-		<!-- Search form -->
+		<!-- Add a new passport form -->
 		<div id="add-passport-form">
 
 			<h1>New Portfolio</h1>
@@ -26,11 +26,6 @@ get_header(); ?>
 			<div id="error-content">
 
 			</div>
-
-			<?php if ( $postTitleError != '' ) { ?>
-			    <span style="color: red;"><?php echo $postTitleError; ?></span>
-			    <div class="clearfix"></div>
-			<?php } ?>
 
 			<form action="" id="new-passport-form" method="POST">
 		        <label for="passportTitle">Title : </label>

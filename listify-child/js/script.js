@@ -12,6 +12,7 @@ function toggle_filter_form() {
     }
 }
 
+//Toggle button to display or not (by clicking) the form to add a new passport in the archive passport page
 function toggle_passport_form() {
     var x = document.getElementById("add-passport-form");
     if (x.style.display === "none") {
@@ -27,17 +28,23 @@ jQuery(document).on("submit", btnAddPassport, function (event) {
     jQuery(btnAddPassport).prop('disabled', true);
     event.preventDefault();
 
+    //Get all the information from the add a passport form
     var title = jQuery("#passportTitle").val();
     var userID = jQuery("#user").val();
     var e = document.getElementById("passportLanguage");
 	var language = e.options[e.selectedIndex].value;
 	var functionUrl = ajax_function_path.ajaxFunctionURL;
 
+	//Check if the title is set
 	if( title == '' ){
 		jQuery("#error-content").html('Please enter a title.');
-	} else if( language == 'Select' ){
+	} 
+	//Check if a language is selected
+	else if( language == 'Select' ){
 		jQuery("#error-content").html('Please select a language.');
-	} else if( userID == null ){
+	} 
+	//Check if a user is well logged in
+	else if( userID == null ){
 		jQuery("#error-content").html('No user.');
 	} else{
 		jQuery.ajax({
@@ -51,7 +58,9 @@ jQuery(document).on("submit", btnAddPassport, function (event) {
 		    	passportStudent: userID
 		    },
 		    success: function (obj, textstatus) {
+		    	//If there is no error
                 if( !('error' in obj) ) {
+                	//We redirect to the single passport just created
                 	window.location.href = obj.redirectLink;
 	            }
 	            else {
@@ -72,14 +81,18 @@ jQuery(document).on("submit", btnSavePassport, function (event) {
     jQuery(btnSavePassport).prop('disabled', true);
     event.preventDefault();
 
+    //Get all the information from the update a passport form
     var e = document.getElementsByName("passport[]");
     var checkedValues = [];
     var id = jQuery("#postID").val();
     var functionUrl = ajax_function_path.ajaxFunctionURL;
 
+    //Check if the post well exist
     if( id == null ){
 		jQuery("#error-content").html('This passport doesn\'t exist.');
 	} else {
+
+		//Get the checked checkbox in the form
 		for(var i=0; e[i]; ++i){
 	        if(e[i].checked){
 	      		checkedValues.push( e[i].value );
@@ -96,7 +109,9 @@ jQuery(document).on("submit", btnSavePassport, function (event) {
 		    	post: id
 		    },
 		    success: function (obj, textstatus) {
+		    	//If there is no error
                 if( !('error' in obj) ) {
+                	//We refresh the page to display the right results
                 	location.reload();
 	            }
 	            else {
@@ -119,9 +134,11 @@ jQuery(document).on("submit", btnDeletePassport, function (event) {
     jQuery(btnDeletePassport).prop('disabled', true);
     event.preventDefault();
 
+    //Get all the information necessary to delete a passport
     var id = jQuery("#postID").val();
     var functionUrl = ajax_function_path.ajaxFunctionURL;
 
+    //Check if the post well exist
     if( id == null ){
 		jQuery("#error-content").html('This passport doesn\'t exist.');
 	} else {
@@ -134,7 +151,9 @@ jQuery(document).on("submit", btnDeletePassport, function (event) {
 		    	post: id
 		    },
 		    success: function (obj, textstatus) {
+		    	//If there is no error
                 if( !('error' in obj) ) {
+                	//We redirect to the archive passport page
                 	window.location.href = obj.redirectLink;
 	            }
 	            else {
@@ -157,9 +176,11 @@ jQuery(document).on("submit", btnThumbnailPassport, function (event) {
     jQuery(btnThumbnailPassport).prop('disabled', true);
     event.preventDefault();
 
+    //Get all the information to upload a new passport thumbnail
     var id = jQuery("#postID").val();
     var files = document.getElementById('thumbnail').files
 
+    //Create a FormData to pass data to ajax file (necessary to pass the file uploaded)
     var data = new FormData();
     jQuery.each(files, function(key, value)
     {
@@ -168,12 +189,14 @@ jQuery(document).on("submit", btnThumbnailPassport, function (event) {
     data.append("functionname", "passport_thumbnail");
     data.append("post", id); 
 
-    
     var functionUrl = ajax_function_path.ajaxFunctionURL;
 
+    //Check if the post well exist
     if( id == null ){
 		jQuery("#error-content").html('This passport doesn\'t exist.');
-	} else if (typeof files == 'undefined' || files.length <= 0) {
+	} 
+	//Check if a file is well selected
+	else if (typeof files == 'undefined' || files.length <= 0) {
 		jQuery("#error-content").html('Please select a file.');
 	} else {
 		jQuery("#result_upload_files").html("Please wait. Uploading...");
@@ -186,7 +209,9 @@ jQuery(document).on("submit", btnThumbnailPassport, function (event) {
 		    processData: false, // Don't process the files
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
 		    success: function (obj, textstatus) {
+		    	//If there is no error
                 if( !('error' in obj) ) {
+                	//We refresh the page to display the right thumbnail
                     location.reload();
 	            }
 	            else {
