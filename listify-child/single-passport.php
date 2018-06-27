@@ -230,7 +230,7 @@ if ( has_post_thumbnail() ){ ?>
 						        	});
 						        });
 						    </script>
-
+						    
 						    <form action="" id="save-passport-form" method="POST">
 
 								<div id="tabs" style="border: 0px;">

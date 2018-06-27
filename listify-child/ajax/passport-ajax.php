@@ -10,11 +10,15 @@ if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; 
 if( !isset($aResult['error']) ) {
 
     switch($_POST['functionname']) {
+        //Add a passport function
         case 'insert_passport':
+            //Check again if there is a passport title (should not happened because we already check it in JavaScript)
         	if( !isset($_POST['passportTitle']) ) { $aResult['error'] = 'No title!'; }
 
+            //Check again if there is a passport language (same as title)
 			else if( !isset($_POST['passportLanguage']) ) { $aResult['error'] = 'No language!'; }
 
+            //Check again if there is a passport student (same as title)
 			else if( !isset($_POST['passportStudent']) ) { $aResult['error'] = 'No student!'; }
 
             else {

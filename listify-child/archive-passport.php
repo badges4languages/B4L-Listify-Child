@@ -81,17 +81,14 @@ get_header(); ?>
 				<?php endif; ?>
 
 				<?php
-				// Checking if there is at least one badge
-				if ( have_posts() ) :
-					while ( have_posts() ) :
-						the_post();
+				while ( have_posts() ) :
+					the_post();
+					//Display the passports of only the logged in user
+					if( get_current_user_id() == get_post_meta( get_the_ID(),'_student',true ) ){
 						// Display the custom template archive-passport-content.php
 						get_template_part( 'templates/archives/archive-passport-content' );
-					endwhile;
-				// If not, display the custom template archive-passport-none.php
-				else :
-					get_template_part( 'templates/archives/archive-passport-none' );
-				endif;
+					}
+				endwhile;
 
 				// Display the pagination template (if there are more than 5 results)
 				get_template_part( 'content', 'pagination' ); ?>
