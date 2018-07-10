@@ -75,6 +75,15 @@ Completely overhauled design, from top to bottom. The theme has been completely 
  * Popup login.
  * Redirect to homepage after login.
  * When a teacher has no active classes, display a message to warn him.
+ * Front-end for the plugin "Badges4Languages-Portfolio" :
+   * Archive page of the portfolios of the connected user.
+   * Form to add a new portfolio.
+   * Single page with the comptetencies form and the current result.
+   * Users can modify, save and delete their portfolios.
+   * Users have the possibility to add, modify and delete the post thumbnail.
+ * Front-end for the plugin "B4L-Profiling-Grid-for-Teachers" :
+   * Same functionnalities than portfolios.
+   * Users have the possibility to upload evidences to prove their level in the profiling grid language.
 
 ### 0.1
  * Home page : Navigation menu, search form (for listing), recent listings.
