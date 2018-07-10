@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying Passport Archive page.
+ * The template for displaying Teacher Profiling Grid Archive page.
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
@@ -18,7 +18,7 @@ get_header(); ?>
 		<!-- Toggle button -->
 		<button onclick="toggle_passport_form()" class="button button-small" id="filter-button">Add new Teacher Profiling Grid</button>
 
-		<!-- Add a new passport form -->
+		<!-- Add a new PG form -->
 		<div id="add-passport-form">
 
 			<h1>New Teacher Profiling Grid</h1>
@@ -78,9 +78,9 @@ get_header(); ?>
 				<?php
 				while ( have_posts() ) :
 					the_post();
-					//Display the passports of only the logged in user
+					//Display the PG of only the logged in user
 					if( get_current_user_id() == get_post_meta( get_the_ID(),'_teacher',true ) ){
-						// Display the custom template archive-passport-content.php
+						// Display the custom template archive-passport-content.php (because it's exactly the same than for passports)
 						get_template_part( 'templates/archives/archive-passport-content' );
 					}
 				endwhile;

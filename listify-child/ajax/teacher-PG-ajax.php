@@ -10,18 +10,18 @@ if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; 
 if( !isset($aResult['error']) ) {
 
     switch($_POST['functionname']) {
-        //Add a passport function
+        //Add a PG function
         case 'insert_teacherPG':
-            //Check again if there is a passport title (should not happened because we already check it in JavaScript)
+            //Check again if there is a PG title (should not happened because we already check it in JavaScript)
         	if( !isset($_POST['teacherPGTitle']) ) { $aResult['error'] = 'No title!'; }
 
-            //Check again if there is a passport language (same as title)
+            //Check again if there is a PG language (same as title)
 			else if( !isset($_POST['teacherPGLanguage']) ) { $aResult['error'] = 'No language!'; }
 
-            //Check again if there is a passport student (same as title)
+            //Check again if there is a PG student (same as title)
 			else if( !isset($_POST['PGTeacher']) ) { $aResult['error'] = 'No student!'; }
 
-            //If everything is good, we create the passport
+            //If everything is good, we create the PG
             else {
             	$PG_information = array(
 				    'post_title' => $_POST['teacherPGTitle'],
@@ -35,19 +35,19 @@ if( !isset($aResult['error']) ) {
 				    )
 				);
 
-                //If the passport is well inserted
+                //If the PG is well inserted
 				if ( $postID = wp_insert_post( $PG_information ) ) {
-                    //We redirect to the single passport page
+                    //We redirect to the single PG page
 					$aResult['redirectLink'] = get_post_permalink( $postID );
 				} else {
-					$aResult['error'] = 'Can\'t insert the passport in database, try later!';
+					$aResult['error'] = 'Can\'t insert the profiling grid in database, try later!';
 				}
 			}
             break;
 
-        //Update a passport (competencies form)
+        //Update a PG (competencies form)
         case 'update_teacherPG':
-            //Check if the current passport exists
+            //Check if the current PG exists
         	if( !isset($_POST['post']) ) { $aResult['error'] = 'No profiling grid!'; }
 
             //We update the post meta (checkboxes)
@@ -58,13 +58,13 @@ if( !isset($aResult['error']) ) {
             }
         	break;
 
-        //Delete a passport
+        //Delete a PG
         case 'delete_teacherPG':
-            //Check if the passport exists
+            //Check if the PG exists
         	if( !isset($_POST['post']) ) { $aResult['error'] = 'No profiling grid!'; }
 
         	else{
-                //If the passports has a thumbnail
+                //If the PGs has a thumbnail
                 if( has_post_thumbnail( $_POST['post'] ) ){
                     $attachment_id = get_post_thumbnail_id( $_POST['post'] );
                     //We delete the thumbnail and the associated file
@@ -93,9 +93,9 @@ if( !isset($aResult['error']) ) {
 
         	break;
 
-        //Add or change the passport thumbnail
+        //Add or change the PG thumbnail
         case 'passport_thumbnail':
-            //If the passport have a thumbnail
+            //If the PG have a thumbnail
             if( has_post_thumbnail( $_POST['post'] ) ){
                 //We first delete the file of the previous thumbnail
                 $attachment_id = get_post_thumbnail_id( $_POST['post'] );

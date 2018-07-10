@@ -221,6 +221,7 @@ if( !isset($aResult['error']) ) {
 
             break;
 
+        //Delete the actual post thumbnail
         case 'action_delete_thumb':
             $dir = wp_upload_dir();
             $error = false;
