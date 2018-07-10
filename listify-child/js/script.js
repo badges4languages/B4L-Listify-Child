@@ -534,6 +534,7 @@ var btnUploadEvidence = "#upload_files_button";
 jQuery(document).on("click", btnUploadEvidence, function (event) {
 	tab = jQuery(this).attr('name');
 	id = jQuery("#post_ID").val();
+	
 	var files = document.getElementById('evidence').files
 	var data = new FormData();
 	jQuery.each(files, function(key, value)
@@ -546,8 +547,6 @@ jQuery(document).on("click", btnUploadEvidence, function (event) {
 	data.append("type_user", "teacher-files");
 
 	var functionUrl = ajax_function_path.ajaxFunctionURL;
-
-	jQuery("#error_content").html('qoiusdhqoisdhfoqisudh');
 
 	if (typeof files == 'undefined' || files.length <= 0) {
         jQuery("#error_content").html('Please select a file.');
