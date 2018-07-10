@@ -438,80 +438,115 @@ jQuery(document).on("submit", btnThumbnailPG, function (event) {
 	}  
 });
 
-// Variable to store your files
-/*var files;
-var id;
-var tab;
+var btnDeleteEvidence = "#delete_evidence_button";
+jQuery(document).on("click", btnDeleteEvidence, function (event) {
+	tab = jQuery(this).attr('name');
+	id = jQuery("#post_ID").val();
+	var data = new FormData();
 
-// Prepare upload
-jQuery('input[type=file]').on('change', function(event){
-  files = event.target.files;
-  tab = jQuery(this).attr('name');
-  id = jQuery("#post_ID").val();
-});*/
+	data.append("functionname", "action_delete_evidence");
+	data.append("post_ID", id);
+	data.append("tab", tab);
+	data.append("type_user", "teacher-files");
 
-var btnUploadFiles = "#upload_files_button";
-jQuery('#upload_files_button').click( function (event) {
-	jQuery("#result_upload_files").html("blblblblblblbl");
+	var functionUrl = ajax_function_path.ajaxFunctionURL;
+
+	jQuery.ajax({
+	    url: functionUrl+"/teacher-PG-ajax.php",
+	    type: 'POST',
+	    data: data,
+	    cache: false,
+	    dataType: 'json',
+	    processData: false, // Don't process the files
+	    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	    success: function(data, textStatus, jqXHR)
+	    {
+	        if(typeof data.error === 'undefined')
+	        {
+	        	var file_string = data.file;
+
+	            jQuery("#result_delete_evidence").html(
+	              "File deleted : <br />"+file_string
+	            );
+
+	            location.reload();
+	        }
+	        else
+	        {
+	            // Handle errors here
+	            jQuery("#result_delete_evidence").html(data.error);
+	        }
+	    },
+	    error: function(jqXHR, textStatus, errorThrown)
+	    {
+	        // Handle errors here
+	        console.log('ERRORS: ' + textStatus);
+	        jQuery("#result_delete_evidence").html('isqudhfqisudhfqoisudh');
+	    }
+	});
 });
 
-/*jQuery('#upload_files_button').click(  );
-
-// Catch the form submit and upload the files
-function uploadFiles(event)
-{
-	jQuery("#result_upload_files").html("blblblblblblbl");
-    console.log("in upload");
-    event.stopPropagation(); // Stop stuff happening
-    event.preventDefault(); // Totally stop stuff happening
-
-    // START A LOADING SPINNER HERE
-
-    // Create a formdata object and add the files
-    var data = new FormData();
-    jQuery.each(files, function(key, value)
+var btnUploadEvidence = "#upload_files_button";
+jQuery(document).on("click", btnUploadEvidence, function (event) {
+	tab = jQuery(this).attr('name');
+	id = jQuery("#post_ID").val();
+	var files = document.getElementById('evidence').files
+	var data = new FormData();
+	jQuery.each(files, function(key, value)
     {
         data.append(key, value);
     });
-    data.append("functionname", "action_upload_files");
-    data.append("post_ID", id);
-    data.append("tab", tab);
-    data.append("type_user", "teacher-files");
+	data.append("functionname", "action_upload_evidence");
+	data.append("post_ID", id);
+	data.append("tab", tab);
+	data.append("type_user", "teacher-files");
 
-    jQuery("#result_upload_files").html("<img src='<?php echo plugins_url( '../../images/sending.gif', __FILE__ ); ?>' width='50px' height='50px' />");
+	var functionUrl = ajax_function_path.ajaxFunctionURL;
 
-    jQuery.ajax({
-        url: "<?php echo plugins_url( '../ajax/custom_ajax.php', __FILE__ ); ?>",
-        type: 'POST',
-        data: data,
-        cache: false,
-        dataType: 'json',
-        processData: false, // Don't process the files
-        contentType: false, // Set content type to false as jQuery will tell the server its a query string request
-        success: function(data, textStatus, jqXHR)
-        {
-            if(typeof data.error === 'undefined')
+	jQuery("#error_content").html('qoiusdhqoisdhfoqisudh');
+
+	if (typeof files == 'undefined' || files.length <= 0) {
+        jQuery("#error_content").html('Please select a file.');
+    } else {
+        jQuery("#error_content").html("Please wait. Uploading...");
+        jQuery.ajax({
+            url: functionUrl+"/teacher-PG-ajax.php",
+            type: 'POST',
+            data: data,
+            cache: false,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR)
             {
-                var files_string = "";
-                data.files.forEach(function(element){
-                    files_string = files_string + element + "<br />";
-                });
+            	jQuery("#error_content").html('');
+                if(typeof data.error === 'undefined')
+                {
+                    var files_string = "";
+                    data.files.forEach(function(element){
+                        files_string = files_string + element + "<br />";
+                    });
 
-                jQuery("#result_upload_files").html(
-                  "File uploaded : <br />"+files_string
-                );
-            }
-            else
+                    jQuery("#result_upload_files").html(
+                      "File uploaded : <br />"+files_string
+                    );
+
+                    location.reload();
+                }
+                else
+                {
+                    // Handle errors here
+                    jQuery("#error_content").html(data.error);
+                    console.log('ERRORS: ' + data.error);
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown)
             {
                 // Handle errors here
-                console.log('ERRORS: ' + data.error);
+                jQuery("#error_content").html('ERRORS: ' + textStatus);
+                console.log('ERRORS: ' + textStatus);
+                // STOP LOADING SPINNER
             }
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-            // Handle errors here
-            console.log('ERRORS: ' + textStatus);
-            // STOP LOADING SPINNER
-        }
-    });
-}*/
+        });
+    }
+});

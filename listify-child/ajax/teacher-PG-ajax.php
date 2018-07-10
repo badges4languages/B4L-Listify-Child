@@ -251,9 +251,57 @@ if( !isset($aResult['error']) ) {
                   }
               }
               $aResult = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files);
-              echo json_encode($aResult);
           }
 
+            break;
+
+        case 'action_delete_evidence':
+            $dir = wp_upload_dir();
+            $file = "";
+            $error = false;
+
+            if( unlink( $dir['basedir'] . '/profiling-grids/' . $_POST['type_user'] . '/' . get_current_user_id() . '/' . get_post_meta($_POST['post_ID'],$_POST['tab'],true) ) )
+              {
+                $file = get_post_meta( $_POST['post_ID'],$_POST['tab'],true );
+                delete_post_meta( $_POST['post_ID'], $_POST['tab'] );
+              }
+              else
+              {
+                $error = true;
+              }
+              $aResult = ($error) ? array('error' => 'There was an error deleting your files') : array('file' => $file);
+            break;
+
+        case 'action_upload_evidence':
+
+          if(isset($_FILES))
+          {
+              global $current_user;
+              get_currentuserinfo();
+
+              $error = false;
+              $files = array();
+              $dir = wp_upload_dir();
+
+              $uploaddir = $dir['basedir'] . '/profiling-grids/' . $_POST['type_user'] . '/' . get_current_user_id() . '/';
+
+              if (!file_exists($uploaddir))
+                mkdir($uploaddir, 0777, true);
+
+              foreach($_FILES as $file)
+              {
+                  if(move_uploaded_file($file['tmp_name'], $uploaddir .basename($file['name'])))
+                  {
+                      update_post_meta($_POST['post_ID'], $_POST['tab'], basename($file['name']));
+                      $files[] = basename($file['name']);
+                  }
+                  else
+                  {
+                      $error = true;
+                  }
+              }
+              $aResult = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files);
+          }
             break;
 
         //Add or change the PG thumbnail
