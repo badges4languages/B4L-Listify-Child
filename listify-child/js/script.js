@@ -480,6 +480,7 @@ jQuery(document).on("submit", btnThumbnailPG, function (event) {
 	}  
 });
 
+//Delete an evidence
 var btnDeleteEvidence = "#delete_evidence_button";
 jQuery(document).on("click", btnDeleteEvidence, function (event) {
 	tab = jQuery(this).attr('name');
@@ -528,6 +529,7 @@ jQuery(document).on("click", btnDeleteEvidence, function (event) {
 	});
 });
 
+//Upload and save the file for an evidence
 var btnUploadEvidence = "#upload_files_button";
 jQuery(document).on("click", btnUploadEvidence, function (event) {
 	tab = jQuery(this).attr('name');
