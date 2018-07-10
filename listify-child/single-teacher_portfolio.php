@@ -194,7 +194,7 @@ else { ?>
 
 						<p>
 							<?php
-							__("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							_e("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",'b4l-profiling-grid-for-teachers');
@@ -203,7 +203,7 @@ else { ?>
 
 						<!-- Level aquired for each section -->
 						<div id="result_content">
-							<center><h1><?php __('Current Result','b4l-profiling-grid-for-teachers'); ?></h1></center>
+							<center><h1><?php _e('Current Result','b4l-profiling-grid-for-teachers'); ?></h1></center>
 							<?php
 								echo __("Language level : ",'b4l-profiling-grid-for-teachers') . get_language_level($post, $value) . "<br>";
 								echo __("Qualifications level : ",'b4l-profiling-grid-for-teachers') . get_qualifications_level($post, $value) . "<br>";
@@ -293,7 +293,7 @@ else { ?>
 											<div id="error_content">
 
 											</div>
-											<div id="result_upload_files">
+											<div id="result_upload_files" style="margin-top: 10px;">
 												<input id="upload_files_button" name="file_tab_a" type="button" class="button button-small" value="<?php _e('Upload file','b4l-profiling-grid-for-teachers'); ?>" />
 											</div>
 										<?php
@@ -349,11 +349,15 @@ else { ?>
 												</div>
 											</div>
 										<?php
-										} else{
-											echo ' <input name="file_tab_b" accept=".pdf, .png, .jpeg, .jpg" type="file"/>';
-											echo '<div id="result_upload_files">
-													<input id="upload_files_button" type="button" class="button button-small" value="Upload file" />
-												</div>';
+										} else{ ?>
+											<input name="file_tab_b" id="evidence" accept=".pdf, .png, .jpeg, .jpg" type="file"/>
+											<div id="error_content">
+
+											</div>
+											<div id="result_upload_files" style="margin-top: 10px;">
+												<input id="upload_files_button" name="file_tab_b" type="button" class="button button-small" value="<?php _e('Upload file','b4l-profiling-grid-for-teachers'); ?>" />
+											</div>
+										<?php
 										}
 									?>
 								</div>
@@ -415,11 +419,15 @@ else { ?>
 												</div>
 											</div>
 										<?php
-										} else{
-											echo ' <input name="file_tab_c" accept=".pdf, .png, .jpeg, .jpg" type="file"/>';
-											echo '<div id="result_upload_files">
-													<input id="upload_files_button" type="button" class="button button-small" value="Upload file" />
-												</div>';
+										} else{ ?>
+											<input name="file_tab_c" id="evidence" accept=".pdf, .png, .jpeg, .jpg" type="file"/>
+											<div id="error_content">
+
+											</div>
+											<div id="result_upload_files" style="margin-top: 10px;">
+												<input id="upload_files_button" name="file_tab_c" type="button" class="button button-small" value="<?php _e('Upload file','b4l-profiling-grid-for-teachers'); ?>" />
+											</div>
+										<?php
 										}
 									?>
 								</div>
@@ -461,11 +469,15 @@ else { ?>
 												</div>
 											</div>
 										<?php
-										} else{
-											echo ' <input name="file_tab_d" accept=".pdf, .png, .jpeg, .jpg" type="file"/>';
-											echo '<div id="result_upload_files">
-													<input id="upload_files_button" type="button" class="button button-small" value="Upload file" />
-												</div>';
+										} else{ ?>
+											<input name="file_tab_d" id="evidence" accept=".pdf, .png, .jpeg, .jpg" type="file"/>
+											<div id="error_content">
+
+											</div>
+											<div id="result_upload_files" style="margin-top: 10px;">
+												<input id="upload_files_button" name="file_tab_d" type="button" class="button button-small" value="<?php _e('Upload file','b4l-profiling-grid-for-teachers'); ?>" />
+											</div>
+										<?php
 										}
 									?>
 								</div>
@@ -488,7 +500,7 @@ else { ?>
 					</div>
 
 					<!-- Change the PG thumbnail form -->
-					<div id="portfolio-cover">
+					<div id="portfolio-cover" style="margin-top: 120px;">
 						<h3>Profiling grid's cover</h3>
 						<form action="" id="thumbnail-PG-form" method="POST">
 
@@ -497,6 +509,21 @@ else { ?>
 							<input id="thumbnail" accept=".png, .jpeg, .jpg" type="file"/>
 
 							<button type="submit" class="button button-small">Change profiling grid's image</button>
+
+							<?php
+								if( has_post_thumbnail() ){ 
+									global $wpdb;
+									$the_thumbnail_id = get_post_thumbnail_id($post->ID);
+									$the_thumbnail_name = $wpdb->get_var( "SELECT meta_value FROM $wpdb->postmeta WHERE post_id = '$the_thumbnail_id' AND meta_key = '_wp_attached_file'" );
+							?>
+									<input type="hidden" name="thumbnail_name" id="thumbnail_name" value="<?php echo $the_thumbnail_name; ?>" />
+
+									<input type="hidden" name="thumbnail_id" id="thumbnail_id" value="<?php echo $the_thumbnail_id; ?>" />
+
+									<input id="delete_thumbnail_button" type="button" style="background-color: #d62121;" class="button button-small" value="Delete cover" />
+								<?php
+								}
+							?>
 
 						</form>
 						

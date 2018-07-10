@@ -432,6 +432,21 @@ if( !isset($aResult['error']) ) {
 
             break;
 
+        case 'action_delete_thumbnail':
+            $dir = wp_upload_dir();
+            $error = false;
+
+            if( unlink( $dir['basedir'] . $_POST['thumbnail_name'] ) )
+              {
+                wp_delete_attachment( $_POST['thumbnail_id'], true );
+              }
+              else
+              {
+                $error = true;
+              }
+              $aResult = ($error) ? array('error' => 'There was an error deleting your thumbnail') : array('file' => $file);
+            break;
+
         default:
            $aResult['error'] = 'Not found function '.$_POST['functionname'].' !';
            break;

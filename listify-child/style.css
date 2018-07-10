@@ -72,10 +72,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, nav, sectio
     padding: 0;
 }
 
-.passport-title{
-	padding-bottom: 0px;
-}
-
 .passport-save-button{
 	float: right;
 	margin-top: 20px;

@@ -230,6 +230,48 @@ jQuery(document).on("submit", btnThumbnailPassport, function (event) {
 	}  
 });
 
+//Delete thumbnail's portfolio
+var btnDeleteThumbnailPortfolio = "#delete_thumbnail_portfolio_button";
+jQuery(document).on("click", btnDeleteThumbnailPortfolio, function (event) {
+	thumb_name = jQuery("#thumbnail_name").val();
+	thumb_id = jQuery("#thumbnail_id").val();
+	var data = new FormData();
+
+	data.append("functionname", "action_delete_thumb");
+	data.append("thumbnail_name", thumb_name);
+	data.append("thumbnail_id", thumb_id);
+
+	var functionUrl = ajax_function_path.ajaxFunctionURL;
+
+	jQuery.ajax({
+	    url: functionUrl+"/passport-ajax.php",
+	    type: 'POST',
+	    data: data,
+	    cache: false,
+	    dataType: 'json',
+	    processData: false, // Don't process the files
+	    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	    success: function(data, textStatus, jqXHR)
+	    {
+	        if(typeof data.error === 'undefined')
+	        {
+	            location.reload();
+	        }
+	        else
+	        {
+	            // Handle errors here
+	            jQuery("#result_upload_thumbnail").html(data.error);
+	        }
+	    },
+	    error: function(jqXHR, textStatus, errorThrown)
+	    {
+	        // Handle errors here
+	        console.log('ERRORS: ' + textStatus);
+	        jQuery("#result_upload_thumbnail").html('AJAX ERROR');
+	    }
+	});
+});
+
 //////////////////////////////
 //  TEACHER PROFILING GRID  //
 //////////////////////////////
@@ -549,4 +591,46 @@ jQuery(document).on("click", btnUploadEvidence, function (event) {
             }
         });
     }
+});
+
+//Delete thumbnail's profiling grid
+var btnDeleteThumbnail = "#delete_thumbnail_button";
+jQuery(document).on("click", btnDeleteThumbnail, function (event) {
+	thumb_name = jQuery("#thumbnail_name").val();
+	thumb_id = jQuery("#thumbnail_id").val();
+	var data = new FormData();
+
+	data.append("functionname", "action_delete_thumbnail");
+	data.append("thumbnail_name", thumb_name);
+	data.append("thumbnail_id", thumb_id);
+
+	var functionUrl = ajax_function_path.ajaxFunctionURL;
+
+	jQuery.ajax({
+	    url: functionUrl+"/teacher-PG-ajax.php",
+	    type: 'POST',
+	    data: data,
+	    cache: false,
+	    dataType: 'json',
+	    processData: false, // Don't process the files
+	    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+	    success: function(data, textStatus, jqXHR)
+	    {
+	        if(typeof data.error === 'undefined')
+	        {
+	            location.reload();
+	        }
+	        else
+	        {
+	            // Handle errors here
+	            jQuery("#result_upload_thumbnail").html(data.error);
+	        }
+	    },
+	    error: function(jqXHR, textStatus, errorThrown)
+	    {
+	        // Handle errors here
+	        console.log('ERRORS: ' + textStatus);
+	        jQuery("#result_upload_thumbnail").html('AJAX ERROR');
+	    }
+	});
 });

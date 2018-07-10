@@ -319,7 +319,7 @@ else { ?>
 					</div>
 
 					<!-- Change the passport thumbnail form -->
-					<div id="portfolio-cover">
+					<div id="portfolio-cover" style="margin-top: 120px;">
 						<h3>Portfolio's cover</h3>
 						<form action="" id="thumbnail-passport-form" method="POST">
 
@@ -329,9 +329,24 @@ else { ?>
 
 							<button type="submit" class="button button-small">Change portfolio's image</button>
 
+							<?php
+								if( has_post_thumbnail() ){ 
+									global $wpdb;
+									$the_thumbnail_id = get_post_thumbnail_id($post->ID);
+									$the_thumbnail_name = $wpdb->get_var( "SELECT meta_value FROM $wpdb->postmeta WHERE post_id = '$the_thumbnail_id' AND meta_key = '_wp_attached_file'" );
+							?>
+									<input type="hidden" name="thumbnail_name" id="thumbnail_name" value="<?php echo $the_thumbnail_name; ?>" />
+
+									<input type="hidden" name="thumbnail_id" id="thumbnail_id" value="<?php echo $the_thumbnail_id; ?>" />
+
+									<input id="delete_thumbnail_portfolio_button" type="button" style="background-color: #d62121;" class="button button-small" value="Delete cover" />
+								<?php
+								}
+							?>
+
 						</form>
 						
-						<div id="result_upload_files">
+						<div id="result_upload_thumbnail">
 							
 						</div>
 					</div>
