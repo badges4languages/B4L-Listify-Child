@@ -32,11 +32,11 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				            	<!-- If exists, first and last name of the user -->
 				                <?php 
 				                if( !empty( $current_user->first_name ) && !empty( $current_user->last_name ) ){
-				                	echo $current_user->first_name . ' ' . $current_user->last_name;
+				                	echo "User Profile: " . $current_user->first_name . ' ' . $current_user->last_name;
 				                } 
 				                //Else, display name
 				                else{
-				                	echo $current_user->display_name;
+				                	echo "User Profile: " . $current_user->display_name;
 				                }?>
 				                
 				            </h1>
