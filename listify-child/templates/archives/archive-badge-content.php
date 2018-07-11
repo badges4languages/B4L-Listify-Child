@@ -44,15 +44,15 @@
 				<!-- Description of the badge (Certification, Target, Fields of Education and Level). -->
 				<div class="badge-description-archive">
 					<?php  if( get_post_meta($post->ID, '_certification', true) == 'certified' ): ?>
-						<div class="badge-description-content"> <b>Certification Type: </b>Certified </div>
+						<div class="badge-description-content"> <b>Certification Type: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__certification=certified" ?>">Certified</a></div>
 					<?php else: ?>
-						<div class="badge-description-content"> <b>Certification Type: </b>Not Certified </div>
+						<div class="badge-description-content"> <b>Certification Type: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__certification=not_certified" ?>">Not Certified</a></div>
 					<?php endif; ?>
 
 					<?php if( get_post_meta($post->ID, '_target', true) == 'teacher' ): ?>
-						<div class="badge-description-content"> <b>Target: </b>Teacher </div>
+						<div class="badge-description-content"> <b>Target: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__target=teacher" ?>">Teacher</a></div>
 					<?php else: ?>
-						<div class="badge-description-content"> <b>Target: </b>Student </div>
+						<div class="badge-description-content"> <b>Target: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__target=student" ?>">Student</a></div>
 					<?php endif; ?>
 					
 					<div class="badge-description-content"> 

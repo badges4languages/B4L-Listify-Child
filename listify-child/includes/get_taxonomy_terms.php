@@ -15,7 +15,7 @@ function get_CPT_terms($postID, $term){
 		foreach ($terms_list as $t) {
 			$i++;
 			if($i > 1){ $output .= ', '; }
-			$output .= $t->name.' ';
+			$output .= '<a href="' . get_home_url() . '/' . $term . '/' . $t->name . '">'. $t->name . ' ' . '</a>';
 		}
 		return $output;
 	endif;
