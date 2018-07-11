@@ -71,17 +71,17 @@ get_header(); ?>
 							<!-- Description of the badge (Certification, Target, Fields of Education and Level). -->
 							<div class="badge-description">
 								<?php 
-									if( get_post_meta($post->ID, '_certification', true) == 'certified' ):
-										echo "<b>Certification Type: </b>Certified<br>";
-									else:
-										echo "<b>Certification Type: </b>Not Certified<br>";
-									endif;
+									if( get_post_meta($post->ID, '_certification', true) == 'certified' ): ?>
+										<b>Certification Type: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__certification=certified" ?>">Certified</a><br>
+									<?php else: ?>
+										<b>Certification Type: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__certification=not_certified" ?>">Not Certified</a><br>
+									<?php endif;
 
-									if( get_post_meta($post->ID, '_target', true) == 'teacher' ):
-										echo "<b>Target: </b>Teacher<br>";
-									else:
-										echo "<b>Target: </b>Student<br>";
-									endif;
+									if( get_post_meta($post->ID, '_target', true) == 'teacher' ): ?>
+										<b>Target: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__target=teacher" ?>">Teacher</a><br>
+									<?php else: ?>
+										<b>Target: </b><a href="<?php echo get_permalink( get_page_by_path( 'open-badge' ) ) . "?_sfm__target=student" ?>">Student</a><br>
+									<?php endif;
 									
 									echo "<b>Field(s) of Education: </b>" . get_CPT_terms($post->ID, 'field_of_education' ) . "<br>";
 									echo "<b>Level(s): </b>" . get_CPT_terms($post->ID, 'level' ) . "<br>";
