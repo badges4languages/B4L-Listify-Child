@@ -74,7 +74,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                                <!-- Subscription type -->
 				                                <?php
 					                                //If Restrict Content Pro plugin is activated, we display the user subscription
-				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
+				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) && rcp_get_subscription( get_queried_object_id() ) != null ){
 				                                        echo rcp_get_subscription( get_queried_object_id() );
 				                                    } 
 				                                    //If not, we display the WP roles
@@ -89,68 +89,54 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                <div class="username-user center-container flex-item">
 				                    <div class="txt-info center-item">
 				                        <ul>
-				                            <li>
-				                            	<!-- Year of birth -->
-				                                <span class="ion-information"></span>
-				                                <?php 
-				                                    if( !empty( get_the_author_meta( 'year_of_birth' ) ) ){
-				                                        echo 'Year of birth : ';
-				                                        the_author_meta( 'year_of_birth' );
-				                                    } else{
-				                                        echo 'No year of birth';
-				                                    }
-				                                ?>
-				                            </li>
-				                            <li>
-				                            	<!-- Country and city -->
-				                                <span class="ion-flag"></span>
-				                                <?php   
-				                                    if( !empty( get_the_author_meta( 'country' ) ) && !empty( get_the_author_meta( 'city' ) ) ){
-				                                        the_author_meta( 'country' );
+			                            	<!-- Year of birth -->
+			                            	<?php 
+				                            if( !empty( get_the_author_meta( 'year_of_birth', $current_user->ID ) ) ){ ?>
+				                                <li>
+				                                    <span class="ion-information"></span>
+				                                    <?php echo 'Year of birth : ';
+			                                        echo get_the_author_meta( 'year_of_birth', $current_user->ID ); ?>
+				                                </li>
+				                            <?php }
+				                            if( !empty( get_the_author_meta( 'country', $current_user->ID ) ) && !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                                <li>
+				                                    <span class="ion-flag"></span>
+				                                    <?php the_author_meta( 'country', $current_user->ID );
+				                                    echo ' - ';
+													echo get_the_author_meta( 'city', $current_user->ID ); ?>
+				                                </li>
+				                            <?php } else if ( !empty( get_the_author_meta( 'country', $current_user->ID ) ) || !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                            	<li>
+				                            		<span class="ion-flag"></span>
+				                                    <?php the_author_meta( 'country', $current_user->ID );
+													echo get_the_author_meta( 'city', $current_user->ID ); ?>
+												</li>
+				                            <?php }
+				                            if( !empty( get_the_author_meta( 'mother_tongue', $current_user->ID ) ) ){ ?>
+				                                <li>
+				                                    <span class="ion-chatboxes"></span>
+				                                    <?php echo 'Mother tongue : ';
+			                                        echo get_the_author_meta( 'mother_tongue', $current_user->ID ); ?>
+				                                </li>
+				                            <?php }
+				                            if( !empty( get_the_author_meta( 'primary_degree', $current_user->ID ) ) ){ ?>
+				                            	<li>
+				                                    <span class="ion-chatboxes"></span>
+				                                    <?php 
+				                                    //Primary degree
+				                                    echo get_the_author_meta( 'primary_degree', $current_user->ID );
+				                                    //Secondary degree
+				                                    if( !empty( get_the_author_meta( 'secondary_degree', $current_user->ID ) ) ){
 				                                        echo ' - ';
-														the_author_meta( 'city' );
-				                                    } else if( !empty( get_the_author_meta( 'country' ) ) || !empty( get_the_author_meta( 'city' ) ) ) {
-				                                        the_author_meta( 'country' );
-														the_author_meta( 'city' );
-				                                    } else{
-				                                        echo 'No country and city';
+				                                        echo get_the_author_meta( 'secondary_degree', $current_user->ID );
 				                                    }
-				                                ?>
-				                            </li>
-				                            <li>
-				                            	<!-- Mother tongue -->
-				                                <span class="ion-chatboxes"></span>
-				                                <?php 
-				                                    if( !empty( get_the_author_meta( 'mother_tongue' ) ) ){
-				                                        echo 'Mother tongue : ';
-				                                        the_author_meta( 'mother_tongue' );
-				                                    } else{
-				                                        echo 'No mother tongue';
-				                                    }
-				                                ?>
-				                            </li>
-				                            <li>
-				                            	<!-- Degrees -->
-				                                <span class="ion-briefcase"></span>
-				                                <?php 
-				                                	//Primary degree
-				                                    if( !empty( get_the_author_meta( 'primary_degree' ) ) ){
-				                                        the_author_meta( 'primary_degree' );
-				                                        //Secondary degree
-					                                    if( !empty( get_the_author_meta( 'secondary_degree' ) ) ){
-					                                        echo ' - ';
-					                                        the_author_meta( 'secondary_degree' );
-					                                    }
-					                                    //Tertiary degree
-					                                    if( !empty( get_the_author_meta( 'tertiary_degree' ) ) ){
-					                                        echo ' - ';
-					                                        the_author_meta( 'tertiary_degree' );
-					                                    }
-				                                    } else{
-				                                        echo 'No degree';
-				                                    }
-				                                ?>
-				                            </li>
+				                                    //Tertiary degree
+				                                    if( !empty( get_the_author_meta( 'tertiary_degree', $current_user->ID ) ) ){
+				                                        echo ' - ';
+				                                        echo get_the_author_meta( 'tertiary_degree', $current_user->ID );
+				                                    } ?>
+				                                </li>
+				                            <?php } ?>
 				                        </ul>
 				                    </div>
 				                </div>
