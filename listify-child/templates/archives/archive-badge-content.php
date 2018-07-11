@@ -55,8 +55,20 @@
 						<div class="badge-description-content"> <b>Target: </b>Student </div>
 					<?php endif; ?>
 					
-					<div class="badge-description-content"> <b>Field(s) of Education: </b><?php echo get_CPT_terms($post->ID, 'field_of_education' ); ?> </div>
-					<div class="badge-description-content"> <b>Level(s): </b><?php echo get_CPT_terms($post->ID, 'level' ); ?> </div>
+					<div class="badge-description-content"> 
+						<?php if( strpos( get_CPT_terms($post->ID, 'field_of_education' ), ',' ) !== false ){ ?>
+							<b>Fields of Education: </b><?php echo get_CPT_terms($post->ID, 'field_of_education' ); ?>
+						<?php } else { ?>
+							<b>Field of Education: </b><?php echo get_CPT_terms($post->ID, 'field_of_education' ); ?>
+						<?php } ?>
+					</div>
+					<div class="badge-description-content"> 
+						<?php if( strpos( get_CPT_terms($post->ID, 'level' ), ',' ) !== false ){ ?>
+							<b>Levels: </b><?php echo get_CPT_terms($post->ID, 'level' ); ?> 
+						<?php } else { ?>
+							<b>Level: </b><?php echo get_CPT_terms($post->ID, 'level' ); ?> 
+						<?php } ?>
+					</div>
 				</div>
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
