@@ -20,7 +20,7 @@ get_header(); ?>
 		    <p>Here you can find all the badge that we have available.</p>
 
 		    <?php // Search form created with the Search and filter pluggin.
-		    echo do_shortcode('[searchandfilter id="428"]'); ?>
+		    echo do_shortcode('[searchandfilter slug="search-badges"]'); ?>
 		</div>
 	</div>
 
