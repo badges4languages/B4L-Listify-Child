@@ -91,21 +91,21 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                        <ul>
 			                            	<!-- Year of birth -->
 			                            	<?php 
-				                            if( !empty( get_the_author_meta( 'year_of_birth', $current_user->ID ) ) ){ ?>
+				                            if( get_the_author_meta( 'year_of_birth', $current_user->ID ) && get_the_author_meta( 'year_of_birth', $current_user->ID ) != 'none' ){ ?>
 				                                <li>
 				                                    <span class="ion-information"></span>
 				                                    <?php echo 'Year of birth : ';
 			                                        echo get_the_author_meta( 'year_of_birth', $current_user->ID ); ?>
 				                                </li>
 				                            <?php }
-				                            if( !empty( get_the_author_meta( 'country', $current_user->ID ) ) && !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                            if( get_the_author_meta( 'country', $current_user->ID ) && get_the_author_meta( 'country',$current_user->ID ) != 'none' && get_the_author_meta( 'city', $current_user->ID ) ){ ?>
 				                                <li>
 				                                    <span class="ion-flag"></span>
 				                                    <?php the_author_meta( 'country', $current_user->ID );
 				                                    echo ' - ';
 													echo get_the_author_meta( 'city', $current_user->ID ); ?>
 				                                </li>
-				                            <?php } else if ( !empty( get_the_author_meta( 'country', $current_user->ID ) ) || !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                            <?php } else if ( ( get_the_author_meta( 'country', $current_user->ID ) && get_the_author_meta( 'country', $current_user->ID ) != 'none' ) || get_the_author_meta( 'city', $current_user->ID ) ){ ?>
 				                            	<li>
 				                            		<span class="ion-flag"></span>
 				                                    <?php the_author_meta( 'country', $current_user->ID );
@@ -178,21 +178,21 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                            </li>
 				                            <!-- Year of birth -->
 			                            	<?php 
-				                            if( !empty( get_the_author_meta( 'year_of_birth', $current_user->ID ) ) ){ ?>
+				                            if( get_the_author_meta( 'year_of_birth', $current_user->ID ) && get_the_author_meta( 'year_of_birth', $current_user->ID ) != 'none' ){ ?>
 				                                <li>
 				                                    <span class="ion-information"></span>
 				                                    <?php echo 'Year of birth : ';
 			                                        echo get_the_author_meta( 'year_of_birth', $current_user->ID ); ?>
 				                                </li>
 				                            <?php }
-				                            if( !empty( get_the_author_meta( 'country', $current_user->ID ) ) && !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                            if( get_the_author_meta( 'country', $current_user->ID ) && get_the_author_meta( 'country',$current_user->ID ) != 'none' && get_the_author_meta( 'city', $current_user->ID ) ){ ?>
 				                                <li>
 				                                    <span class="ion-flag"></span>
 				                                    <?php the_author_meta( 'country', $current_user->ID );
 				                                    echo ' - ';
 													echo get_the_author_meta( 'city', $current_user->ID ); ?>
 				                                </li>
-				                            <?php } else if ( !empty( get_the_author_meta( 'country', $current_user->ID ) ) || !empty( get_the_author_meta( 'city', $current_user->ID ) ) ){ ?>
+				                            <?php } else if ( ( get_the_author_meta( 'country', $current_user->ID ) && get_the_author_meta( 'country', $current_user->ID ) != 'none' ) || get_the_author_meta( 'city', $current_user->ID ) ){ ?>
 				                            	<li>
 				                            		<span class="ion-flag"></span>
 				                                    <?php the_author_meta( 'country', $current_user->ID );
@@ -232,72 +232,72 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				            <?php
 				            if( !empty( $user_data->user_url ) || !empty( get_the_author_meta( 'facebook' ) ) || !empty( get_the_author_meta( 'twitter' ) ) || !empty( get_the_author_meta( 'googleplus' ) ) || !empty( get_the_author_meta( 'pinterest' ) ) || !empty( get_the_author_meta( 'linkedin' ) ) || !empty( get_the_author_meta( 'github' ) ) || !empty( get_the_author_meta( 'instagram' ) ) ){
 				            ?>
-				            <!-- User Social Links -->
-				            <h2 class="social-links-title">Find me on :</h2>
-				            <div class="user-info-admin flex-container">
-				                <div class="username-user center-container flex-item" style="margin-left: 0px;">
-				                    <div class="txt-info center-item" style="margin-left: 0px;">
-				                        <ul>
-				                        	<?php
-				                        	if( !empty( $user_data->user_url ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_ios-globe.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="<?php echo $user_data->user_url; ?>">Website</a>'; ?>
-				                                </li>
-				                            <?php }
-				                            if( !empty( get_the_author_meta( 'facebook' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-facebook.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'facebook' ) .'">Facebook</a>'; ?>
-				                                </li>
-				                            <?php }
-				                            if( !empty( get_the_author_meta( 'twitter' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-twitter.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'twitter' ) .'">Twitter</a>'; ?>
-				                                </li>
-				                            <?php }
-				                            if( !empty( get_the_author_meta( 'googleplus' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-googleplus.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'googleplus' ) .'">Google+</a>'; ?>
-				                                </li>
-				                            <?php } ?>
-				                        </ul>
-				                    </div>
-				                </div>
-				                <div class="username-user center-container flex-item" style="margin-left: 0px;">
-				                    <div class="txt-info center-item" style="margin-left: 0px;">
-				                        <ul>
-			                            	<?php
-				                            if( !empty( get_the_author_meta( 'pinterest' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'pinterest' ) .'">Pinterest</a>'; ?>
-				                                </li>
-				                            <?php } 
-				                            if( !empty( get_the_author_meta( 'linkedin' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-linkedin.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'linkedin' ) .'">LinkedIn</a>'; ?>
-				                                </li>
-				                            <?php }
-				                            if( !empty( get_the_author_meta( 'github' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-github.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'github' ) .'">GitHub</a>'; ?>
-				                                </li>
-				                            <?php }
-				                            if( !empty( get_the_author_meta( 'instagram' ) ) ){ ?>
-				                                <li>
-				                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-instagram.svg'?>" height="17px" width="17px"></span>
-				                                    <?php echo '<a href="'. get_the_author_meta( 'instagram' ) .'">Instagram</a>'; ?>
-				                                </li>
-				                            <?php } ?>
-				                        </ul>
-				                    </div>
-				                </div>
-				            </div>
+					            <!-- User Social Links -->
+					            <h2 class="social-links-title">Find me on :</h2>
+					            <div class="user-info-admin flex-container">
+					                <div class="username-user center-container flex-item" style="margin-left: 0px;">
+					                    <div class="txt-info center-item" style="margin-left: 0px;">
+					                        <ul>
+					                        	<?php
+					                        	if( !empty( $user_data->user_url ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_ios-globe.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="<?php echo $user_data->user_url; ?>">Website</a>'; ?>
+					                                </li>
+					                            <?php }
+					                            if( !empty( get_the_author_meta( 'facebook' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-facebook.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'facebook' ) .'">Facebook</a>'; ?>
+					                                </li>
+					                            <?php }
+					                            if( !empty( get_the_author_meta( 'twitter' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-twitter.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'twitter' ) .'">Twitter</a>'; ?>
+					                                </li>
+					                            <?php }
+					                            if( !empty( get_the_author_meta( 'googleplus' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-googleplus.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'googleplus' ) .'">Google+</a>'; ?>
+					                                </li>
+					                            <?php } ?>
+					                        </ul>
+					                    </div>
+					                </div>
+					                <div class="username-user center-container flex-item" style="margin-left: 0px;">
+					                    <div class="txt-info center-item" style="margin-left: 0px;">
+					                        <ul>
+				                            	<?php
+					                            if( !empty( get_the_author_meta( 'pinterest' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'pinterest' ) .'">Pinterest</a>'; ?>
+					                                </li>
+					                            <?php } 
+					                            if( !empty( get_the_author_meta( 'linkedin' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-linkedin.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'linkedin' ) .'">LinkedIn</a>'; ?>
+					                                </li>
+					                            <?php }
+					                            if( !empty( get_the_author_meta( 'github' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-github.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'github' ) .'">GitHub</a>'; ?>
+					                                </li>
+					                            <?php }
+					                            if( !empty( get_the_author_meta( 'instagram' ) ) ){ ?>
+					                                <li>
+					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-instagram.svg'?>" height="17px" width="17px"></span>
+					                                    <?php echo '<a href="'. get_the_author_meta( 'instagram' ) .'">Instagram</a>'; ?>
+					                                </li>
+					                            <?php } ?>
+					                        </ul>
+					                    </div>
+					                </div>
+					            </div>
 				            <!-- Button linked to the 'Edit profile' page -->
 				            <?php }
 				            	if( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
