@@ -106,7 +106,7 @@ get_header(); ?>
 		</div>
 		
 		<div style="text-align: center; padding-bottom: 10px;">
-			<?php echo "<a href=\"" . get_post_type_archive_link( 'open-badge' ) . "\" class=\"button button-small\">Return</a>"; ?>
+			<?php echo "<a href=\"" . get_post_type_archive_link( 'open-badge' ) . "\" class=\"button button-small\">Catalog</a>"; ?>
 		</div>
 	</div>
 
