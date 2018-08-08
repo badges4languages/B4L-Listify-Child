@@ -3,5 +3,5 @@
 /.gitignore export-ignore
 /.github export-ignore
 /doc export-ignore
-/License export-ignore
+/LICENSE.md export-ignore
 /README.md export-ignore
