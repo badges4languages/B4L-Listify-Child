@@ -1,0 +1,199 @@
+/*
+ Theme Name:  Listify Theme by MLS
+ Theme URI:   http://astoundify.com/themes/listify
+ Author:      My language skills Team
+ Author URI:  http://mylanguageskills.wordpress.com
+ Description: Listify Child Theme by My language skills
+ Version:     1.2
+ License:     GNU General Public License
+ License URI: license.txt
+ Text Domain: listify
+ Domain Path: /languages/
+ Tags: Badges4Languages
+ Template:    listify
+*/
+
+/* //////////////////////////////////////
+   /         Archive Badge Page          /
+   ////////////////////////////////////// */
+.badge-description-archive{
+	width: 100%;
+	display: inline-flex;
+	margin-bottom: 5px;
+}
+
+.badge-description-content{
+	width: 100%;
+	text-align: center;
+}
+
+/* //////////////////////////////////////
+   /         Single Badge Page          /
+   ////////////////////////////////////// */
+.badge-description{
+	margin-bottom: 15px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.content-area{
+	margin-bottom: 10px;
+	margin-top: 15px;
+}
+
+/* //////////////////////////////////////
+   /         Archive Badge Page          /
+   ////////////////////////////////////// */
+.new-passport-container{
+	margin-top: 10px;
+}
+
+#add-passport-form{
+	display: none;
+}
+
+#passportTitle{
+	margin-right: 20px;
+}
+
+.passport-button{
+	margin-left: 20px;
+}
+
+/* /////////////////////////////////////////
+   /         Single Passport Page          /
+   ///////////////////////////////////////// */
+#passport-list{
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.passport-save-button{
+	float: right;
+	margin-top: 20px;
+}
+
+.passport-delete-button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    float: right;
+	margin-top: 20px;
+	margin-right: 10px;
+	background-color: #d62121;
+}
+
+.passport-delete-button:hover {
+    background-color: #d62121;
+}
+
+
+
+/* //////////////////////////////////////
+   /             Search Form            /
+   ////////////////////////////////////// */
+.searchandfilter ul li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+    padding: 10px 0;
+    margin: 20px;
+}
+
+#filter-button{
+	width: 100%;
+}
+
+#filter-form-title{
+	margin-top: 0px;
+}
+
+#filter-form{
+	display: none;
+}
+
+/* //////////////////////////////////////
+   /               Menu                 /
+   ////////////////////////////////////// */
+#menu-avatar{
+	margin-right: 10px;
+}
+
+/* //////////////////////////////////////
+   /            Profile Page            /
+   ////////////////////////////////////// */
+.badge {
+	background-color: transparent;
+}
+
+.social-links-title{
+	text-align: left;
+}
+
+/* //////////////////////////////////////
+   /           Little Screens           /
+   ////////////////////////////////////// */
+@media (max-width: 999px) {
+	.normal-screen{
+		display: none;
+	}
+
+	.badge-description-archive{
+		display: inline;
+	}
+
+	.badge-description-content{
+	  text-align: left;
+	}
+
+	#portfolio-cover{
+		display: none;
+	}
+}
+
+@media (max-width: 609px) {
+    .profile-large-screen.flex-container{
+        display: none;
+    }
+}
+
+/* //////////////////////////////////////
+   /           Large Screens            /
+   ////////////////////////////////////// */
+@media (min-width: 610px) {
+    .profile-little-screen.flex-container{
+        display: none;
+    }
+}
+
+@media (min-width: 768px){
+	.col-sm-7 {
+			width: 100%;
+	}
+}
+
+@media (min-width: 1000px) {
+	.badge-archive{
+		max-width: 1000px;
+	}
+
+	.badge-image{
+		max-width: 1000px;
+		margin: auto;
+	}
+
+	.normal-screen{
+		max-width: 1000px;
+	}
+
+	.single-badge-content{
+		max-width: 1000px;
+	}
+	
+	.little-screen{
+		display: none;
+	}
+}
