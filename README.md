@@ -22,7 +22,7 @@ This is a child theme based on the [Listify theme](http://listify.astoundify.com
 
 ## Frequently Asked Questions
 
-* Badges4Languages : https://github.com/my-language-skills/open-badges-framework/blob/master/doc/badges-for-languages.md
+* Badges4Languages : https://github.com/my-language-skills/open-badges-framework/doc/badges-for-languages.md
 * [General documentation](doc/documentation-general.md).
 * [Technical documentation](doc/documentation-technical.md).
 * [Integrations](doc/documentation-integrations.md).
