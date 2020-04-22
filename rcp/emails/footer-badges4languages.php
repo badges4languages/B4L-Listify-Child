@@ -53,16 +53,16 @@ $credit = "
                                                         <td colspan="2" valign="middle" id="credit" style="<?php echo $credit; ?>">
                                                         </td>
 																												<td>
-																													You received this email because you are a registered member of and <a href="https://books4languages.com/" target="_blank" rel="noopener" >www.books4languages</a> is providing this email as service to . <a href="https://open.books4languages.com/help/" target="_blank" rel="noopener">Unsubscribe</a>.
+																													You received this email because you are a registered member of and <a href="https://badges4languages.com/" target="_blank" rel="noopener" >www.badges4languages</a> is providing this email as service to . <a href="https://badges4languages.com/contact/" target="_blank" rel="noopener">Unsubscribe</a>.
 																											    </Br>
 																													</Br>
-																												  Your privacy is important to us: if you believe this email is sent to you in an error, please email us at <a href="mailto:privacy@books4languages.com" target="_blank" rel="noopener">privacy@books4languages.com</a>.
+																												  Your privacy is important to us: if you believe this email is sent to you in an error, please email us at <a href="mailto:privacy@badges4languages.com" target="_blank" rel="noopener">privacy@books4languages.com</a>.
 																										    	</Br>
 																													</Br>
-																											    Need help with anything? Hit up <a href="https://books4languages.com/contact/" target="_blank" rel="noopener" >support</a>.
+																											    Need help with anything? Hit up <a href="https://badges4languages.com/contact/" target="_blank" rel="noopener" >support</a>.
 																											    </Br>
 																													</Br>
-																											   ©Books4Languages Valencia, Spain, cp: 46550. <a href="https://books4languages.com/legal/privacy-policy/" target="_blank" rel="noopener" > Privacy Policy </a>
+																											   ©Badges4Languages Valencia, Spain, cp: 46550. <a href="https://badges4languages.com/legal/privacy-policy/" target="_blank" rel="noopener" > Privacy Policy </a>.
 																											</td>
                                                     </tr>
                                                 </table>
