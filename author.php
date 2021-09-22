@@ -7,17 +7,36 @@
  * @package Listify
  */
 
-get_header(); 
+get_header();
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
-	
+
 	<?php //If a user is logged in, we display his profile
 	if( is_user_logged_in() ): ?>
+
+	<!-- Menu item to user page -->
+<?php
+function new_nav_menu_items($items, $args) {
+
+//get current user
+global $wpdb;
+global $current_user;
+$c = $current_user->nickname;
+
+//create link to user page
+$homelink = '<li class="home"><a href="' . get_site_url() . '/author/' . $c . '">' . __('Profile') . '</a></li>';
+$items = $homelink . $items;
+
+return $items;
+}
+add_filter( 'wp_nav_menu_items', 'new_nav_menu_items', 10, 2 );
+?>
+
 		<div <?php echo apply_filters( 'listify_cover', 'page-cover' ); ?> >
 			<div class="page-cover no-image">
 			    <div class="page-title cover-wrapper">
 			        <div id="profile-page" class="container">
 
-			        	<?php 
+			        	<?php
 			        	//Get the current user
 			        	$current_user = wp_get_current_user();
 			        	//Get user data
@@ -30,15 +49,15 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				        <div class="author-name">
 				            <h1>
 				            	<!-- If exists, first and last name of the user -->
-				                <?php 
+				                <?php
 				                if( !empty( $current_user->first_name ) && !empty( $current_user->last_name ) ){
 				                	echo "User Profile: " . $current_user->first_name . ' ' . $current_user->last_name;
-				                } 
+				                }
 				                //Else, display name
 				                else{
 				                	echo "User Profile: " . $current_user->display_name;
 				                }?>
-				                
+
 				            </h1>
 				        </div>
 
@@ -76,7 +95,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 					                                //If Restrict Content Pro plugin is activated, we display the user subscription
 				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) && rcp_get_subscription( get_queried_object_id() ) != null ){
 				                                        echo rcp_get_subscription( get_queried_object_id() );
-				                                    } 
+				                                    }
 				                                    //If not, we display the WP roles
 				                                    else{
 				                                        echo implode( ', ', $user_data->roles );
@@ -90,7 +109,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                    <div class="txt-info center-item">
 				                        <ul>
 			                            	<!-- Year of birth -->
-			                            	<?php 
+			                            	<?php
 				                            if( get_the_author_meta( 'year_of_birth', $current_user->ID ) && get_the_author_meta( 'year_of_birth', $current_user->ID ) != 'none' ){ ?>
 				                                <li>
 				                                    <span class="ion-information"></span>
@@ -122,7 +141,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                            if( !empty( get_the_author_meta( 'primary_degree', $current_user->ID ) ) ){ ?>
 				                            	<li>
 				                                    <span class="ion-chatboxes"></span>
-				                                    <?php 
+				                                    <?php
 				                                    //Primary degree
 				                                    echo get_the_author_meta( 'primary_degree', $current_user->ID );
 				                                    //Secondary degree
@@ -169,7 +188,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 					                                //If Restrict Content Pro plugin is activated, we display the user subscription
 				                                    if ( is_plugin_active( 'restrict-content-pro/restrict-content-pro.php' ) ){
 				                                        echo rcp_get_subscription( get_queried_object_id() );
-				                                    } 
+				                                    }
 				                                    //If not, we display the WP roles
 				                                    else{
 				                                        echo implode( ', ', $user_data->roles );
@@ -177,7 +196,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
                                     			?>
 				                            </li>
 				                            <!-- Year of birth -->
-			                            	<?php 
+			                            	<?php
 				                            if( get_the_author_meta( 'year_of_birth', $current_user->ID ) && get_the_author_meta( 'year_of_birth', $current_user->ID ) != 'none' ){ ?>
 				                                <li>
 				                                    <span class="ion-information"></span>
@@ -209,7 +228,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                            if( !empty( get_the_author_meta( 'primary_degree', $current_user->ID ) ) ){ ?>
 				                            	<li>
 				                                    <span class="ion-chatboxes"></span>
-				                                    <?php 
+				                                    <?php
 				                                    //Primary degree
 				                                    echo get_the_author_meta( 'primary_degree', $current_user->ID );
 				                                    //Secondary degree
@@ -275,7 +294,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-pinterest.svg'?>" height="17px" width="17px"></span>
 					                                    <?php echo '<a href="'. get_the_author_meta( 'pinterest' ) .'">Pinterest</a>'; ?>
 					                                </li>
-					                            <?php } 
+					                            <?php }
 					                            if( !empty( get_the_author_meta( 'linkedin' ) ) ){ ?>
 					                                <li>
 					                                    <span><img src="<?php echo get_stylesheet_directory_uri() . '/images/Logos/_ionicons_svg_logo-linkedin.svg'?>" height="17px" width="17px"></span>
@@ -311,7 +330,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				        </section>
 
 				        <!-- Second section is about the badges earned by the user -->
-				        <?php 
+				        <?php
 				        // Get the data base info about the user.
 				        $userDb = apply_filters('theme_DbUser_get_single', ["idWP" => $current_user->ID] );
 
@@ -370,7 +389,7 @@ include_once( ABSPATH . 'wp-admin/includes/plugin.php' ); ?>
 				                ?>
 				            </div>
 				        </section>
-			        
+
 			        </div>
 			    </div>
 			</div>
